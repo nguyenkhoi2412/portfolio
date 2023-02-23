@@ -1,0 +1,150 @@
+{
+  "validate": {
+    "required": "* is required",
+    "isnumber": "* be number",
+    "email": "Email is not valid",
+    "mustbebefore_startdate": "End date can't be before Start date"
+  },
+  "authentication": {
+    "username": "Username",
+    "password": "Password",
+    "signin": "Sign in",
+    "verification": "Verification",
+    "signout": "Sign out",
+    "rememberme": "Remember me",
+    "forgotpassword": "Forgot password?",
+    "resend_code": "Resend code",
+    "register": "Register now?",
+    "enterusername": "Enter Your usename",
+    "enterpassword": "Enter Your password",
+    "enter_verify_code": "Enter verify code",
+    "verification_code": "Verification code",
+    "code_sent_toemail": "Please enter the verification code that was sent to your email address",
+    "didnt_receive_code": "If you didn't receive a OTP code?",
+    "verified_success": "Verification code is valid",
+    "token_expired": "Your token is invalid or expires"
+  },
+  "user": {
+    "firstname": "First name",
+    "lastname": "Last name",
+    "fullname": "Full name",
+    "email": "Email",
+    "birthday": "Birthday"
+  },
+  "common": {
+    "addmore": "Add more",
+    "addnew": "Add new",
+    "insert": "Insert",
+    "cancel": "Cancel",
+    "close": "Close",
+    "delete": "Delete",
+    "reset": "Reset",
+    "confirm": "Confirm",
+    "save": "Save",
+    "apply": "Apply",
+    "saving": "Saving",
+    "datasaved": "Data saved",
+    "datadeleted": "Data deleted",
+    "loading": "Loading",
+    "validating": "Validating",
+    "edit": "Edit",
+    "update": "Update",
+    "areyousurethisrecord": "Are you sure delete this record?",
+    "selectall": "Select all",
+    "next": "Next",
+    "complete": "Complete",
+    "search": "Search",
+    "filter": "Filter"
+  },
+  "site": {
+    "structure_site": "Structure site",
+    "currentcy_unit": "USD",
+    "types": "Types",
+    "categories": "Categories",
+    "select_categories": "Select categories",
+    "articles": "Articles",
+    "products": "Products",
+    "surveys": "Surveys",
+    "questionnaire": "Questionaire",
+    "title": "Title",
+    "name": "Site name",
+    "sub_title": "Sub title",
+    "description": "Descriptions",
+    "selecttype": "Select type",
+    "sort_no": "Sort no",
+    "step": "Step",
+    "language": "Language",
+    "inputsearchtext": "Input search text",
+    "icon_name": "Icon name",
+    "path_name": "Path name",
+    "header_table": {
+      "title": "Title",
+      "desc": "Description",
+      "purchase_price": "Purchase price",
+      "sale_price": "Sale price"
+    }
+  },
+  "type": {
+    "createnewtype": "Create a new type",
+    "infos": "Product information"
+  },
+  "supplier": {
+    "createnewsupplier": "Add new supplier",
+    "name": "Supplier's name",
+    "contact_info": "Contact information"
+  },
+  "category": {
+    "createnewcategory": "Add new category",
+    "select_parent": "Select parent"
+  },
+  "article": {
+    "createnewarticle": "Add new article",
+    "sortno": "Sort no"
+  },
+  "product": {
+    "supplier": "Supplier",
+    "categories": "Categories",
+    "infos": "Product information",
+    "quantity": "Quantity",
+    "quantity_in_store": "Quantity in store",
+    "unit": "Unit",
+    "pcs": "pcs/bag/pack",
+    "boxpcs": "box/carton",
+    "kg": "kg",
+    "gam": "gam",
+    "barcode": "Barcode",
+    "purchase_price": "Purchase price",
+    "sale_price": "Sale price"
+  },
+  "question": {
+    "createnewquestion": "Create new questions",
+    "updatequestion": "Update questions",
+    "name": "Question name",
+    "question_type": "Question type",
+    "choose_questiontype": "Choose a question type",
+    "options": "Options",
+    "answers": "Answers",
+    "answerselect": "User select",
+    "answerdesc": "Description",
+    "marks": "Marks",
+    "numberOfOptionsAnswer": "Number of questions answer",
+    "review_questions": "Review questions"
+  },
+  "survey": {
+    "loggin": "Survey | Log in",
+    "createnewsurvey": "Create a new survey",
+    "rangedate": "Range date",
+    "startdate": "Start date",
+    "enddate": "End date",
+    "timeduration": "Time duration",
+    "updatesurvey": "Update survey",
+    "onlinesurvey": "Online survey",
+    "greattoseeagain": "Great to see you! The tool is fired up and rrrready to go, log in here:",
+    "getanswerssurvey": "Get answers with surveys",
+    "surveyintros": "Be the person with great ideas. Surveys give you actionable insights and fresh perspectives.",
+    "chooseyourtest": "Choose your test",
+    "pleasecompletetest": "Please complete your test: ",
+    "greatdone": "Great, we have done all survey!",
+    "yourresult": "Your result"
+  }
+}
