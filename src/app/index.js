@@ -1,4 +1,4 @@
-// import "./app.less";
+import "./app.scss";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import defaultFavicon from "@assets/favicons/default/favicon.ico";
@@ -15,6 +15,7 @@ import routes from "@app/routes";
 // import Linear from "@components/common/Linear";
 //#endregion
 import { useDispatch, useSelector } from "react-redux";
+import Button from '@mui/material/Button';
 // import {
 //   SITE_GET_BY_NAME,
 //   siteState,
@@ -87,25 +88,9 @@ const App = () => {
     .on("resize.handleResize", function () {
       handleResize();
     });
-
   return (
     <>
-      {/* <ProgressBar />
-      <BackdropSpin />
-      <Loading /> */}
-      <div>Welcome</div>
-      {/* <Router basename={process.env.ASSET_PATH || "/"}>
-        <Routes>
-          <Navigate exact from="/" to="/home" />
-          {renderRoutes.map((route, index) => (
-            <PagesRoute key={index} {...route}>
-              {route.children}
-            </PagesRoute>
-          ))}
-        </Routes>
-      </Router> */}
-      {/** Snackbar show message results */}
-      {/* <SnackbarmaUI /> */}
+      <Button variant="contained">Contained</Button>
     </>
   );
 };
