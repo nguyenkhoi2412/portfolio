@@ -12,10 +12,10 @@ const app = (
   <React.Fragment>
     {/* Redux store */}
     <Provider store={store}>
-    <ThemeProvider
-      theme={muiTheme}
-    >
-      <App />
+      <ThemeProvider
+        theme={muiTheme}
+      >
+        <App />
       </ThemeProvider>
     </Provider>
   </React.Fragment>

@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import defaultFavicon from "@assets/favicons/default/favicon.ico";
 // // import cmsFavicon from "@assets/favicons/dashboard/favicon.ico";
 // import surveyFavicon from "@assets/favicons/survey/favicon.ico";
-import { BrowserRouter as Router, Routes, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import PagesRoute from "./routes/PagesRoute";
 import routes from "@app/routes";
 //#region useHooks,components, helper
@@ -13,6 +13,8 @@ import routes from "@app/routes";
 // import ProgressBar from "@components/common/ProgressBar";
 // import SnackbarmaUI from "@components/common/Snackbar";
 // import Linear from "@components/common/Linear";
+import About from "@clientapp/About";
+import Home from "@clientapp/Home";
 //#endregion
 import { useDispatch, useSelector } from "react-redux";
 import Button from '@mui/material/Button';
@@ -89,9 +91,14 @@ const App = () => {
       handleResize();
     });
   return (
-    <>
-      <Button variant="contained">Contained</Button>
-    </>
+    <BrowserRouter>
+      {/* <Button variant="contained">Contained</Button> */}
+        <Routes path="/">
+          <Route index element={<Home />} />
+          <Route path="home" element={<Home />} />
+          <Route path="about" element={<About />} />
+        </Routes>
+      </BrowserRouter>
   );
 };
 

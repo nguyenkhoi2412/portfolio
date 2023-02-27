@@ -162,13 +162,12 @@ module.exports = (env, argv) => {
         "@assets": APP_DIR + "/assets",
         "@utils": APP_DIR + "/utils",
         "@authentication": APP_DIR + "/authentication",
-        "@clients": APP_DIR + "/clients",
+        "@clientapp": APP_DIR + "/clientapp",
         "@constants": APP_DIR + "/constants",
         "@dashboard": APP_DIR + "/dashboard",
         "@components": APP_DIR + "/components",
         "@providers": APP_DIR + "/providers",
-        "@services": APP_DIR + "/services",
-        "@providers": APP_DIR + "/providers"
+        "@services": APP_DIR + "/services"
       },
       fallback: {
         crypto: false,
