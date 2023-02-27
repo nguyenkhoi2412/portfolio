@@ -1,7 +1,7 @@
 import { stringExtension } from "@utils/helpers";
 
 // import GenerateKey from "@containers/GenerateKey";
-import clientapp from "./data.clientapp";
+import clientapp from "@routes/data/clientapp";
 
 // import DashboardSignIn from "@dashboard/containers/SignIn";
 // import Secure2FA from "@dashboard/containers/Secure_2fa";

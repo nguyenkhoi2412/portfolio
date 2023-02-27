@@ -3,7 +3,6 @@ import { Routes, Route } from 'react-router-dom';
 import routes from "@app/routes";
 import PrivateRoute from './privateRoute';
 import Home from "@clientapp/Home";
-import About from "@clientapp/About";
 // import { isAuth } from "../../authentication";
 import { useSelector } from 'react-redux';
 // import { siteState } from "@providers/site.reducer";

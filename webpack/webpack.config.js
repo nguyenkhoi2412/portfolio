@@ -159,6 +159,7 @@ module.exports = (env, argv) => {
         "@": APP_DIR, // shortcut to reference src folder from anywhere
         "@@": path.resolve(),
         "@app": APP_DIR + "/app",
+        "@routes": APP_DIR + "/app/routes",
         "@assets": APP_DIR + "/assets",
         "@utils": APP_DIR + "/utils",
         "@authentication": APP_DIR + "/authentication",
