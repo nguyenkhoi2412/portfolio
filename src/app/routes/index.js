@@ -1,8 +1,7 @@
 import { stringExtension } from "@utils/helpers";
 
 // import GenerateKey from "@containers/GenerateKey";
-// import Home from "@containers/Home";
-// import About from "@containers/About";
+import clientapp from "./data.clientapp";
 
 // import DashboardSignIn from "@dashboard/containers/SignIn";
 // import Secure2FA from "@dashboard/containers/Secure_2fa";
@@ -21,38 +20,38 @@ export default {
 
     return routeName[routeName[0] === "" ? 1 : 0].toLowerCase();
   },
-  buildRoutes: (site, locale) => {
-    const routes = [...site.routes];
+  buildRoutes: (locale) => {
     const components = {
-      generatesecretkey: <GenerateKey />,
-      home: <Home />,
-      about: <About />,
+      // generatesecretkey: <GenerateKey />,
+      // home: <Home />,
+      // about: <About />,
       // "dashboard/login": <DashboardSignIn />,
       // "dashboard/secure_2fa": <Secure2FA />,
       // "dashboard/layouttemplate": <DashboardLayoutTemplate />,
     };
 
     let routeBuild = [
-      {
-        path: ASSET_PATH + "generate/secretkey",
-        exact: true,
-        public: true,
-        title: "Generate SecretKey",
-        children: components["generatesecretkey"],
-      },
+      // {
+      //   path: ASSET_PATH + "generate/secretkey",
+      //   exact: true,
+      //   public: true,
+      //   title: "Generate SecretKey",
+      //   children: components["generatesecretkey"],
+      // },
+      ...clientapp
     ];
 
-    routes.map((r) => {
-      const rt = { ...r };
+    // routes.map((r) => {
+    //   const rt = { ...r };
 
-      routeBuild.push({
-        path: ASSET_PATH + rt.path,
-        exact: rt.axact,
-        public: rt.public,
-        title: stringExtension.render(rt.title, locale.lang),
-        children: components[rt.component.toLowerCase()],
-      });
-    });
+    //   routeBuild.push({
+    //     path: ASSET_PATH + rt.path,
+    //     exact: rt.axact,
+    //     public: rt.public,
+    //     title: stringExtension.render(rt.title, locale.lang),
+    //     children: components[rt.component.toLowerCase()],
+    //   });
+    // });
 
     return routeBuild;
   },

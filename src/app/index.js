@@ -4,8 +4,7 @@ import { useTranslation } from "react-i18next";
 import defaultFavicon from "@assets/favicons/default/favicon.ico";
 // // import cmsFavicon from "@assets/favicons/dashboard/favicon.ico";
 // import surveyFavicon from "@assets/favicons/survey/favicon.ico";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import PagesRoute from "./routes/PagesRoute";
+import BuildPagesRoute from "./routes/buildPagesRoute";
 import routes from "@app/routes";
 //#region useHooks,components, helper
 // import BackdropSpin from "@components/common/BackdropSpin";
@@ -35,7 +34,7 @@ const App = () => {
   const dispatch = useDispatch();
   // const site = useSelector(siteState);
   // const locale = useSelector(localeState);
-  const [renderRoutes, setRenderRoutes] = React.useState([]);
+  const [renderRoutes, setRenderRoutes] = React.useState(routes.buildRoutes());
   const [deviceInfos, setDeviceInfos] = React.useState({
     mobile: false,
     responsive: false,
@@ -90,15 +89,11 @@ const App = () => {
     .on("resize.handleResize", function () {
       handleResize();
     });
+
   return (
-    <BrowserRouter>
-      {/* <Button variant="contained">Contained</Button> */}
-        <Routes path="/">
-          <Route index element={<Home />} />
-          <Route path="home" element={<Home />} />
-          <Route path="about" element={<About />} />
-        </Routes>
-      </BrowserRouter>
+    <>
+      <BuildPagesRoute dataSource={renderRoutes} />
+      </>
   );
 };
 

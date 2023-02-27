@@ -4,6 +4,7 @@ import ReactDOM from "react-dom";
 import store from "@app/store";
 import { Provider } from "react-redux";
 import { ThemeProvider } from '@mui/system';
+import { BrowserRouter } from 'react-router-dom';
 import { muiTheme } from '@assets/muiTheme'
 import App from "@app";
 // import * as serviceWorker from "./serviceWorker";
@@ -15,7 +16,9 @@ const app = (
       <ThemeProvider
         theme={muiTheme}
       >
-        <App />
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
       </ThemeProvider>
     </Provider>
   </React.Fragment>
