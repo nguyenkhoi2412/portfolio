@@ -45,6 +45,7 @@ const App = () => {
   //#region useEffect
   //* GET SITE INFO
   React.useEffect(() => {
+    i18n.changeLanguage('en-US');
     handleResize();
     // dispatch(SITE_GET_BY_NAME());
   }, []);

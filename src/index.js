@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-// import "@assets/locales/i18n";
+import "@assets/locales/i18n";
 import store from "@app/store";
 import { Provider } from "react-redux";
 import { ThemeProvider } from '@mui/system';
