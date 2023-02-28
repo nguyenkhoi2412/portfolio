@@ -1,6 +1,6 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import routes from "@app/routes";
+// import {CURRENT_MODULES} from "@routes/buildRoutes";
 import PrivateRoute from './privateRoute';
 import Home from "@clientapp/Home";
 // import { isAuth } from "../../authentication";
@@ -10,7 +10,7 @@ import { useSelector } from 'react-redux';
 const BuildPagesRoute = (props) => {
   const [dataSource, setDataSource] = React.useState()
   // const siteSelector = useSelector(siteState);
-  const module = routes.CURRENT_MODULES();
+  // const module = CURRENT_MODULES();
 
   React.useEffect(() => {
     setDataSource(props.dataSource)

@@ -5,15 +5,13 @@ import defaultFavicon from "@assets/favicons/default/favicon.ico";
 // // import cmsFavicon from "@assets/favicons/dashboard/favicon.ico";
 // import surveyFavicon from "@assets/favicons/survey/favicon.ico";
 import BuildPagesRoute from "./routes/buildPagesRoute";
-import routes from "@app/routes";
+import routes from "@routes";
 //#region useHooks,components, helper
 // import BackdropSpin from "@components/common/BackdropSpin";
 // import Loading from "@components/common/Loading";
 // import ProgressBar from "@components/common/ProgressBar";
 // import SnackbarmaUI from "@components/common/Snackbar";
 // import Linear from "@components/common/Linear";
-import About from "@clientapp/About";
-import Home from "@clientapp/Home";
 //#endregion
 import { useDispatch, useSelector } from "react-redux";
 import Button from '@mui/material/Button';
@@ -41,15 +39,15 @@ const App = () => {
   });
 
   const handleResize = Helpers.debounce(() => {
-    // setDeviceInfos(Helpers.detectEnvironment());
+    setDeviceInfos(Helpers.detectEnvironment());
   }, 10);
 
   //#region useEffect
-  // //* GET SITE INFO
-  // React.useEffect(() => {
-  //   handleResize();
-  //   dispatch(SITE_GET_BY_NAME());
-  // }, []);
+  //* GET SITE INFO
+  React.useEffect(() => {
+    handleResize();
+    // dispatch(SITE_GET_BY_NAME());
+  }, []);
 
   // // React.useEffect(() => {
   // //   if (performance.navigation.type === 1) {
@@ -100,29 +98,29 @@ const App = () => {
 export default App;
 
 const dynamicFavicons = () => {
-  var link = document.querySelector("link[rel~='icon']");
-  if (!link) {
-    link = document.createElement("link");
-    link.rel = "shortcut icon";
-    document.getElementsByTagName("head")[0].appendChild(link);
-  }
+  // var link = document.querySelector("link[rel~='icon']");
+  // if (!link) {
+  //   link = document.createElement("link");
+  //   link.rel = "shortcut icon";
+  //   document.getElementsByTagName("head")[0].appendChild(link);
+  // }
 
-  const { CURRENT_MODULES, MODULES } = routes;
-  switch (CURRENT_MODULES()) {
-    case MODULES.SURVEY:
-      link.href = surveyFavicon;
-      break;
+  // const { CURRENT_MODULES, MODULES } = routes;
+  // switch (CURRENT_MODULES()) {
+  //   case MODULES.SURVEY:
+  //     link.href = surveyFavicon;
+  //     break;
 
-    // case MODULES.DASHBOARD:
-    //   link.href = cmsFavicon;
-    //   break;
+  //   // case MODULES.DASHBOARD:
+  //   //   link.href = cmsFavicon;
+  //   //   break;
 
-    default:
-      link.href = defaultFavicon;
-      break;
-  }
+  //   default:
+  //     link.href = defaultFavicon;
+  //     break;
+  // }
 
-  if (CURRENT_MODULES() !== "") {
-    document.body.classList.add(CURRENT_MODULES());
-  } else document.body.classList.add("home");
+  // if (CURRENT_MODULES() !== "") {
+  //   document.body.classList.add(CURRENT_MODULES());
+  // } else document.body.classList.add("home");
 };
