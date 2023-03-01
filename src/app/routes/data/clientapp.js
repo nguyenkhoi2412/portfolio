@@ -3,13 +3,19 @@ import About from "@clientapp/About";
 
 export default [
   {
-    path: "/home",
+    path: "",
     public: true,
     title: "cxStudio | Home",
     element: <Home />
   },
   {
-    path: "/about",
+    path: "home",
+    public: true,
+    title: "cxStudio | Home",
+    element: <Home />
+  },
+  {
+    path: "about",
     public: false,
     title: "cxStudio | About",
     element: <About />

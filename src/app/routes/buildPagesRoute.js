@@ -1,6 +1,6 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
-// import {CURRENT_MODULES} from "@routes/buildRoutes";
+import { Routes, Route, useLocation } from 'react-router-dom';
+import vars from '@constants/variables'
 import PrivateRoute from './privateRoute';
 import Home from "@clientapp/Home";
 // import { isAuth } from "../../authentication";
@@ -9,8 +9,12 @@ import { useSelector } from 'react-redux';
 
 const BuildPagesRoute = (props) => {
   const [dataSource, setDataSource] = React.useState()
-  // const siteSelector = useSelector(siteState);
-  // const module = CURRENT_MODULES();
+
+  const location = useLocation()
+  React.useEffect(() => {
+    let currentPath = props.dataSource.find((item) => vars.ASSET_PATH + item.path === location.pathname)
+    document.title = currentPath?.title ?? 'No title'
+  }, [location])
 
   React.useEffect(() => {
     setDataSource(props.dataSource)
@@ -22,8 +26,7 @@ const BuildPagesRoute = (props) => {
         <Route index element={<Home />} />
           {
             dataSource?.map((route, index) => {
-              let _path = route.path;
-              let _element = route.element;
+              var { path, title, element } = route;
 
               switch(route.public)
               {
@@ -31,18 +34,20 @@ const BuildPagesRoute = (props) => {
                   return (
                     <Route
                       key={index}
-                      path={_path}
-                      element={_element} />
+                      path={path}
+                      title={title}
+                      element={element} />
                   )
 
                   case false:
                     return (
                       <Route
                         key={index}
-                        path={_path}
+                        path={path}
+                        title={title}
                         element={
                           <PrivateRoute isAuth={false} redirectPath='/'>
-                            {_element}
+                            {element}
                           </PrivateRoute>
                         }>
                         </Route>

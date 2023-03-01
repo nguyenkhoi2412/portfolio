@@ -6,6 +6,7 @@ import defaultFavicon from "@assets/favicons/default/favicon.ico";
 // import surveyFavicon from "@assets/favicons/survey/favicon.ico";
 import BuildPagesRoute from "./routes/buildPagesRoute";
 import routes from "@routes";
+import { CURRENT_MODULES } from "@routes/_modules";
 //#region useHooks,components, helper
 // import BackdropSpin from "@components/common/BackdropSpin";
 // import Loading from "@components/common/Loading";
@@ -92,7 +93,7 @@ const App = () => {
   return (
     <>
       <BuildPagesRoute dataSource={renderRoutes} />
-      </>
+    </>
   );
 };
 
