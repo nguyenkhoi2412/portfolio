@@ -66,8 +66,7 @@ module.exports = (env, argv) => {
               loader: "css-loader",
               options: {
                 sourceMap: true,
-                url: true,
-                modules: true
+                url: true
               },
             },
             // {
