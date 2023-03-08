@@ -69,38 +69,38 @@ module.exports = (env, argv) => {
                 url: true
               },
             },
-            // {
-            //   loader: "less-loader",
-            //   options: {
-            //     lessOptions: {
-            //       paths: [path.resolve(__dirname, "node_modules")],
-            //       javascriptEnabled: true, // important for less read scripts
-            //       // modifyVars: themeAntdPalette,
-            //     },
-            //   },
-            // },
-            // {
-            //   loader: "style-resources-loader",
-            //   options: {
-            //     patterns: require(path.join(
-            //       process.cwd(),
-            //       "./src/assets/_utils.js"
-            //     )),
-            //   },
-            // },
             {
-              loader: "sass-loader",
-              options: { sourceMap: true },
+              loader: "less-loader",
+              options: {
+                lessOptions: {
+                  paths: [path.resolve(__dirname, "node_modules")],
+                  javascriptEnabled: true, // important for less read scripts
+                  // modifyVars: themeAntdPalette,
+                },
+              },
             },
             {
-              loader: "sass-resources-loader",
+              loader: "style-resources-loader",
               options: {
-                resources: require(path.join(
+                patterns: require(path.join(
                   process.cwd(),
                   "./src/assets/_utils.js"
                 )),
               },
             },
+            // {
+            //   loader: "sass-loader",
+            //   options: { sourceMap: true },
+            // },
+            // {
+            //   loader: "sass-resources-loader",
+            //   options: {
+            //     resources: require(path.join(
+            //       process.cwd(),
+            //       "./src/assets/_utils.js"
+            //     )),
+            //   },
+            // },
           ],
         },
         //#endregion
