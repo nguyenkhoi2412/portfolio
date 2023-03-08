@@ -1,7 +1,7 @@
 import pallete from './pallete.module.less'
 
-export const ConfigProviderTheme = {
+export const configBaseTheme = {
   token: {
     colorPrimary: pallete.primaryColor
-  },
+  }
 }

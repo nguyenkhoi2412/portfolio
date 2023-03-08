@@ -3,9 +3,9 @@ import ReactDOM from "react-dom";
 import "@assets/locales/i18n";
 import store from "@app/store";
 import { Provider } from "react-redux";
-import { ConfigProvider } from 'antd';
+import { ConfigProvider, theme } from 'antd';
+import { configBaseTheme } from '@assets/configs/baseTheme'
 import { BrowserRouter } from 'react-router-dom';
-import { ConfigProviderTheme } from '@assets/configProviderTheme'
 import App from "@app";
 // import * as serviceWorker from "./serviceWorker";
 
@@ -14,7 +14,7 @@ const app = (
     {/* Redux store */}
     <Provider store={store}>
       <ConfigProvider
-        theme={ConfigProviderTheme}
+        theme={configBaseTheme}
       >
         <BrowserRouter>
           <App />
