@@ -1,16 +1,9 @@
-import "./_home.less";
-import { Button, Typography  } from 'antd';
-const { Text, Link } = Typography;
+import "./_home.scss";
+import Button from '@mui/material/Button';
 
 const Home = () => {
-  return <>
-    <Button type="primary" size={`large`}>
-      Primary
-    </Button>
-    <Link href="https://ant.design" target="_blank">
-      Ant Design (Link)
-    </Link>
-  </>
+  return <div className="App">Home us!!!
+  <Button className="btn" variant="contained">Contained</Button></div>;
 };
 
 export default Home;

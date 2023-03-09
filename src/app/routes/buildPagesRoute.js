@@ -2,7 +2,7 @@ import React from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import vars from '@constants/variables'
 import PrivateRoute from './privateRoute';
-import Home from "@clientapp/home";
+import Home from "@clientapp/Home";
 // import { isAuth } from "../../authentication";
 import { useSelector } from 'react-redux';
 // import { siteState } from "@providers/site.reducer";

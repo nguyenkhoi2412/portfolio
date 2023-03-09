@@ -3,9 +3,9 @@ import ReactDOM from "react-dom";
 import "@assets/locales/i18n";
 import store from "@app/store";
 import { Provider } from "react-redux";
-import { ConfigProvider, theme } from 'antd';
-import { configBaseTheme } from '@assets/configs/baseTheme'
+import { ThemeProvider } from '@mui/system';
 import { BrowserRouter } from 'react-router-dom';
+import { configBaseTheme } from '@assets/configs/baseTheme'
 import App from "@app";
 // import * as serviceWorker from "./serviceWorker";
 
@@ -13,13 +13,13 @@ const app = (
   <React.Fragment>
     {/* Redux store */}
     <Provider store={store}>
-      <ConfigProvider
+      <ThemeProvider
         theme={configBaseTheme}
       >
         <BrowserRouter>
           <App />
         </BrowserRouter>
-      </ConfigProvider>
+      </ThemeProvider>
     </Provider>
   </React.Fragment>
 );

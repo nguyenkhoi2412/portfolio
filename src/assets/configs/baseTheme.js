@@ -1,7 +1,13 @@
-import pallete from './pallete.module.less'
+import pallete from './pallete.module.scss'
+import { createTheme } from '@mui/material/styles';
 
-export const configBaseTheme = {
-  token: {
-    colorPrimary: pallete.primaryColor
+export const configBaseTheme = createTheme({
+  palette: {
+    primary: {
+      main: pallete.primaryColor
+    },
+    secondary: {
+      main: pallete.secondaryColor
+    }
   }
-}
+})

@@ -1,4 +1,5 @@
 // Export the color palette to make it accessible to JS
 :export {
-  primaryColor: @primary-color;
+  primaryColor: $primary-color;
+  secondaryColor: $secondary-color;
 }

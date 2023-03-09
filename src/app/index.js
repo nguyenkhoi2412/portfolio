@@ -1,4 +1,4 @@
-import "./app.less";
+import "./app.scss";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import defaultFavicon from "@assets/favicons/default/favicon.ico";
@@ -15,6 +15,7 @@ import { CURRENT_MODULES } from "@routes/_modules";
 // import Linear from "@components/common/Linear";
 //#endregion
 import { useDispatch, useSelector } from "react-redux";
+import Button from '@mui/material/Button';
 // import {
 //   SITE_GET_BY_NAME,
 //   siteState,

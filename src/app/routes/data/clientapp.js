@@ -1,5 +1,5 @@
-import Home from "@clientapp/home";
-import About from "@clientapp/about";
+import Home from "@clientapp/Home";
+import About from "@clientapp/About";
 
 export default [
   {

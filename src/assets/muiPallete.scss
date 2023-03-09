@@ -1,0 +1,9 @@
+/* Define all colours */
+$primary: $primary-color;
+$secondary: $secondary-color;
+
+// Export the color palette to make it accessible to JS
+:export {
+  primary: $primary;
+  secondary: $secondary;
+}

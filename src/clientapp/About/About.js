@@ -1,4 +1,4 @@
-import "./_about.less";
+import "./About.scss";
 
 const About = () => {
   return <>About us!!!</>;
