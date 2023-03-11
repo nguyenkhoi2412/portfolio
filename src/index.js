@@ -4,6 +4,7 @@ import "@assets/locales/i18n";
 import store from "@app/store";
 import { Provider } from "react-redux";
 import { ThemeProvider } from '@mui/system';
+import CssBaseline from "@mui/material/CssBaseline";
 import { BrowserRouter } from 'react-router-dom';
 import { configBaseTheme } from '@assets/configs/baseTheme'
 import App from "@app";
@@ -16,6 +17,7 @@ const app = (
       <ThemeProvider
         theme={configBaseTheme}
       >
+        <CssBaseline />
         <BrowserRouter>
           <App />
         </BrowserRouter>

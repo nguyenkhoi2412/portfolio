@@ -15,7 +15,7 @@ import { CURRENT_MODULES } from "@routes/_modules";
 // import Linear from "@components/common/Linear";
 //#endregion
 import { useDispatch, useSelector } from "react-redux";
-import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid';
 // import {
 //   SITE_GET_BY_NAME,
 //   siteState,
@@ -46,7 +46,7 @@ const App = () => {
   //#region useEffect
   //* GET SITE INFO
   React.useEffect(() => {
-    i18n.changeLanguage('en-US');
+    i18n.changeLanguage("en-US");
     handleResize();
     // dispatch(SITE_GET_BY_NAME());
   }, []);
@@ -92,7 +92,9 @@ const App = () => {
 
   return (
     <>
-      <BuildPagesRoute dataSource={renderRoutes} />
+      <Grid container id='root'>
+        <BuildPagesRoute dataSource={renderRoutes} />
+      </Grid>
     </>
   );
 };
@@ -106,22 +108,18 @@ const dynamicFavicons = () => {
   //   link.rel = "shortcut icon";
   //   document.getElementsByTagName("head")[0].appendChild(link);
   // }
-
   // const { CURRENT_MODULES, MODULES } = routes;
   // switch (CURRENT_MODULES()) {
   //   case MODULES.SURVEY:
   //     link.href = surveyFavicon;
   //     break;
-
   //   // case MODULES.DASHBOARD:
   //   //   link.href = cmsFavicon;
   //   //   break;
-
   //   default:
   //     link.href = defaultFavicon;
   //     break;
   // }
-
   // if (CURRENT_MODULES() !== "") {
   //   document.body.classList.add(CURRENT_MODULES());
   // } else document.body.classList.add("home");
