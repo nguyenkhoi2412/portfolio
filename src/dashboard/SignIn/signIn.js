@@ -110,7 +110,7 @@ const SignIn = () => {
             }}
           >
             <Avatar
-              sx={{ m: 1, bgcolor: "secondary.main", width: 56, height: 56 }}
+              sx={{ m: 1, bgcolor: "secondary.main", width: 120, height: 120 }}
               src="https://lh3.googleusercontent.com/ogw/ADea4I42Wp7xjKidQJ_PbgllDbo3oH_47xQ76TfzLRQssw=s192-c-mo"
             ></Avatar>
             <Typography component="h1" variant="h5">
@@ -145,7 +145,7 @@ const SignIn = () => {
                       "values." + item.field
                     )}
                     onChange={formik?.handleChange}
-                    error={hasError === undefined ? false : hasError}
+                    error={hasError}
                     helperText={hasError ? item.helperText : ""}
                   />
                 );

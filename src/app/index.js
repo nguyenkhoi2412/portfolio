@@ -92,7 +92,7 @@ const App = () => {
 
   return (
     <>
-      <Grid container id='root'>
+      <Grid container component="main" sx={{ height: "100vh" }}>
         <BuildPagesRoute dataSource={renderRoutes} />
       </Grid>
     </>
