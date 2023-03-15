@@ -8,14 +8,15 @@ import BuildPagesRoute from "./routes/buildPagesRoute";
 import routes from "@routes";
 import { CURRENT_MODULES } from "@routes/_modules";
 //#region useHooks,components, helper
-// import BackdropSpin from "@components/common/BackdropSpin";
+import MuiBackdrop from "@components/mui-ui/backdropSpin";
+import MuiProgressBar from "@components/mui-ui/progressBar";
 // import Loading from "@components/common/Loading";
 // import ProgressBar from "@components/common/ProgressBar";
 // import SnackbarmaUI from "@components/common/Snackbar";
 // import Linear from "@components/common/Linear";
 //#endregion
 import { useDispatch, useSelector } from "react-redux";
-import Grid from '@mui/material/Grid';
+import Grid from "@mui/material/Grid";
 // import {
 //   SITE_GET_BY_NAME,
 //   siteState,
@@ -92,6 +93,8 @@ const App = () => {
 
   return (
     <>
+      <MuiProgressBar />
+      <MuiBackdrop />
       <Grid container component="main" sx={{ height: "100vh" }}>
         <BuildPagesRoute dataSource={renderRoutes} />
       </Grid>

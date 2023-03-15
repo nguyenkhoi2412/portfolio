@@ -6,6 +6,7 @@ import FormHelperText from "@mui/material/FormHelperText";
 import InputLabel from "@mui/material/InputLabel";
 import TextField from "@mui/material/TextField";
 
+const regexEditor = /<p><br><\/p>|<div><br><\/div>/g;
 const InputField = (props) => {
   let hasError = false;
   if (typeof props.error == "boolean") {
@@ -18,6 +19,7 @@ const InputField = (props) => {
   //#region useEffect
   React.useEffect(() => {});
   //#endregion
+
   return (
     <>
       <FormControl fullWidth>

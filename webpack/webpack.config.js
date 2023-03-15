@@ -166,7 +166,7 @@ module.exports = (env, argv) => {
         "@clientapp": APP_DIR + "/clientapp",
         "@dashboard": APP_DIR + "/dashboard",
         "@components": APP_DIR + "/components",
-        "@providers": APP_DIR + "/providers",
+        "@reduxproviders": APP_DIR + "/reduxproviders",
         "@services": APP_DIR + "/services"
       },
       fallback: {

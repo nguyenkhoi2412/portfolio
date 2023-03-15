@@ -4,14 +4,13 @@ import { useTranslation, Trans } from "react-i18next";
 import { useFormik } from "formik";
 import { Helpers, objectExtension, hooksInstance } from "@utils/helpers";
 import { getYupSchemaFromMetaData } from "@utils/yupSchemaCreator.js";
+import { useNavigate } from "react-router-dom";
+
 import InputField from "@components/forms/inputField";
 import _schema from "./_schema";
 import FormControl from "@mui/material/FormControl";
-import FormHelperText from "@mui/material/FormHelperText";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
-
-import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import Link from "@mui/material/Link";
@@ -19,32 +18,37 @@ import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-import { data } from "jquery";
-
-function Copyright(props) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        MUI
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
+import Alert from "@mui/material/Alert";
+import Collapse from "@mui/material/Collapse";
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
+//#region redux providers
+import {
+  SHOW_PROGRESSBAR,
+  HIDE_PROGRESSBAR,
+} from "@components/mui-ui/progressBar/progressBar.reducer";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  VALIDATE_USER,
+  authState,
+  currentUserState,
+} from "@reduxproviders/auth.reducer";
+//#endregion
 
 const SignIn = () => {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
+  const navigage = useNavigate();
+  const dataValues = useSelector(authState);
+  const [showMessageAlert, setShowMessageAlert] = React.useState(false);
+  const [messageContentAlert, setMessageContentAlert] = React.useState();
+
+  React.useEffect(() => {}, [dataValues]);
+
+  //#region useFormik
   const initialValues = _schema.initialValues();
   // const validationSchema = _schema.validation();
   const dataForm = _schema.dataForm();
-  //#region useFormik
   const [enableValidation, setEnableValidation] = React.useState(false);
   const [submitting, setSubmitting] = React.useState(false);
   const formik = useFormik({
@@ -54,15 +58,30 @@ const SignIn = () => {
     validateOnChange: enableValidation,
     validateOnBlur: enableValidation,
     onSubmit: (values) => {
-      console.log("values", values);
-      // setSubmitting(true);
-      // dispatch(
-      //   SHOW_LOADING({ overlay: true, text: t('common.validating') + '...' })
-      // );
+      setSubmitting(true);
+      dispatch(SHOW_PROGRESSBAR());
 
-      // Helpers.simulateNetworkRequest(100).then(() => {
-      //   dispatch(VALIDATE_USER(values));
-      // });
+      Helpers.simulateNetworkRequest(100).then(async () => {
+        await dispatch(VALIDATE_USER(values))
+          .unwrap()
+          .then((result) => {
+            setSubmitting(false);
+            dispatch(HIDE_PROGRESSBAR());
+            if (result.ok) {
+              navigage('/home')
+            } else {
+              setShowMessageAlert(true);
+              setMessageContentAlert(result.message);
+            }
+
+            formik.resetForm();
+          })
+          .catch((error) => {
+            dispatch(HIDE_PROGRESSBAR());
+            setShowMessageAlert(true);
+            setMessageContentAlert(t("connection.refused"));
+          });
+      });
     },
   });
   //#endregion
@@ -70,11 +89,9 @@ const SignIn = () => {
   //#region handle event
   const handleSubmit = (event) => {
     event.preventDefault();
-    // const data = new FormData(event.currentTarget);
-    // console.log({
-    //   email: data.get('email'),
-    //   password: data.get('password'),
-    // });
+
+    if (submitting) return;
+
     setEnableValidation(true);
     formik.handleSubmit();
   };
@@ -144,12 +161,34 @@ const SignIn = () => {
                       formik,
                       "values." + item.field
                     )}
-                    onChange={formik?.handleChange}
+                    onChange={formik.handleChange}
                     error={hasError}
                     helperText={hasError ? item.helperText : ""}
                   />
                 );
               })}
+              <FormControl fullWidth>
+                <Collapse in={showMessageAlert}>
+                  <Alert
+                    action={
+                      <IconButton
+                        aria-label="close"
+                        color="inherit"
+                        size="small"
+                        onClick={() => {
+                          setShowMessageAlert(false);
+                        }}
+                      >
+                        <CloseIcon fontSize="inherit" />
+                      </IconButton>
+                    }
+                    sx={{ mb: 2 }}
+                    severity="error"
+                  >
+                    {messageContentAlert}
+                  </Alert>
+                </Collapse>
+              </FormControl>
               <FormControl fullWidth>
                 <FormControlLabel
                   control={<Checkbox value="remember" color="primary" />}
@@ -186,3 +225,21 @@ const SignIn = () => {
 };
 
 export default SignIn;
+
+function Copyright(props) {
+  return (
+    <Typography
+      variant="body2"
+      color="text.secondary"
+      align="center"
+      {...props}
+    >
+      {"Copyright © "}
+      <Link color="inherit" href="https://mui.com/">
+        MUI
+      </Link>{" "}
+      {new Date().getFullYear()}
+      {"."}
+    </Typography>
+  );
+}
