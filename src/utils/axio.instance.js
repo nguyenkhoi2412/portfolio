@@ -44,6 +44,7 @@ axiosInstance.interceptors.request.use(
     return request;
   },
   (requestError) => {
+    console.log('requestError', responseError)
     return Promise.reject(requestError);
   }
 );
@@ -56,6 +57,7 @@ axiosInstance.interceptors.response.use(
     return response;
   },
   (responseError) => {
+    console.log('responseError', responseError)
     // 405: Method Not Allowed
     if (responseError.response.status !== 405) {
       removeLocalToken();

@@ -1,6 +1,7 @@
 {
   "connection": {
-    "refused": "Connection refused!"
+    "refused": "Connection refused!",
+    "error": "Network Error!!!"
   },
   "validate": {
     "required": "* is required",

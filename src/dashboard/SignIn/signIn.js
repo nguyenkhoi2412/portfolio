@@ -5,6 +5,7 @@ import { useFormik } from "formik";
 import { Helpers, objectExtension, hooksInstance } from "@utils/helpers";
 import { getYupSchemaFromMetaData } from "@utils/yupSchemaCreator.js";
 import { useNavigate } from "react-router-dom";
+import { useSnackbar } from "notistack";
 
 import InputField from "@components/forms/inputField";
 import _schema from "./_schema";
@@ -22,6 +23,7 @@ import Alert from "@mui/material/Alert";
 import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
+import severity from "@constants/severity";
 //#region redux providers
 import {
   SHOW_PROGRESSBAR,
@@ -39,6 +41,7 @@ const SignIn = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const navigage = useNavigate();
+  const { enqueueSnackbar } = useSnackbar();
   const dataValues = useSelector(authState);
   const [showMessageAlert, setShowMessageAlert] = React.useState(false);
   const [messageContentAlert, setMessageContentAlert] = React.useState();
@@ -68,7 +71,7 @@ const SignIn = () => {
             setSubmitting(false);
             dispatch(HIDE_PROGRESSBAR());
             if (result.ok) {
-              navigage('/home')
+              navigage("/home");
             } else {
               setShowMessageAlert(true);
               setMessageContentAlert(result.message);
@@ -77,9 +80,12 @@ const SignIn = () => {
             formik.resetForm();
           })
           .catch((error) => {
+            setSubmitting(false);
             dispatch(HIDE_PROGRESSBAR());
-            setShowMessageAlert(true);
-            setMessageContentAlert(t("connection.refused"));
+            // variant could be success, error, warning, info, or default
+            enqueueSnackbar(t("connection.error"), {
+              variant: severity.error,
+            });
           });
       });
     },
