@@ -9,12 +9,8 @@ import BuildPagesRoute from "./routes/buildPagesRoute";
 import routes from "@routes";
 import { CURRENT_MODULES } from "@routes/_modules";
 //#region useHooks,components, helper
-import MuiBackdrop from "@components/mui-ui/backdropSpin";
-import MuiProgressBar from "@components/mui-ui/progressBar";
-// import Loading from "@components/common/Loading";
-// import ProgressBar from "@components/common/ProgressBar";
-// import SnackbarmaUI from "@components/common/Snackbar";
-// import Linear from "@components/common/Linear";
+import IncBackdrop from "@components/mui-ui/backdropSpin";
+import IncProgressBar from "@components/mui-ui/progressBar";
 //#endregion
 import { useDispatch, useSelector } from "react-redux";
 import Grid from "@mui/material/Grid";
@@ -94,9 +90,16 @@ const App = () => {
 
   return (
     <>
-      <MuiProgressBar />
-      <MuiBackdrop />
-      <SnackbarProvider maxSnack={3}>
+      <IncProgressBar />
+      <IncBackdrop />
+      <SnackbarProvider
+        maxSnack={3}
+        autoHideDuration={3000}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "right",
+        }}
+      >
         <Grid container component="main" sx={{ height: "100vh" }}>
           <BuildPagesRoute dataSource={renderRoutes} />
         </Grid>

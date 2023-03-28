@@ -6,9 +6,9 @@ import { Helpers, objectExtension, hooksInstance } from "@utils/helpers";
 import { getYupSchemaFromMetaData } from "@utils/yupSchemaCreator.js";
 import { useNavigate } from "react-router-dom";
 import { useSnackbar } from "notistack";
-
 import InputField from "@components/forms/inputField";
 import _schema from "./_schema";
+//#region mui-ui
 import FormControl from "@mui/material/FormControl";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
@@ -24,6 +24,7 @@ import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import severity from "@constants/severity";
+//#endregion
 //#region redux providers
 import {
   SHOW_PROGRESSBAR,
@@ -86,6 +87,7 @@ const SignIn = () => {
             enqueueSnackbar(t("connection.error"), {
               variant: severity.error,
             });
+            formik.resetForm();
           });
       });
     },
@@ -152,6 +154,10 @@ const SignIn = () => {
                   Boolean(
                     objectExtension.getValue(formik, "touched." + item.field)
                   ) && objectExtension.getValue(formik, "errors." + item.field);
+                let dataValue = objectExtension.getValue(
+                  formik,
+                  "values." + item.field
+                );
                 return (
                   <InputField
                     margin="normal"
@@ -163,10 +169,8 @@ const SignIn = () => {
                     label={item.label}
                     name={item.field}
                     autoFocus={item.autoFocus}
-                    value={objectExtension.getValue(
-                      formik,
-                      "values." + item.field
-                    )}
+                    setValue={formik.setFieldValue}
+                    value={dataValue}
                     onChange={formik.handleChange}
                     error={hasError}
                     helperText={hasError ? item.helperText : ""}
@@ -216,7 +220,7 @@ const SignIn = () => {
                   </Link>
                 </Grid>
                 <Grid item>
-                  <Link href="#" variant="body2">
+                  <Link href={`./signup`} variant="body2">
                     {t("authentication.donthaveanaccount")}
                   </Link>
                 </Grid>

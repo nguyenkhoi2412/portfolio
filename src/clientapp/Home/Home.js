@@ -1,23 +1,19 @@
 import "./_home.scss";
 import Button from "@mui/material/Button";
-import { useDispatch } from "react-redux";
-import { SHOW_SPIN } from "@components/mui-ui/backdropSpin/backdropSpin.reducer";
-import { SHOW_PROGRESSBAR } from "@components/mui-ui/progressBar/progressBar.reducer";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
-  const dispatch = useDispatch();
+  const navigage = useNavigate();
 
   const handleOnclick = () => {
-    dispatch(SHOW_SPIN({
-    }));
-    dispatch(SHOW_PROGRESSBAR());
+    navigage("/dashboard/signin");
   };
 
   return (
     <div className="App">
       Home us!!!
       <Button className="btn" variant="contained" onClick={handleOnclick}>
-        Contained
+        Go to Dashboard
       </Button>
     </div>
   );

@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 import "@assets/locales/i18n";
 import storeProvider from "@reduxproviders/_storeProvider";
 import { Provider } from "react-redux";
@@ -10,20 +11,23 @@ import { configBaseTheme } from "@assets/configs/baseTheme";
 import App from "@app";
 // import * as serviceWorker from "./serviceWorker";
 
+const rootElement = document.getElementById("root");
+const root = createRoot(rootElement);
+
 const app = (
-  <React.Fragment>
+  <React.StrictMode>
     {/* Redux store */}
     <Provider store={storeProvider}>
       <ThemeProvider theme={configBaseTheme}>
         <CssBaseline />
-          <BrowserRouter>
-            <App />
-          </BrowserRouter>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
       </ThemeProvider>
     </Provider>
-  </React.Fragment>
+  </React.StrictMode>
 );
 
-ReactDOM.render(app, document.getElementById("root"));
+root.render(app);
 
 // serviceWorker.unregister();

@@ -2,4 +2,13 @@
 :export {
   primaryColor: $primary-color;
   secondaryColor: $secondary-color;
+  breakpointsXs: $breakpoints-xs;
+  breakpointsSm: $breakpoints-sm;
+  breakpointsMd: $breakpoints-md;
+  breakpointsLg: $breakpoints-lg;
+  breakpointsXl: $breakpoints-xl;
+  breakpointsMobile: $breakpoints-mobile;
+  breakpointsTablet: $breakpoints-tablet;
+  breakpointsLaptop: $breakpoints-laptop;
+  breakpointsDesktop:$breakpoints-desktop;
 }

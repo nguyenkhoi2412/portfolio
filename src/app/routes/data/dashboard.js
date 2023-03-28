@@ -1,11 +1,18 @@
-import SignIn from '@dashboard/signIn';
-import { MODULES } from '@routes/_modules';
+import SignIn from "@dashboard/signIn";
+import SignUp from "@dashboard/signUp";
+import { MODULES } from "@routes/_modules";
 
 export default [
   {
-    path: MODULES.DASHBOARD + '/signin',
+    path: MODULES.DASHBOARD + "/signin",
     public: true,
-    title: 'cxStudio | Dashboard | SignIn',
-    element: <SignIn title='cxStudio | Dashboard | SignIn' />
-  }
+    title: "SignIn | Dashboard | cxStudio",
+    element: <SignIn />,
+  },
+  {
+    path: MODULES.DASHBOARD + "/signup",
+    public: true,
+    title: "SignUp | Dashboard | cxStudio",
+    element: <SignUp />,
+  },
 ];

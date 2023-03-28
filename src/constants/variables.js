@@ -4,6 +4,8 @@ export default {
   stripedHtml: /(<([^>]+)>)/gi,
   specialCharacters: /[!@#$%^&*(),.?":{}|<>]/gi,
   passwordRegex: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/,
+  regexXSS: /[^\w\s]/gi,
+  regexEditor: /<p><br><\/p>|<div><br><\/div>/g,
   //* use for frontend site
   defaultDateFormat: "YYYY-MM-DD",
   locale: {

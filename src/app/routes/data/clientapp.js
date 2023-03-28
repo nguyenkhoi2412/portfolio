@@ -5,19 +5,19 @@ export default [
   {
     path: "",
     public: true,
-    title: "cxStudio | Home",
+    title: "Home | cxStudio",
     element: <Home />
   },
   {
     path: "home",
     public: true,
-    title: "cxStudio | Home",
+    title: "Home | cxStudio",
     element: <Home />
   },
   {
     path: "about",
     public: false,
-    title: "cxStudio | About",
+    title: "About | cxStudio",
     element: <About />
   }
 ];

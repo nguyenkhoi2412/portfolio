@@ -93,7 +93,7 @@ export class Helpers {
 
   //#region check/detect
   static checkIsNotNull(data) {
-    return data !== null && !objectExtension.isEmpty(data);
+    return data !== null && data !== undefined && !objectExtension.isEmpty(data);
   }
 
   static detectEnvironment() {
@@ -560,7 +560,6 @@ export class stringExtension {
 
     return text;
   };
-
   //#region convert currency
   static numberWithSympol(value, dot = ",", decimal_point = 0) {
     let valueCheck = isNaN(value) ? 0 : parseFloat(value);
