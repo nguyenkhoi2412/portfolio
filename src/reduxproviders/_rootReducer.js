@@ -4,7 +4,7 @@ import { combineReducers } from "redux";
 import { componentReducer } from "@components/_reducer";
 
 // //* dashboard
-import authReducer from "./auth.reducer";
+import userReducer from "./user.reducer";
 import roleReducer from "./role.reducer";
 // import secure_2faReducer from "./secure_2fa.reducer";
 // import siteReducer from "./site.reducer";
@@ -20,7 +20,7 @@ const rootReducer = combineReducers({
   ...componentReducer,
   //   gShared: gSharedReducer,
   //   //? dashboard
-  auth: authReducer,
+  user: userReducer,
   role: roleReducer,
   //   secure_2fa: secure_2faReducer,
   //   site: siteReducer,

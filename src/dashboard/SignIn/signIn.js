@@ -33,9 +33,9 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import {
   VALIDATE_USER,
-  authState,
+  userState,
   currentUserState,
-} from "@reduxproviders/auth.reducer";
+} from "@reduxproviders/user.reducer";
 //#endregion
 
 const SignIn = () => {
@@ -43,7 +43,7 @@ const SignIn = () => {
   const dispatch = useDispatch();
   const navigage = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
-  const dataValues = useSelector(authState);
+  const dataValues = useSelector(userState);
   const [showMessageAlert, setShowMessageAlert] = React.useState(false);
   const [messageContentAlert, setMessageContentAlert] = React.useState();
 

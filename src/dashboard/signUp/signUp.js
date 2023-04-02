@@ -38,9 +38,9 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import {
   REGISTER_USER,
-  authState,
+  userState,
   currentUserState,
-} from "@reduxproviders/auth.reducer";
+} from "@reduxproviders/user.reducer";
 import { ROLE_GET_ALL, roleState } from "@reduxproviders/role.reducer";
 //#endregion
 
@@ -55,7 +55,7 @@ const SignUp = () => {
   const [alertBoxSeverity, setAlertBoxSeverity] = React.useState(
     severity.error
   );
-  const dataValues = useSelector(authState);
+  const dataValues = useSelector(userState);
   const [lsRoles, setLsRoles] = React.useState([]);
 
   //#region getData

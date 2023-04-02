@@ -7,7 +7,7 @@ export default {
       params.username = encryptHelper.rsa.encrypt(params.username);
 
       axios
-        .post(`auth/findbyuser/`, params)
+        .post(`user/findbyuser/`, params)
         .then((response) => resolve(response))
         .catch((error) => reject(error));
     });
@@ -18,7 +18,7 @@ export default {
       params.password = encryptHelper.rsa.encrypt(params.password);
 
       axios
-        .post(`auth/validate/`, params)
+        .post(`user/validate/`, params)
         .then((response) => resolve(response))
         .catch((error) => reject(error));
     });
@@ -29,7 +29,7 @@ export default {
       params.password = encryptHelper.rsa.encrypt(params.password);
 
       axios
-        .post(`auth/register/`, params)
+        .post(`user/register/`, params)
         .then((response) => resolve(response))
         .catch((error) => reject(error));
     });
@@ -37,7 +37,7 @@ export default {
   verified_2fa: (params) => {
     return new Promise((resolve, reject) => {
       axios
-        .post(`auth/secure_2fa/validate/`, params)
+        .post(`user/secure_2fa/validate/`, params)
         .then((response) => resolve(response))
         .catch((error) => reject(error));
     });
@@ -45,7 +45,7 @@ export default {
   getToken_2fa: (params) => {
     return new Promise((resolve, reject) => {
       axios
-        .get(`auth/secure_2fa/gettoken/` + params.id)
+        .get(`user/secure_2fa/gettoken/` + params.id)
         .then((response) => resolve(response))
         .catch((error) => reject(error));
     });
@@ -53,7 +53,7 @@ export default {
   refreshToken: (params) => {
     return new Promise((resolve, reject) => {
       axios
-        .post(`auth/refreshtoken/`, params)
+        .post(`user/refreshtoken/`, params)
         .then((response) => resolve(response))
         .catch((error) => reject(error));
     });
