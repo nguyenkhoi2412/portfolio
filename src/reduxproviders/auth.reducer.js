@@ -3,16 +3,32 @@ import authServices from "@services/auth";
 import { storedExtension } from "@utils/helpers";
 import storageHandler from "@authentication/storageHandler";
 
+export const FIND_BY_USER = createAsyncThunk(
+  "auth/findbyuser",
+  async (params, thunkAPI) => {
+    return await authServices.findByUser(params);
+  }
+);
+
 export const VALIDATE_USER = createAsyncThunk(
-  "auth/validateUser",
+  "auth/validate",
   async (params, thunkAPI) => {
     return await authServices.validateUser(params);
   }
 );
 
+export const REGISTER_USER = createAsyncThunk(
+  "auth/register",
+  async (params, thunkAPI) => {
+    return await authServices.registerUser(params);
+  }
+);
+
 const currentUser = () => {
   if (localStorage.getItem(storageHandler.DASHBOARD.CURRENT_USER)) {
-    return JSON.parse(localStorage.getItem(storageHandler.DASHBOARD.CURRENT_USER));
+    return JSON.parse(
+      localStorage.getItem(storageHandler.DASHBOARD.CURRENT_USER)
+    );
   }
 
   return {};

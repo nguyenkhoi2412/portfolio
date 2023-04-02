@@ -23,6 +23,8 @@
     "forgotpassword": "Forgot password?",
     "resend_code": "Resend code",
     "register": "Register now?",
+    "registersuccess": "Register successful",
+    "registerfail": "Register fail",
     "donthaveanaccount": "Don't have an account? Sign Up",
     "haveanaccount": "Already have an account? Sign in",
     "enterfirstname": "Enter your firstname",

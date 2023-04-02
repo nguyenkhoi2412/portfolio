@@ -5,15 +5,17 @@ import { useTranslation, Trans } from "react-i18next";
 import _schema from "./_schema";
 import { useFormik } from "formik";
 import { Helpers, objectExtension, hooksInstance } from "@utils/helpers";
-import { getYupSchemaFromMetaData } from "@utils/yupSchemaCreator.js";
 import { useNavigate } from "react-router-dom";
 import { useSnackbar } from "notistack";
 import InputField from "@components/forms/inputField";
 import SelectField from "@components/forms/selectField";
 //#endregion
+//#region components
+//#endregion
 //#region mui-ui
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
+import FormControl from "@mui/material/FormControl";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import Link from "@mui/material/Link";
@@ -22,7 +24,11 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import TextField from "@mui/material/TextField";
+import Alert from "@mui/material/Alert";
+import Collapse from "@mui/material/Collapse";
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
+import severity from "@constants/severity";
 //#endregion
 //#region redux providers
 import {
@@ -31,7 +37,7 @@ import {
 } from "@components/mui-ui/progressBar/progressBar.reducer";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  VALIDATE_USER,
+  REGISTER_USER,
   authState,
   currentUserState,
 } from "@reduxproviders/auth.reducer";
@@ -44,12 +50,16 @@ const SignUp = () => {
   const dispatch = useDispatch();
   const navigage = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
+  const [showMessageAlert, setShowMessageAlert] = React.useState(false);
+  const [messageContentAlert, setMessageContentAlert] = React.useState();
+  const [alertBoxSeverity, setAlertBoxSeverity] = React.useState(
+    severity.error
+  );
   const dataValues = useSelector(authState);
   const [lsRoles, setLsRoles] = React.useState([]);
-  const [isFetchingRoles, setIsFetchingRoles] = React.useState(false);
 
-  // #region useEffect
-  React.useEffect(() => {
+  //#region getData
+  const getRoles = () => {
     Helpers.simulateNetworkRequest(100).then(async () => {
       await dispatch(ROLE_GET_ALL())
         .unwrap()
@@ -65,48 +75,64 @@ const SignUp = () => {
           });
         });
     });
+  };
+  //#endregion
+
+  //#region POST DATA
+  const registerUser = async (values) => {
+    await dispatch(REGISTER_USER(values))
+      .unwrap()
+      .then((result) => {
+        setSubmitting(false);
+        dispatch(HIDE_PROGRESSBAR());
+        if (result.ok) {
+          setAlertBoxSeverity(severity.success);
+          setShowMessageAlert(true);
+          setMessageContentAlert(t("authentication.registersuccess"));
+        } else {
+          setAlertBoxSeverity(severity.error);
+          setShowMessageAlert(true);
+          setMessageContentAlert(
+            t("authentication.registerfail") + ". " + result.message
+          );
+        }
+        formik.resetForm();
+      })
+      .catch((error) => {
+        setSubmitting(false);
+        dispatch(HIDE_PROGRESSBAR());
+        // variant could be success, error, warning, info, or default
+        enqueueSnackbar(error, {
+          variant: severity.error,
+        });
+      });
+  };
+  //#endregion
+
+  // #region useEffect
+  React.useEffect(() => {
+    getRoles();
   }, []);
   //#endregion
 
   //#region useFormik
   const initialValues = _schema.initialValues();
-  // const validationSchema = _schema.validation();
+  const validationSchema = _schema.validation();
   const dataForm = _schema.dataForm(lsRoles);
   const [enableValidation, setEnableValidation] = React.useState(false);
   const [submitting, setSubmitting] = React.useState(false);
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: initialValues,
-    validationSchema: getYupSchemaFromMetaData(dataForm),
+    validationSchema: validationSchema,
     validateOnChange: enableValidation,
     validateOnBlur: enableValidation,
     onSubmit: (values) => {
-      console.log("values", values);
-      // setSubmitting(true);
-      // dispatch(SHOW_PROGRESSBAR());
-      // Helpers.simulateNetworkRequest(100).then(async () => {
-      //   await dispatch(VALIDATE_USER(values))
-      //     .unwrap()
-      //     .then((result) => {
-      //       setSubmitting(false);
-      //       dispatch(HIDE_PROGRESSBAR());
-      //       if (result.ok) {
-      //         navigage("/home");
-      //       } else {
-      //         setShowMessageAlert(true);
-      //         setMessageContentAlert(result.message);
-      //       }
-      //       formik.resetForm();
-      //     })
-      //     .catch((error) => {
-      //       setSubmitting(false);
-      //       dispatch(HIDE_PROGRESSBAR());
-      //       // variant could be success, error, warning, info, or default
-      //       enqueueSnackbar(t("connection.error"), {
-      //         variant: severity.error,
-      //       });
-      //     });
-      // });
+      setSubmitting(true);
+      dispatch(SHOW_PROGRESSBAR());
+      Helpers.simulateNetworkRequest(100).then(async () => {
+        registerUser(values);
+      });
     },
   });
   //#endregion
@@ -114,7 +140,6 @@ const SignUp = () => {
   // #region handle event
   const handleSubmit = (event) => {
     event.preventDefault();
-
     if (submitting) return;
 
     setEnableValidation(true);
@@ -158,6 +183,7 @@ const SignUp = () => {
                 ) && objectExtension.getValue(formik, "errors." + item.field);
               switch (item.type) {
                 case "text":
+                case "password":
                   return (
                     <InputField
                       margin="normal"
@@ -177,6 +203,7 @@ const SignUp = () => {
                       onChange={formik.handleChange}
                       error={hasError}
                       helperText={hasError ? item.helperText : ""}
+                      preventXSS={item.preventXSS}
                       xs={item.xs}
                       sm={item.sm}
                     />
@@ -208,10 +235,28 @@ const SignUp = () => {
               }
             })}
             <Grid item xs={12}>
-              <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="I want to receive inspiration, marketing promotions and updates via email."
-              />
+              <FormControl fullWidth>
+                <Collapse in={showMessageAlert}>
+                  <Alert
+                    action={
+                      <IconButton
+                        aria-label="close"
+                        color="inherit"
+                        size="small"
+                        onClick={() => {
+                          setShowMessageAlert(false);
+                        }}
+                      >
+                        <CloseIcon fontSize="inherit" />
+                      </IconButton>
+                    }
+                    sx={{ mb: 2 }}
+                    severity={alertBoxSeverity}
+                  >
+                    {messageContentAlert}
+                  </Alert>
+                </Collapse>
+              </FormControl>
             </Grid>
           </Grid>
           <Button

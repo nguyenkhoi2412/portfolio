@@ -15,7 +15,7 @@ const rootElement = document.getElementById("root");
 const root = createRoot(rootElement);
 
 const app = (
-  <React.StrictMode>
+  <>
     {/* Redux store */}
     <Provider store={storeProvider}>
       <ThemeProvider theme={configBaseTheme}>
@@ -25,7 +25,7 @@ const app = (
         </BrowserRouter>
       </ThemeProvider>
     </Provider>
-  </React.StrictMode>
+  </>
 );
 
 root.render(app);

@@ -5,9 +5,11 @@ import * as yup from "yup";
 export default {
   initialValues: () => {
     return {
-      firstname: "",
-      lastname: "",
-      role: [ROLE.USER.name, ROLE.SUPERVISOR.name],
+      detailInfos: {
+        firstname: "",
+        lastname: "",
+      },
+      role: ROLE.USER.name,
       username: "",
       password: "",
     };
@@ -15,8 +17,10 @@ export default {
   validation: () => {
     const { t } = useTranslation();
     return yup.object({
-      firstname: yup.string().required(t("authentication.enterfirstname")),
-      lastname: yup.string().required(t("authentication.enterlastname")),
+      detailInfos: yup.object().shape({
+        firstname: yup.string().required(t("authentication.enterfirstname")),
+        lastname: yup.string().required(t("authentication.enterlastname")),
+      }),
       username: yup.string().required(t("authentication.enterusername")),
       password: yup.string().required(t("authentication.enterpassword")),
     });
@@ -26,8 +30,8 @@ export default {
     // render firstname
     const firstname = {
       tabIndex: 0,
-      id: "firstname",
-      field: "firstname",
+      id: "detailInfos.firstname",
+      field: "detailInfos.firstname",
       type: "text",
       label: t("authentication.firstname"),
       autoFocus: true,
@@ -36,15 +40,12 @@ export default {
       xs: 12,
       sm: 6,
     };
-    firstname.validations = yup
-      .string()
-      .required(t("authentication.enterfirstname"));
 
     // render lastname
     const lastname = {
       tabIndex: 1,
-      id: "lastname",
-      field: "lastname",
+      id: "detailInfos.lastname",
+      field: "detailInfos.lastname",
       type: "text",
       label: t("authentication.lastname"),
       preventXSS: true,
@@ -52,9 +53,6 @@ export default {
       xs: 12,
       sm: 6,
     };
-    lastname.validations = yup
-      .string()
-      .required(t("authentication.enterlastname"));
 
     // render role
     const role = {
@@ -77,9 +75,6 @@ export default {
       label: t("authentication.username"),
       helperText: t("authentication.enterusername"),
     };
-    username.validations = yup
-      .string()
-      .required(t("authentication.enterusername"));
 
     // render password
     const password = {
@@ -90,9 +85,6 @@ export default {
       label: t("authentication.password"),
       helperText: t("authentication.enterpassword"),
     };
-    password.validations = yup
-      .string()
-      .required(t("authentication.enterpassword"));
 
     // push all to array
     let inputForms = [];

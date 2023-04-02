@@ -17,6 +17,7 @@ const SelectField = (props) => {
   const [dataValueMultiple, setDataValueMultiple] = React.useState([]);
   const [lsItems, setLsItems] = React.useState([]);
   const [multiple, setMultiple] = React.useState(false);
+  const [disabled, setDisabled] = React.useState(false);
 
   if (typeof props.error == "boolean") {
     hasError = props.error;
@@ -27,6 +28,12 @@ const SelectField = (props) => {
 
   //#region useEffect
   React.useEffect(() => {
+    // check is disabled
+    if (props.disabled) {
+      setDisabled(props.disabled);
+    }
+
+    // check is multiple
     let isMultiple = Array.isArray(props.value);
     setMultiple(isMultiple);
     if (isMultiple) {
@@ -50,6 +57,30 @@ const SelectField = (props) => {
     }
   };
 
+  const RenderFieldContainer = (propsFc) => {
+    if (disabled) {
+      return (
+        <FormControl margin="normal" fullWidth disabled>
+          {propsFc.children}
+        </FormControl>
+      );
+    }
+
+    if (hasError) {
+      return (
+        <FormControl margin="normal" fullWidth error>
+          {propsFc.children}
+        </FormControl>
+      );
+    }
+
+    return (
+      <FormControl margin="normal" fullWidth>
+        {propsFc.children}
+      </FormControl>
+    );
+  };
+
   return (
     <Grid
       item
@@ -57,7 +88,7 @@ const SelectField = (props) => {
       sm={props.sm || 12}
       className="field-container"
     >
-      <FormControl margin="normal" fullWidth>
+      <RenderFieldContainer>
         <InputLabel id={props.id + "-label"}>{props.label}</InputLabel>
         <Select
           key={Helpers.uuidv4()}
@@ -85,10 +116,15 @@ const SelectField = (props) => {
             );
           })}
         </Select>
-        <FormHelperText></FormHelperText>
-      </FormControl>
+        <FormHelperText>{props.helperText}</FormHelperText>
+      </RenderFieldContainer>
     </Grid>
   );
 };
 
-export default SelectField;
+export default React.memo(SelectField, (props, nextProps) => {
+  if (props.value === nextProps.value && props.listItems === nextProps.listItems) {
+    // return true if you don't need re-render
+    return true;
+  }
+});

@@ -42,7 +42,7 @@ const InputField = (props) => {
     let val = e.target.value;
     val = stringExtension.stripedHtml(val);
 
-    if (props.regexXSS) {
+    if (props.preventXSS) {
       val = val.replace(regexXSS, "");
     }
 
