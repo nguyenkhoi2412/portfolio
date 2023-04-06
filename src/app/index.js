@@ -5,7 +5,7 @@ import defaultFavicon from "@assets/favicons/default/favicon.ico";
 // // import cmsFavicon from "@assets/favicons/dashboard/favicon.ico";
 // import surveyFavicon from "@assets/favicons/survey/favicon.ico";
 import { SnackbarProvider } from "notistack";
-import BuildPagesRoute from "./routes/buildPagesRoute";
+import BuildPagesRoute from "@routes/buildPagesRoute";
 import routes from "@routes";
 import { CURRENT_MODULES } from "@routes/_modules";
 //#region useHooks,components, helper

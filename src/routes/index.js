@@ -1,11 +1,11 @@
 import clientapp from '@routes/data/clientapp';
-import dashboard from '@routes/data/dashboard';
+import authentication from '@routes/data/authentication';
 
 export default {
   buildRoutes: (locale) => {
     let routeBuild = [
       ...clientapp,
-      ...dashboard
+      ...authentication
     ];
   
     return routeBuild;

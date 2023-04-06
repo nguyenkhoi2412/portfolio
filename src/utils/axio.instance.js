@@ -1,6 +1,6 @@
 import axios from "axios";
 import stored from "@authentication/storageHandler";
-import routes from "@app/routes";
+import routes from "@routes";
 // import authServices from "@services/auth";
 import { storedExtension } from "./helpers";
 const { CURRENT_MODULES } = routes;
