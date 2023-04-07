@@ -4,10 +4,10 @@ import { createTheme } from "@mui/material/styles";
 export const configBaseTheme = createTheme({
   palette: {
     primary: {
-      main: pallete.primaryColor,
+      main: pallete.secondaryMain,
     },
     secondary: {
-      main: pallete.secondaryColor,
+      main: pallete.primaryMain,
     },
     breakpoints: {
       values: {

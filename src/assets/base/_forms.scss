@@ -3,6 +3,10 @@
   .field-container {
     padding-top: 8px !important;
 
+    > * {
+      margin-top: 4px;
+    }
+
     .form-control {
       margin-top: 0;
     }

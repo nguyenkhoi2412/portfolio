@@ -5,7 +5,7 @@ import { useTranslation, Trans } from "react-i18next";
 import _schema from "./_schema";
 import { useFormik } from "formik";
 import { Helpers, objectExtension, hooksInstance } from "@utils/helpers";
-import { useNavigate } from "react-router-dom";
+import { strengthColor, strengthIndicator } from "@utils/passwordStrength";
 import { useSnackbar } from "notistack";
 import InputField from "@components/forms/inputField";
 import SelectField from "@components/forms/selectField";
@@ -48,7 +48,6 @@ const SignUp = () => {
   const { t } = useTranslation();
   const dataRoleValues = useSelector(roleState);
   const dispatch = useDispatch();
-  const navigage = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
   const [showMessageAlert, setShowMessageAlert] = React.useState(false);
   const [messageContentAlert, setMessageContentAlert] = React.useState();
@@ -57,6 +56,9 @@ const SignUp = () => {
   );
   const dataValues = useSelector(userState);
   const [lsRoles, setLsRoles] = React.useState([]);
+  const [checked, setChecked] = React.useState(true);
+  const [strength, setStrength] = React.useState(0);
+  const [level, setLevel] = React.useState();
 
   //#region getData
   const getRoles = () => {
@@ -146,6 +148,14 @@ const SignUp = () => {
     formik.handleSubmit();
   };
 
+  const handleInputOnChange = (e, type) => {
+    if (type === "password") {
+      const temp = strengthIndicator(e.target.value);
+      setStrength(temp);
+      setLevel(strengthColor(temp));
+    }
+  };
+
   //#endregion
 
   return (
@@ -200,7 +210,10 @@ const SignUp = () => {
                         "values." + item.field
                       )}
                       setValue={formik.setFieldValue}
-                      onChange={formik.handleChange}
+                      onChange={(e) => {
+                        formik.handleChange;
+                        handleInputOnChange(e, item.type);
+                      }}
                       error={hasError}
                       helperText={hasError ? item.helperText : ""}
                       preventXSS={item.preventXSS}
@@ -235,26 +248,6 @@ const SignUp = () => {
               }
             })}
             <Grid item xs={12}>
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={true}
-                    onChange={(event) => setChecked(event.target.checked)}
-                    name="checked"
-                    color="primary"
-                  />
-                }
-                label={
-                  <Typography variant="subtitle1">
-                    Agree with &nbsp;
-                    <Typography variant="subtitle1" to="#">
-                      Terms & Condition.
-                    </Typography>
-                  </Typography>
-                }
-              />
-            </Grid>
-            <Grid item xs={12}>
               {strength !== 0 && (
                 <FormControl fullWidth>
                   <Box sx={{ mb: 2 }}>
@@ -275,7 +268,27 @@ const SignUp = () => {
                 </FormControl>
               )}
             </Grid>
-            <Grid item xs={12}>
+            <Grid item alignItems="center" justifyContent="space-between">
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={checked}
+                    onChange={(event) => setChecked(event.target.checked)}
+                    name="checked"
+                    color="primary"
+                  />
+                }
+                label={
+                  <Typography variant="subtitle1">
+                    Agree with &nbsp;
+                    <Typography variant="subtitle1" component={Link} to="#">
+                      Terms & Condition.
+                    </Typography>
+                  </Typography>
+                }
+              />
+            </Grid>
+            <Grid item xs={12} className={!showMessageAlert ? "none" : ""}>
               <FormControl fullWidth>
                 <Collapse in={showMessageAlert}>
                   <Alert
