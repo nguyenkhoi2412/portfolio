@@ -93,7 +93,9 @@ export class Helpers {
 
   //#region check/detect
   static checkIsNotNull(data) {
-    return data !== null && data !== undefined && !objectExtension.isEmpty(data);
+    return (
+      data !== null && data !== undefined && !objectExtension.isEmpty(data)
+    );
   }
 
   static detectEnvironment() {
@@ -867,6 +869,12 @@ export class hooksInstance {
    * useLocalStorage
    * How to use it?
    * const [name, setName] = useLocalStorage();
+   * <input
+      type="text"
+      placeholder="Enter your name"
+      value={name}
+      onChange={(e) => setName(e.target.value)}
+     />
    */
   static useLocalStorage = (key, initialValue) => {
     // State to store our value
@@ -974,6 +982,165 @@ export class hooksInstance {
     );
     // If needed we could also return past and future state
     return { state: state.present, set, undo, redo, clear, canUndo, canRedo };
+  };
+
+  /*
+   * usePrevious
+   * How to use it?
+   * const [count, setCount] = useState(0);
+   * const prevCount = usePrevious(count);
+   */
+  static usePrevious = (value) => {
+    // The ref object is a generic container whose current property is mutable ...
+    // ... and can hold any value, similar to an instance property on a class
+    const ref = useRef();
+    // Store current value in ref
+    useEffect(() => {
+      ref.current = value;
+    }, [value]); // Only re-run if value changes
+    // Return previous value (happens before update in useEffect above)
+    return ref.current;
+  };
+
+  /*
+   * useToggle
+   * How to use it?
+   * const [isTextChanged, setIsTextChanged] = useToggle();
+   * <button onClick={setIsTextChanged}>{isTextChanged ? 'Toggled' : 'Click to Toggle'}</button>
+   */
+  static useToggle = (initialState = false) => {
+    // Initialize the state
+    const [state, setState] = useState(initialState);
+
+    // Define and memorize toggler function in case we pass down the component,
+    // This function change the boolean value to it's opposite value
+    const toggle = useCallback(() => setState((state) => !state), []);
+
+    return [state, toggle];
+  };
+
+  /*
+   * useAsync
+   * How to use it?
+   * const { execute, status, value, error } = useAsync(myFunction, false);
+   * <button onClick={execute} disabled={status === "pending"}>
+        {status !== "pending" ? "Click me" : "Loading..."}
+     </button>
+   * const myFunction = () => {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          const rnd = Math.random() * 10;
+          rnd <= 5
+            ? resolve("Submitted successfully 🙌")
+            : reject("Oh no there was an error 😞");
+        }, 2000);
+      });
+    };
+   */
+  static useAsync = (asyncFunction, immediate = true) => {
+    const [status, setStatus] = useState("idle");
+    const [value, setValue] = useState(null);
+    const [error, setError] = useState(null);
+    // The execute function wraps asyncFunction and
+    // handles setting state for pending, value, and error.
+    // useCallback ensures the below useEffect is not called
+    // on every render, but only if asyncFunction changes.
+    const execute = useCallback(() => {
+      setStatus("pending");
+      setValue(null);
+      setError(null);
+      return asyncFunction()
+        .then((response) => {
+          setValue(response);
+          setStatus("success");
+        })
+        .catch((error) => {
+          setError(error);
+          setStatus("error");
+        });
+    }, [asyncFunction]);
+    // Call execute if we want to fire it right away.
+    // Otherwise execute can be called later, such as
+    // in an onClick handler.
+    useEffect(() => {
+      if (immediate) {
+        execute();
+      }
+    }, [execute, immediate]);
+    return { execute, status, value, error };
+  };
+
+  /*
+   * useHistory
+   * How to use it?
+   * const { state, set, undo, redo, clear, canUndo, canRedo } = useHistory({});
+   * <button onClick={undo} disabled={!canUndo}>
+      Undo
+     </button>
+   */
+  static useHistory = (initialPresent) => {
+    const [state, dispatch] = useReducer(reducer, {
+      ...initialState,
+      present: initialPresent,
+    });
+    const canUndo = state.past.length !== 0;
+    const canRedo = state.future.length !== 0;
+    // Setup our callback functions
+    // We memoize with useCallback to prevent unnecessary re-renders
+    const undo = useCallback(() => {
+      if (canUndo) {
+        dispatch({ type: "UNDO" });
+      }
+    }, [canUndo, dispatch]);
+    const redo = useCallback(() => {
+      if (canRedo) {
+        dispatch({ type: "REDO" });
+      }
+    }, [canRedo, dispatch]);
+    const set = useCallback(
+      (newPresent) => dispatch({ type: "SET", newPresent }),
+      [dispatch]
+    );
+    const clear = useCallback(
+      () => dispatch({ type: "CLEAR", initialPresent }),
+      [dispatch]
+    );
+    // If needed we could also return past and future state
+    return { state: state.present, set, undo, redo, clear, canUndo, canRedo };
+  };
+
+  /*
+   * useKeyPress
+   * How to use it?
+   * const happyPress = useKeyPress("h");
+   * {happyPress && "😊"}
+   */
+  static useKeyPress = (targetKey) => {
+    // State for keeping track of whether key is pressed
+    const [keyPressed, setKeyPressed] = useState < boolean > false;
+    // If pressed key is our target key then set to true
+    function downHandler({ key }) {
+      if (key === targetKey) {
+        setKeyPressed(true);
+      }
+    }
+    // If released key is our target key then set to false
+    const upHandler = ({ key }) => {
+      if (key === targetKey) {
+        setKeyPressed(false);
+      }
+    };
+    // Add event listeners
+    useEffect(() => {
+      window.addEventListener("keydown", downHandler);
+      window.addEventListener("keyup", upHandler);
+      // Remove event listeners on cleanup
+      return () => {
+        window.removeEventListener("keydown", downHandler);
+        window.removeEventListener("keyup", upHandler);
+      };
+    }, []); // Empty array ensures that effect is only run on mount and unmount
+    return keyPressed;
   };
 }
 

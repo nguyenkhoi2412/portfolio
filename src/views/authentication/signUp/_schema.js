@@ -21,8 +21,8 @@ export default {
         firstname: yup.string().required(t("authentication.enterfirstname")),
         lastname: yup.string().required(t("authentication.enterlastname")),
       }),
-      username: yup.string().required(t("authentication.enterusername")),
-      password: yup.string().required(t("authentication.enterpassword")),
+      username: yup.string().max(255).required(t("authentication.enterusername")),
+      password: yup.string().max(255).required(t("authentication.enterpassword")),
     });
   },
   dataForm: (lsRoles) => {
