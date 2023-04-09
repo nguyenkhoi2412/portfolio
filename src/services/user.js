@@ -1,5 +1,6 @@
 import axios from "@utils/axio.instance";
 import encryptHelper from "@utils/encrypt.helper";
+import { objectExtension } from "@utils/helpers";
 
 export default {
   findByUser: (params) => {
@@ -18,7 +19,7 @@ export default {
       params.password = encryptHelper.rsa.encrypt(params.password);
 
       axios
-        .post(`user/validate/`, params)
+        .get(objectExtension.parseToQueryString("user/validate/", params))
         .then((response) => resolve(response))
         .catch((error) => reject(error));
     });

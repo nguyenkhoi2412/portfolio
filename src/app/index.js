@@ -6,6 +6,10 @@ import defaultFavicon from "@assets/favicons/default/favicon.ico";
 // import surveyFavicon from "@assets/favicons/survey/favicon.ico";
 import { SnackbarProvider } from "notistack";
 import BuildPagesRoute from "@routes/buildPagesRoute";
+import { ThemeProvider } from "@mui/system";
+import { CssBaseline, StyledEngineProvider } from "@mui/material";
+import { BrowserRouter } from "react-router-dom";
+import { configBaseTheme } from "@assets/themes/_baseTheme";
 import routes from "@routes";
 import { CURRENT_MODULES } from "@routes/_modules";
 //#region useHooks,components, helper
@@ -27,6 +31,7 @@ const App = () => {
   console.warn = () => {};
   dynamicFavicons();
 
+  const customization = useSelector((state) => state.customization);
   const { i18n } = useTranslation();
   const dispatch = useDispatch();
   // const site = useSelector(siteState);
@@ -89,22 +94,27 @@ const App = () => {
     });
 
   return (
-    <>
-      <IncProgressBar />
-      <IncBackdrop />
-      <SnackbarProvider
-        maxSnack={3}
-        autoHideDuration={3000}
-        anchorOrigin={{
-          vertical: "bottom",
-          horizontal: "right",
-        }}
-      >
-        <Grid container component="main" sx={{ height: "100vh" }}>
-          <BuildPagesRoute dataSource={renderRoutes} />
-        </Grid>
-      </SnackbarProvider>
-    </>
+    <StyledEngineProvider injectFirst>
+      <ThemeProvider theme={configBaseTheme(customization)}>
+        <CssBaseline />
+        <BrowserRouter>
+          <IncProgressBar />
+          <IncBackdrop />
+          <SnackbarProvider
+            maxSnack={3}
+            autoHideDuration={3000}
+            anchorOrigin={{
+              vertical: "bottom",
+              horizontal: "right",
+            }}
+          >
+            <Grid container component="main" sx={{ height: "100vh" }}>
+              <BuildPagesRoute dataSource={renderRoutes} />
+            </Grid>
+          </SnackbarProvider>
+        </BrowserRouter>
+      </ThemeProvider>
+    </StyledEngineProvider>
   );
 };
 

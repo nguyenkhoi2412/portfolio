@@ -11,9 +11,12 @@ export default {
   validation: () => {
     const { t } = useTranslation();
     return yup.object({
-        username: yup.string().required(t("authentication.enterusername")),
-        password: yup.string().required(t("authentication.enterpassword"))
-    })
+      username: yup
+        .string()
+        .email(t("authentication.mustbeavalidemail"))
+        .required(t("authentication.enterusername")),
+      password: yup.string().required(t("authentication.enterpassword")),
+    });
   },
   dataForm: () => {
     const { t } = useTranslation();
@@ -26,9 +29,11 @@ export default {
       type: "text",
       label: t("authentication.username"),
       autoFocus: true,
-      helperText: t("authentication.enterusername")
+      helperText: t("authentication.enterusername"),
     };
-    username.validations = yup.string().required(t("authentication.enterusername"));
+    username.validations = yup
+      .string()
+      .required(t("authentication.enterusername"));
 
     // render password
     const password = {
@@ -37,9 +42,11 @@ export default {
       field: "password",
       type: "password",
       label: t("authentication.password"),
-      helperText: t("authentication.enterpassword")
+      helperText: t("authentication.enterpassword"),
     };
-    password.validations = yup.string().required(t("authentication.enterpassword"));
+    password.validations = yup
+      .string()
+      .required(t("authentication.enterpassword"));
 
     // push all to array
     let inputForms = [];

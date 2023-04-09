@@ -10,6 +10,9 @@
     "mustbebefore_startdate": "End date can't be before Start date"
   },
   "authentication": {
+    "hiwelcomeback": "Hi, Welcome Back",
+    "enteryourcredentialstocontinue": "Enter your credentials to continue",
+    "or": "or",
     "firstname": "First name",
     "lastname": "Last name",
     "rolename": "Role",
@@ -17,6 +20,10 @@
     "password": "Password",
     "signin": "Sign in",
     "signup": "Sign up",
+    "signinwithgoogle": "Sign in with Google",
+    "signupwithgoogle": "Sign up with Google",
+    "signinwithemailaddress": "Sign in with Email address",
+    "signupwithemailaddress": "Sign up with Email address",
     "verification": "Verification",
     "signout": "Sign out",
     "rememberme": "Remember me",
@@ -26,7 +33,9 @@
     "registersuccess": "Register successful",
     "registerfail": "Register fail",
     "donthaveanaccount": "Don't have an account? Sign Up",
+    "alreadyhaveanaccount": "Already have an account?",
     "haveanaccount": "Already have an account? Sign in",
+    "mustbeavalidemail": "Must be a valid email",
     "enterfirstname": "Enter your firstname",
     "enterlastname": "Enter your lastname",
     "selectrole": "Select role name",
@@ -37,7 +46,9 @@
     "code_sent_toemail": "Please enter the verification code that was sent to your email address",
     "didnt_receive_code": "If you didn't receive a OTP code?",
     "verified_success": "Verification code is valid",
-    "token_expired": "Your token is invalid or expires"
+    "token_expired": "Your token is invalid or expires",
+    "agreewith": "Agree with",
+    "termsandcondition": "Terms & Condition."
   },
   "user": {
     "firstname": "First name",

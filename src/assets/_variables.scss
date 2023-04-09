@@ -79,8 +79,9 @@ $darkTextSecondary: #8492c4;
 // ==============================|| MY COLOR DEFINE ||============================== //
 $font-family: Roboto, Helvetica, Arial, sans-serif;
 $font-size: 16px;
-$primary-color: #00aa0a;
-$secondary-color: #e5681a;
+$primary-color: $primaryMain;
+$secondary-color: $secondaryMain;
+$text-color: $grey900;
 $container-background-color: #f7f8fa;
 $disabled-background: #f5f5f5;
 $spin-color: #999;

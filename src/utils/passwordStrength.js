@@ -1,7 +1,7 @@
 /**
  * Password validator for login pages
  */
-import pallete from "@assets/configs/pallete.module.scss";
+import palette from "@assets/themes/palette.module.scss";
 
 // has number
 const hasNumber = (number) => new RegExp(/[0-9]/).test(number);
@@ -15,12 +15,12 @@ const hasSpecial = (number) => new RegExp(/[!#@$%^&*)(+=._-]/).test(number);
 
 // set color based on password strength
 export const strengthColor = (count) => {
-  if (count < 2) return { label: "Poor", color: pallete.errorMain };
-  if (count < 3) return { label: "Weak", color: pallete.warningDark };
-  if (count < 4) return { label: "Normal", color: pallete.orangeMain };
-  if (count < 5) return { label: "Good", color: pallete.successMain };
-  if (count < 6) return { label: "Strong", color: pallete.successDark };
-  return { label: "Poor", color: pallete.errorMain };
+  if (count < 2) return { label: "Poor", color: palette.errorMain };
+  if (count < 3) return { label: "Weak", color: palette.warningDark };
+  if (count < 4) return { label: "Normal", color: palette.orangeMain };
+  if (count < 5) return { label: "Good", color: palette.successMain };
+  if (count < 6) return { label: "Strong", color: palette.successDark };
+  return { label: "Poor", color: palette.errorMain };
 };
 
 // password strength indicator

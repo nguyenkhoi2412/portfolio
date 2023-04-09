@@ -1,8 +1,8 @@
 .progress {
-    height: 5px;
-    position: absolute;
+  height: 5px;
+  position: fixed;
 
-    .MuiLinearProgress-root {
-        height: inherit;
-    }
+  .MuiLinearProgress-root {
+    height: inherit;
+  }
 }
