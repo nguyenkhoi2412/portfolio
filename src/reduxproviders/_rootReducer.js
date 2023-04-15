@@ -2,6 +2,7 @@ import { combineReducers } from "redux";
 // //* shared
 // import gSharedReducer from "./utils/shared.reducer";
 import { componentReducer } from "@components/_reducer";
+import customizationReducer from "./berry/customizationReducer";
 
 // //* dashboard
 import userReducer from "./user.reducer";
@@ -18,6 +19,7 @@ import roleReducer from "./role.reducer";
 const rootReducer = combineReducers({
   //? shared
   ...componentReducer,
+  customization: customizationReducer,
   //   gShared: gSharedReducer,
   //   //? dashboard
   user: userReducer,

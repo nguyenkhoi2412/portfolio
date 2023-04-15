@@ -6,7 +6,7 @@ import { Helpers, objectExtension } from "@utils/helpers";
 import { getYupSchemaFromMetaData } from "@utils/yupSchemaCreator.js";
 import { useSnackbar } from "notistack";
 import InputField from "@components/forms/inputField";
-import _schema from "./../signIn/_schema";
+import _schema from "../forgotPassword/_schema";
 import Google from "@assets/images/icons/social-google.svg";
 import { useTheme } from "@mui/material/styles";
 import { navigateLocation } from "@routes/data/navigateLocation";
@@ -40,7 +40,7 @@ import { VALIDATE_USER } from "@reduxproviders/user.reducer";
 //#endregion
 import AnimateButton from "@components/mui-ui/extended/animateButton";
 
-const FormSignIn = () => {
+const FormForgotPassword = () => {
   const theme = useTheme();
   const navigate = useNavigate();
   const matchDownSM = useMediaQuery(theme.breakpoints.down("md"));
@@ -109,73 +109,6 @@ const FormSignIn = () => {
   return (
     <>
       <Grid container direction="column" justifyContent="center" spacing={2}>
-        <Grid item xs={12}>
-          <AnimateButton>
-            <Button
-              disableElevation
-              fullWidth
-              onClick={() => console.log("googleHandler")}
-              size="large"
-              variant="outlined"
-              sx={{
-                color: "grey.700",
-                backgroundColor: theme.palette.grey[50],
-                borderColor: theme.palette.grey[100],
-              }}
-            >
-              <Box sx={{ mr: { xs: 1, sm: 2, width: 20 } }}>
-                <img
-                  src={Google}
-                  alt="google"
-                  width={16}
-                  height={16}
-                  style={{ marginRight: matchDownSM ? 8 : 16 }}
-                />
-              </Box>
-              {t("authentication.signinwithgoogle")}
-            </Button>
-          </AnimateButton>
-        </Grid>
-        <Grid item xs={12}>
-          <Box
-            sx={{
-              alignItems: "center",
-              display: "flex",
-            }}
-          >
-            <Divider sx={{ flexGrow: 1 }} orientation="horizontal" />
-            <Button
-              variant="outlined"
-              sx={{
-                cursor: "unset",
-                m: 2,
-                py: 0.5,
-                px: 7,
-                borderColor: `${theme.palette.grey[100]} !important`,
-                color: `${theme.palette.grey[900]}!important`,
-                fontWeight: 500,
-              }}
-              disableRipple
-              disabled
-            >
-              {t("authentication.or")}
-            </Button>
-            <Divider sx={{ flexGrow: 1 }} orientation="horizontal" />
-          </Box>
-        </Grid>
-        <Grid
-          item
-          xs={12}
-          container
-          alignItems="center"
-          justifyContent="center"
-        >
-          <Box sx={{ mb: 2 }}>
-            <Typography variant="subtitle1">
-              {t("authentication.signinwithemailaddress")}
-            </Typography>
-          </Box>
-        </Grid>
         <Grid
           item
           xs={12}
@@ -245,32 +178,6 @@ const FormSignIn = () => {
                 </Alert>
               </Collapse>
             </FormControl>
-            <Stack
-              direction="row"
-              alignItems="center"
-              justifyContent="space-between"
-              spacing={1}
-            >
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={checked}
-                    onChange={(event) => setChecked(event.target.checked)}
-                    name="checked"
-                    color="primary"
-                  />
-                }
-                label="Remember me"
-              />
-              <Link
-                href={navigateLocation.AUTH.FORGOT_PASSWORD}
-                variant="body2"
-                underline="none"
-                color="secondary"
-              >
-                {t("authentication.forgotpassword")}
-              </Link>
-            </Stack>
             <AnimateButton>
               <Button
                 disableElevation
@@ -281,7 +188,7 @@ const FormSignIn = () => {
                 variant="contained"
                 color="secondary"
               >
-                {t("authentication.signin")}
+                {t("authentication.sendmail")}
               </Button>
             </AnimateButton>
           </Box>
@@ -291,4 +198,4 @@ const FormSignIn = () => {
   );
 };
 
-export default FormSignIn;
+export default FormForgotPassword;

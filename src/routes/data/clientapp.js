@@ -1,15 +1,16 @@
+import { navigateLocation } from "./navigateLocation";
 import Home from "@clientapp/Home";
 import About from "@clientapp/About";
 
 export default [
   {
-    path: "",
+    path: navigateLocation.CLIENTAPP.ASSET_PATH,
     public: true,
     title: "Home | cxStudio",
     element: <Home />
   },
   {
-    path: "home",
+    path: navigateLocation.CLIENTAPP.HOME,
     public: true,
     title: "Home | cxStudio",
     element: <Home />

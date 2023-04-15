@@ -14,8 +14,11 @@ const BuildPagesRoute = (props) => {
   const location = useLocation();
   React.useEffect(() => {
     let currentPath = props.dataSource.find(
-      (item) => vars.ASSET_PATH + item.path === location.pathname
+      (item) => item.path === location.pathname
     );
+    // console.log("props.dataSource", props.dataSource);
+    // console.log('location.pathname', location.pathname);
+    // console.log("currentPath", currentPath);
     document.title = currentPath?.title ?? "No title";
   }, [location]);
 
