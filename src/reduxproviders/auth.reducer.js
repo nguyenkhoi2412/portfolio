@@ -1,26 +1,26 @@
 import { createSlice, current, createAsyncThunk } from "@reduxjs/toolkit";
-import userServices from "@services/user";
+import authServices from "@services/auth";
 import { storedExtension } from "@utils/helpersExtension";
 import storageHandler from "@authentication/storageHandler";
 
 export const FIND_BY_USER = createAsyncThunk(
-  "user/findbyuser",
+  "auth/findbyuser",
   async (params, thunkAPI) => {
-    return await userServices.findByUser(params);
+    return await authServices.findByUser(params);
   }
 );
 
 export const VALIDATE_USER = createAsyncThunk(
-  "user/validate",
+  "auth/validate",
   async (params, thunkAPI) => {
-    return await userServices.validateUser(params);
+    return await authServices.validateUser(params);
   }
 );
 
 export const REGISTER_USER = createAsyncThunk(
-  "user/register",
+  "auth/register",
   async (params, thunkAPI) => {
-    return await userServices.registerUser(params);
+    return await authServices.registerUser(params);
   }
 );
 
@@ -43,8 +43,8 @@ const initialState = {
   language: "en",
 };
 
-export const user = createSlice({
-  name: "user",
+export const auth = createSlice({
+  name: "auth",
   initialState: initialState,
   reducers: {
     SIGN_OUT: (state) => {
@@ -125,13 +125,13 @@ export const user = createSlice({
 });
 
 // export actions to use
-export const { SIGN_OUT, SECURE_2FA_UPDATE } = user.actions;
+export const { SIGN_OUT, SECURE_2FA_UPDATE } = auth.actions;
 
 //#region The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state) => state.counter.value)`
-export const userState = (state) => state.user;
-export const currentUserState = (state) => state.user.currentUser;
+export const authState = (state) => state.auth;
+export const currentUserState = (state) => state.auth.currentUser;
 //#endregion
 
-export default user.reducer;
+export default auth.reducer;

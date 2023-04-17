@@ -38,9 +38,9 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import {
   REGISTER_USER,
-  userState,
+  authState,
   currentUserState,
-} from "@reduxproviders/user.reducer";
+} from "@reduxproviders/auth.reducer";
 import { ROLE_GET_ALL, roleState } from "@reduxproviders/role.reducer";
 //#endregion
 import AnimateButton from "@components/mui-ui/extended/animateButton";
@@ -58,7 +58,7 @@ const FormSignUp = () => {
   const [alertBoxSeverity, setAlertBoxSeverity] = React.useState(
     severity.error
   );
-  const dataValues = useSelector(userState);
+  const dataValues = useSelector(authState);
   const [lsRoles, setLsRoles] = React.useState([]);
   const [checked, setChecked] = React.useState(true);
   const [strength, setStrength] = React.useState(0);

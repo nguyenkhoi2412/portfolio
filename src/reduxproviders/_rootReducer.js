@@ -5,7 +5,7 @@ import { componentReducer } from "@components/_reducer";
 import customizationReducer from "./berry/customizationReducer";
 
 // //* dashboard
-import userReducer from "./user.reducer";
+import authReducer from "./auth.reducer";
 import roleReducer from "./role.reducer";
 // import secure_2faReducer from "./secure_2fa.reducer";
 // import siteReducer from "./site.reducer";
@@ -22,7 +22,7 @@ const rootReducer = combineReducers({
   customization: customizationReducer,
   //   gShared: gSharedReducer,
   //   //? dashboard
-  user: userReducer,
+  user: authReducer,
   role: roleReducer,
   //   secure_2fa: secure_2faReducer,
   //   site: siteReducer,

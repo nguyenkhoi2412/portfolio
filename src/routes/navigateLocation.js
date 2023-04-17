@@ -10,9 +10,10 @@ export const navigateLocation = {
     SIGNIN: DASHBOARD + "/signin",
     SIGNUP: DASHBOARD + "/signup",
     FORGOT_PASSWORD: DASHBOARD + "/forgotpassword",
+    CODE_VERIFICATION: DASHBOARD + '/codeverification'
   },
   CLIENTAPP: {
     ASSET_PATH: ASSET_PATH,
-    HOME: ASSET_PATH + "/home"
-  }
+    HOME: ASSET_PATH + "/home",
+  },
 };

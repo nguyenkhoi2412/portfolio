@@ -94,7 +94,7 @@ const App = (props) => {
     .on("resize.handleResize", function () {
       handleResize();
     });
-console.log(props)
+
   return (
     <StyledEngineProvider injectFirst>
       <ThemeProvider theme={configBaseTheme(customization)}>
@@ -110,7 +110,12 @@ console.log(props)
               horizontal: "right",
             }}
           >
-            <Grid container component="main" sx={{ height: "100vh" }}>
+            <Grid
+              container
+              component="main"
+              direction="column"
+              sx={{ height: "100vh" }}
+            >
               {/* <BuildPagesRoute dataSource={renderRoutes} /> */}
               <NavigationScroll>
                 <Routes />

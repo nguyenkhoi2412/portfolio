@@ -2,6 +2,7 @@ import SignIn from "@views/authentication/signIn";
 import SignUp from "@views/authentication/signUp";
 import ForgotPassword from "@views/authentication/forgotPassword";
 import { navigateLocation } from "../navigateLocation";
+import CodeVerification from "@views/authentication/codeVerification";
 
 const AuthenticationRoutes = [
   {
@@ -16,6 +17,10 @@ const AuthenticationRoutes = [
   {
     path: navigateLocation.AUTH.FORGOT_PASSWORD,
     element: <ForgotPassword title="Forgot Password | cxStudio" />,
+  },
+  {
+    path: navigateLocation.AUTH.CODE_VERIFICATION,
+    element: <CodeVerification title="Code verification | cxStudio" />,
   },
 ];
 

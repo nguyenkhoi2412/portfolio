@@ -36,7 +36,7 @@ import {
   HIDE_PROGRESSBAR,
 } from "@components/mui-ui/progressBar/progressBar.reducer";
 import { useDispatch } from "react-redux";
-import { VALIDATE_USER } from "@reduxproviders/user.reducer";
+import { VALIDATE_USER } from "@reduxproviders/auth.reducer";
 //#endregion
 import AnimateButton from "@components/mui-ui/extended/animateButton";
 

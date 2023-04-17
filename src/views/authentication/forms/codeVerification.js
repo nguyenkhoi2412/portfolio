@@ -40,7 +40,7 @@ import { VALIDATE_USER } from "@reduxproviders/auth.reducer";
 //#endregion
 import AnimateButton from "@components/mui-ui/extended/animateButton";
 
-const FormForgotPassword = () => {
+const FormCodeVerification = () => {
   const theme = useTheme();
   const navigate = useNavigate();
   const matchDownSM = useMediaQuery(theme.breakpoints.down("md"));
@@ -198,4 +198,4 @@ const FormForgotPassword = () => {
   );
 };
 
-export default FormForgotPassword;
+export default FormCodeVerification;
