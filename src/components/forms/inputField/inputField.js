@@ -1,6 +1,6 @@
 import "./_inputField.scss";
 import * as React from "react";
-import { Helpers, objectExtension, stringExtension } from "@utils/helpers";
+import { helpersExtension, objectExtension, stringExtension } from "@utils/helpersExtension";
 import FormHelperText from "@mui/material/FormHelperText";
 import InputLabel from "@mui/material/InputLabel";
 import TextField from "@mui/material/TextField";

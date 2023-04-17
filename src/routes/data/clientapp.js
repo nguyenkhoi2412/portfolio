@@ -1,4 +1,4 @@
-import { navigateLocation } from "./navigateLocation";
+import { navigateLocation } from "../navigateLocation";
 import Home from "@clientapp/Home";
 import About from "@clientapp/About";
 

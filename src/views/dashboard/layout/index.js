@@ -5,11 +5,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
 
 // project imports
-// import Breadcrumbs from 'ui-component/extended/Breadcrumbs';
+import Breadcrumbs from "@components/mui-ui/extended/breadcrumbs";
 import Header from "./header";
 import Sidebar from "./sidebar";
 import Customization from "./customization";
-// import navigation from '@views/dashboard/menuSidebar';
+import navigation from "@views/dashboard/menuSidebar";
 import { drawerWidth } from "@constants";
 import { SET_MENU } from "@reduxproviders/berry/actions";
 
@@ -99,6 +99,18 @@ const LayoutDashboard = () => {
           drawerOpen={!matchDownMd ? leftDrawerOpened : !leftDrawerOpened}
           drawerToggle={handleLeftDrawerToggle}
         />
+        {/* main content */}
+        <Main theme={theme} open={leftDrawerOpened}>
+          {/* breadcrumb */}
+          <Breadcrumbs
+            separator={IconChevronRight}
+            navigation={navigation}
+            icon
+            title
+            rightAlign
+          />
+          <Outlet />
+        </Main>
         <Customization />
       </Box>
     </>

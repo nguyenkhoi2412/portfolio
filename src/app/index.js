@@ -2,16 +2,18 @@ import "./app.scss";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import defaultFavicon from "@assets/favicons/default/favicon.ico";
-// // import cmsFavicon from "@assets/favicons/dashboard/favicon.ico";
+// import cmsFavicon from "@assets/favicons/dashboard/favicon.ico";
 // import surveyFavicon from "@assets/favicons/survey/favicon.ico";
 import { SnackbarProvider } from "notistack";
-import BuildPagesRoute from "@routes/buildPagesRoute";
+// import BuildPagesRoute from "@routes/buildPagesRoute";
+import Routes from "@routes";
+import NavigationScroll from "@utils/layout/navigationScroll";
 import { ThemeProvider } from "@mui/system";
 import { CssBaseline, StyledEngineProvider } from "@mui/material";
 import { BrowserRouter } from "react-router-dom";
 import { configBaseTheme } from "@assets/themes/_baseTheme";
-import routes from "@routes";
 import { CURRENT_MODULES } from "@routes/_modules";
+// import routes from "@routes";
 //#region useHooks,components, helper
 import IncBackdrop from "@components/mui-ui/backdropSpin";
 import IncProgressBar from "@components/mui-ui/progressBar";
@@ -25,9 +27,9 @@ import Grid from "@mui/material/Grid";
 // } from "@providers/site.reducer";
 // import { TYPE_GET_BY_SITE } from "@providers/type.reducer";
 // import { UPDATE_ENVIROMENT_INFOS } from "@providers/utils/shared.reducer";
-import { Helpers } from "@utils/helpers";
+import { helpersExtension } from "@utils/helpersExtension";
 
-const App = () => {
+const App = (props) => {
   console.warn = () => {};
   dynamicFavicons();
 
@@ -36,14 +38,14 @@ const App = () => {
   const dispatch = useDispatch();
   // const site = useSelector(siteState);
   // const locale = useSelector(localeState);
-  const [renderRoutes, setRenderRoutes] = React.useState(routes.buildRoutes());
+  // const [renderRoutes, setRenderRoutes] = React.useState(routes.buildRoutes());
   const [deviceInfos, setDeviceInfos] = React.useState({
     mobile: false,
     responsive: false,
   });
 
-  const handleResize = Helpers.debounce(() => {
-    setDeviceInfos(Helpers.detectEnvironment());
+  const handleResize = helpersExtension.debounce(() => {
+    setDeviceInfos(helpersExtension.detectEnvironment());
   }, 10);
 
   //#region useEffect
@@ -72,7 +74,7 @@ const App = () => {
 
   // //* GET TYPE BY SITE
   // React.useEffect(() => {
-  //   if (Helpers.checkIsNotNull(site.d)) {
+  //   if (helpersExtension.checkIsNotNull(site.d)) {
   //     dispatch(TYPE_GET_BY_SITE(site.d._id));
 
   //     // set language for i18n
@@ -92,7 +94,7 @@ const App = () => {
     .on("resize.handleResize", function () {
       handleResize();
     });
-
+console.log(props)
   return (
     <StyledEngineProvider injectFirst>
       <ThemeProvider theme={configBaseTheme(customization)}>
@@ -109,7 +111,10 @@ const App = () => {
             }}
           >
             <Grid container component="main" sx={{ height: "100vh" }}>
-              <BuildPagesRoute dataSource={renderRoutes} />
+              {/* <BuildPagesRoute dataSource={renderRoutes} /> */}
+              <NavigationScroll>
+                <Routes />
+              </NavigationScroll>
             </Grid>
           </SnackbarProvider>
         </BrowserRouter>

@@ -2,6 +2,7 @@ import "./_signIn.scss";
 import * as React from "react";
 import { useTranslation, Trans } from "react-i18next";
 import _schema from "./_schema";
+import { hooksInstance } from "@utils/hooksInstance";
 //#region mui-ui
 import Link from "@mui/material/Link";
 import { useTheme } from "@mui/material/styles";
@@ -15,8 +16,9 @@ import Logo from "@components/ui/logo";
 // import AuthFooter from "../AuthFooter";
 //#endregion
 
-const SignIn = () => {
+const SignIn = (props) => {
   const theme = useTheme();
+  hooksInstance.useDocumentTitle(props.title);
   const matchDownSM = useMediaQuery(theme.breakpoints.down("md"));
   const { t } = useTranslation();
 

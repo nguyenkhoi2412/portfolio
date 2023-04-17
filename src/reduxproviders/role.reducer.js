@@ -1,6 +1,6 @@
 import { createSlice, current, createAsyncThunk } from "@reduxjs/toolkit";
 import commonServices from "@services/common.api";
-import { storedExtension } from "@utils/helpers";
+import { storedExtension } from "@utils/helpersExtension";
 import storageHandler from "@authentication/storageHandler";
 
 export const ROLE_GET_ALL = createAsyncThunk(

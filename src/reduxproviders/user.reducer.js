@@ -1,6 +1,6 @@
 import { createSlice, current, createAsyncThunk } from "@reduxjs/toolkit";
 import userServices from "@services/user";
-import { storedExtension } from "@utils/helpers";
+import { storedExtension } from "@utils/helpersExtension";
 import storageHandler from "@authentication/storageHandler";
 
 export const FIND_BY_USER = createAsyncThunk(

@@ -2,14 +2,14 @@ import * as React from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation, Trans } from "react-i18next";
 import { useFormik } from "formik";
-import { Helpers, objectExtension } from "@utils/helpers";
+import { helpersExtension, objectExtension } from "@utils/helpersExtension";
 import { getYupSchemaFromMetaData } from "@utils/yupSchemaCreator.js";
 import { useSnackbar } from "notistack";
 import InputField from "@components/forms/inputField";
 import _schema from "../forgotPassword/_schema";
 import Google from "@assets/images/icons/social-google.svg";
 import { useTheme } from "@mui/material/styles";
-import { navigateLocation } from "@routes/data/navigateLocation";
+import { navigateLocation } from "@routes/navigateLocation";
 //#region mui-ui
 import FormControl from "@mui/material/FormControl";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -67,7 +67,7 @@ const FormForgotPassword = () => {
     onSubmit: (values) => {
       setSubmitting(true);
       dispatch(SHOW_PROGRESSBAR());
-      Helpers.simulateNetworkRequest(100).then(async () => {
+      helpersExtension.simulateNetworkRequest(100).then(async () => {
         await dispatch(VALIDATE_USER(values))
           .unwrap()
           .then((result) => {

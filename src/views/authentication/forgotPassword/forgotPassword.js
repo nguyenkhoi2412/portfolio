@@ -4,6 +4,7 @@ import { useTranslation, Trans } from "react-i18next";
 import _schema from "./_schema";
 //#region mui-ui
 import Link from "@mui/material/Link";
+import { hooksInstance } from "@utils/hooksInstance";
 import { useTheme } from "@mui/material/styles";
 import { Divider, Grid, Stack, Typography, useMediaQuery } from "@mui/material";
 //#endregion
@@ -15,8 +16,9 @@ import Logo from "@components/ui/logo";
 // import AuthFooter from "../AuthFooter";
 //#endregion
 
-const ForgotPassword = () => {
+const ForgotPassword = (props) => {
   const theme = useTheme();
+  hooksInstance.useDocumentTitle(props.title);
   const matchDownSM = useMediaQuery(theme.breakpoints.down("md"));
   const { t } = useTranslation();
 

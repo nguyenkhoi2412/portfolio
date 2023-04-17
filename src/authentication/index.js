@@ -1,4 +1,4 @@
-import { Helpers, storedExtension } from "@utils/helpers";
+import { helpersExtension, storedExtension } from "@utils/helpersExtension";
 import storaged from "./storageHandler";
 
 export const isAuth = () => {
@@ -7,14 +7,14 @@ export const isAuth = () => {
 };
 
 export const isLoggedIn = () => {
-  return Helpers.checkIsNotNull(
+  return helpersExtension.checkIsNotNull(
     localStorage.getItem(storaged.DASHBOARD.CURRENT_USER)
   );
 };
 
 export const isVerified_2fa = () => {
   if (
-    Helpers.checkIsNotNull(
+    helpersExtension.checkIsNotNull(
       storedExtension.getCookie(storaged.DASHBOARD.VERIFIED_2FA)
     )
   ) {

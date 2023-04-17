@@ -1,5 +1,5 @@
 import gVariables from "@stores/shared/variables";
-import { arrayExtension } from "@utils/helpers";
+import { arrayExtension } from "@utils/helpersExtension";
 
 export default {
   INITIAL_STATE: {

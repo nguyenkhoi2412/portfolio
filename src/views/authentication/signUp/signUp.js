@@ -3,6 +3,7 @@ import * as React from "react";
 import { useTranslation, Trans } from "react-i18next";
 //#region mui-ui
 import { useTheme } from "@mui/material/styles";
+import { hooksInstance } from "@utils/hooksInstance";
 import Link from "@mui/material/Link";
 import { Divider, Grid, Stack, Typography, useMediaQuery } from "@mui/material";
 //#endregion
@@ -14,8 +15,9 @@ import Logo from "@components/ui/logo";
 // import AuthFooter from "../AuthFooter";
 //#endregion
 
-const SignUp = () => {
+const SignUp = (props) => {
   const theme = useTheme();
+  hooksInstance.useDocumentTitle(props.title);
   const matchDownSM = useMediaQuery(theme.breakpoints.down("md"));
   const { t } = useTranslation();
 

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useTranslation, Trans } from "react-i18next";
 import { useFormik } from "formik";
-import { Helpers, objectExtension, hooksInstance } from "@utils/helpers";
+import { helpersExtension, objectExtension, hooksInstance } from "@utils/helpersExtension";
 import { strengthColor, strengthIndicator } from "@utils/passwordStrength";
 import { getYupSchemaFromMetaData } from "@utils/yupSchemaCreator.js";
 import { useSnackbar } from "notistack";
@@ -66,7 +66,7 @@ const FormSignUp = () => {
 
   //#region getData
   const getRoles = () => {
-    Helpers.simulateNetworkRequest(100).then(async () => {
+    helpersExtension.simulateNetworkRequest(100).then(async () => {
       await dispatch(ROLE_GET_ALL())
         .unwrap()
         .then((result) => {
@@ -136,7 +136,7 @@ const FormSignUp = () => {
     onSubmit: (values) => {
       setSubmitting(true);
       dispatch(SHOW_PROGRESSBAR());
-      Helpers.simulateNetworkRequest(100).then(async () => {
+      helpersExtension.simulateNetworkRequest(100).then(async () => {
         registerUser(values);
       });
     },

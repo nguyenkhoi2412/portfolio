@@ -1,6 +1,6 @@
 import axios from "@utils/axio.instance";
 import encryptHelper from "@utils/encrypt.helper";
-import { objectExtension } from "@utils/helpers";
+import { objectExtension } from "@utils/helpersExtension";
 
 export default {
   findByUser: (params) => {

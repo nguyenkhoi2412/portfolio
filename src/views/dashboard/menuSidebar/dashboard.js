@@ -1,4 +1,4 @@
-import { navigateLocation } from "@routes/data/navigateLocation";
+import { navigateLocation } from "@routes/navigateLocation";
 // assets
 import { IconDashboard } from "@tabler/icons-react";
 

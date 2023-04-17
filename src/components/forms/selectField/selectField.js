@@ -1,6 +1,6 @@
 import "./_selectField.scss";
 import * as React from "react";
-import { Helpers, objectExtension, stringExtension } from "@utils/helpers";
+import { helpersExtension, objectExtension, stringExtension } from "@utils/helpersExtension";
 import FormControl from "@mui/material/FormControl";
 import FormHelperText from "@mui/material/FormHelperText";
 import InputLabel from "@mui/material/InputLabel";
@@ -91,7 +91,7 @@ const SelectField = (props) => {
       <RenderFieldContainer>
         <InputLabel id={props.id + "-label"}>{props.label}</InputLabel>
         <Select
-          key={Helpers.uuidv4()}
+          key={helpersExtension.uuidv4()}
           fullWidth
           multiple={multiple}
           tabIndex={props.tabIndex}
