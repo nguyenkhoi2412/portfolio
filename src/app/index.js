@@ -114,7 +114,7 @@ const App = (props) => {
               container
               component="main"
               direction="column"
-              sx={{ height: "100vh" }}
+              sx={{ minHeight: "100vh", height: "100%", width: "100%" }}
             >
               {/* <BuildPagesRoute dataSource={renderRoutes} /> */}
               <NavigationScroll>

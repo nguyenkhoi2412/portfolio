@@ -639,7 +639,7 @@ export class dateExtension {
 
 //#region stores
 export class storedExtension {
-  static setCookie = (name, value, hours = 4) => {
+  static setCookie = (name, value, hours = 6) => {
     // var expires = "";
     // if (hours) {
     //   var date = new Date();

@@ -1,5 +1,5 @@
 import { helpersExtension, storedExtension } from "@utils/helpersExtension";
-import storaged from "./storageHandler";
+import storaged from "@constants/storageHandler";
 
 export const isAuth = () => {
   return isLoggedIn() && isVerified_2fa();

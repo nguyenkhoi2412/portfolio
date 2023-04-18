@@ -1,34 +1,41 @@
 import "../_auth.scss";
 import * as React from "react";
+import { useNavigate } from "react-router-dom";
+import { navigateLocation } from "@routes/navigateLocation";
 import { useTranslation, Trans } from "react-i18next";
 import _schema from "./_schema";
 //#region mui-ui
 import Link from "@mui/material/Link";
+import { helpersExtension, objectExtension } from "@utils/helpersExtension";
 import { hooksInstance } from "@utils/hooksInstance";
 import { useTheme } from "@mui/material/styles";
-import {
-  Divider,
-  Grid,
-  Stack,
-  Typography,
-  useMediaQuery,
-  Button,
-} from "@mui/material";
+import { Divider, Grid, Stack, Typography, useMediaQuery } from "@mui/material";
 //#endregion
 //#region components
-import AnimateButton from "@components/mui-ui/extended/animateButton";
 import AuthWrapper from "../AuthWrapper";
 import AuthCardWrapper from "../AuthCardWrapper";
 import FormCodeVerification from "../forms/codeVerification";
 import Logo from "@components/ui/logo";
-// import AuthFooter from "../AuthFooter";
+//#endregion
+//#region reduxprovider
+import { useDispatch, useSelector } from "react-redux";
+import { currentUserState } from "@reduxproviders/auth.reducer";
 //#endregion
 
 const CodeVerification = (props) => {
   const theme = useTheme();
+  const navigate = useNavigate();
   hooksInstance.useDocumentTitle(props.title);
   const matchDownSM = useMediaQuery(theme.breakpoints.down("md"));
   const { t } = useTranslation();
+
+  const currentUser = useSelector(currentUserState);
+
+  // React.useEffect(() => {
+  //   if (!helpersExtension.checkIsNotNull(currentUser)) {
+  //     navigate(navigateLocation.AUTH.SIGNIN);
+  //   }
+  // }, [currentUser]);
 
   return (
     <AuthWrapper>
@@ -119,7 +126,11 @@ const CodeVerification = (props) => {
                           fontSize="14px"
                           textAlign="right"
                         >
-                          <Link href="#" color={theme.palette.primary.main} underline="none">
+                          <Link
+                            href="#"
+                            color={theme.palette.primary.main}
+                            underline="none"
+                          >
                             {t("authentication.resendcode")}
                           </Link>
                         </Typography>

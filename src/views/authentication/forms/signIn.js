@@ -74,7 +74,12 @@ const FormSignIn = () => {
             setSubmitting(false);
             dispatch(HIDE_PROGRESSBAR());
             if (result.ok) {
-              navigate(navigateLocation.DASHBOARD);
+              if (result.verified_token) {
+                navigate(navigateLocation.DASHBOARD);
+              } else {
+                //! verify 2FA
+                navigate(navigateLocation.AUTH.CODE_VERIFICATION);
+              }
             } else {
               setShowMessageAlert(true);
               setMessageContentAlert(result.message);

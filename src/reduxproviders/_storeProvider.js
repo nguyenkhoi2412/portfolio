@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import rootReducer from "@reduxproviders/_rootReducer";
+import rootReducer from "./_rootReducer";
 import thunk from "redux-thunk";
 
 export default configureStore({

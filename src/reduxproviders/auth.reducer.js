@@ -1,7 +1,7 @@
 import { createSlice, current, createAsyncThunk } from "@reduxjs/toolkit";
 import authServices from "@services/auth";
 import { storedExtension } from "@utils/helpersExtension";
-import storageHandler from "@authentication/storageHandler";
+import storageHandler from "@constants//storageHandler";
 
 export const FIND_BY_USER = createAsyncThunk(
   "auth/findbyuser",
@@ -96,7 +96,7 @@ export const auth = createSlice({
       };
 
       if (response.ok) {
-        // save localStore
+        // save localStore USER INFOS
         localStorage.setItem(
           storageHandler.DASHBOARD.CURRENT_USER,
           JSON.stringify(results.currentUser)

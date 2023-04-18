@@ -22,7 +22,7 @@ const rootReducer = combineReducers({
   customization: customizationReducer,
   //   gShared: gSharedReducer,
   //   //? dashboard
-  user: authReducer,
+  auth: authReducer,
   role: roleReducer,
   //   secure_2fa: secure_2faReducer,
   //   site: siteReducer,

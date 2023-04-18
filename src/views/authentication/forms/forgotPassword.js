@@ -7,27 +7,19 @@ import { getYupSchemaFromMetaData } from "@utils/yupSchemaCreator.js";
 import { useSnackbar } from "notistack";
 import InputField from "@components/forms/inputField";
 import _schema from "../forgotPassword/_schema";
-import Google from "@assets/images/icons/social-google.svg";
 import { useTheme } from "@mui/material/styles";
 import { navigateLocation } from "@routes/navigateLocation";
 //#region mui-ui
 import FormControl from "@mui/material/FormControl";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import Alert from "@mui/material/Alert";
 import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
-import Link from "@mui/material/Link";
 import CloseIcon from "@mui/icons-material/Close";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import severity from "@constants/severity";
 import {
-  Divider,
-  Typography,
   Button,
-  Stack,
-  useMediaQuery,
 } from "@mui/material";
 //#endregion
 //#region redux providers

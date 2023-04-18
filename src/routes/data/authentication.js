@@ -3,6 +3,7 @@ import SignUp from "@views/authentication/signUp";
 import ForgotPassword from "@views/authentication/forgotPassword";
 import { navigateLocation } from "../navigateLocation";
 import CodeVerification from "@views/authentication/codeVerification";
+import { RequireLoggedIn } from "@utils/requireAuth";
 
 const AuthenticationRoutes = [
   {
@@ -20,7 +21,11 @@ const AuthenticationRoutes = [
   },
   {
     path: navigateLocation.AUTH.CODE_VERIFICATION,
-    element: <CodeVerification title="Code verification 🤠" />,
+    element: (
+      <RequireLoggedIn redirectTo={navigateLocation.AUTH.SIGNIN}>
+        <CodeVerification title="Code verification 🤠" />,
+      </RequireLoggedIn>
+    ),
   },
 ];
 
