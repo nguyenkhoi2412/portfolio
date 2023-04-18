@@ -9,12 +9,12 @@ export default {
   //* use for frontend site
   defaultDateFormat: "YYYY-MM-DD",
   locale: {
-    lang: "vi",
-    code: "vi-VN",
-    language_name: "Tiếng Việt",
-    date_format: "DD-MM-YYYY",
+    lang: "en",
+    code: "en-EN",
+    language_name: "English",
+    date_format: "MM-DD-YYYY",
     time_format: "HH:mm",
-    currency: "VNĐ"
+    currency: "$"
   },
   viewType: {
     LIST: "list",

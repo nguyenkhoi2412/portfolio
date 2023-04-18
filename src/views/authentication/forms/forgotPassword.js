@@ -43,7 +43,6 @@ import AnimateButton from "@components/mui-ui/extended/animateButton";
 const FormForgotPassword = () => {
   const theme = useTheme();
   const navigate = useNavigate();
-  const matchDownSM = useMediaQuery(theme.breakpoints.down("md"));
 
   const { t } = useTranslation();
   const { enqueueSnackbar } = useSnackbar();

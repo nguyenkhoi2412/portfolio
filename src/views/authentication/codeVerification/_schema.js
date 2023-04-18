@@ -4,15 +4,14 @@ import * as yup from "yup";
 export default {
   initialValues: () => {
     return {
-      username: "",
+      code_verify: "",
     };
   },
   validation: () => {
     const { t } = useTranslation();
     return yup.object({
-      username: yup
+      code_verify: yup
         .string()
-        .email(t("authentication.mustbeavalidemail"))
         .required(t("authentication.enteryouremailaddress")),
     });
   },
@@ -20,19 +19,19 @@ export default {
     const { t } = useTranslation();
 
     // render username
-    const username = {
+    const code_verify = {
       tabIndex: 0,
-      id: "username",
-      field: "username",
-      type: "email",
-      label: t("authentication.emailaddress"),
+      id: "code_verify",
+      field: "code_verify",
+      type: "number",
+      label: t("authentication.verification_code"),
       autoFocus: true,
-      helperText: t("authentication.enteryouremailaddress"),
+      helperText: t("authentication.enter_verify_code"),
     };
 
     // push all to array
     let inputForms = [];
-    inputForms.push(username);
+    inputForms.push(code_verify);
 
     //sort fields by index
     inputForms.sort((a, b) => (a.tabIndex > b.tabIndex ? 1 : -1));

@@ -1,4 +1,4 @@
-import "./_forgotPassword.scss";
+import "../_auth.scss";
 import * as React from "react";
 import { useTranslation, Trans } from "react-i18next";
 import _schema from "./_schema";
@@ -38,7 +38,7 @@ const ForgotPassword = (props) => {
             sx={{ minHeight: "calc(100vh - 68px)" }}
           >
             <Grid item sx={{ m: { xs: 1, sm: 3 }, mb: 0 }}>
-              <AuthCardWrapper>
+              <AuthCardWrapper className="auth forgot-password">
                 <Grid
                   container
                   spacing={2}
@@ -91,6 +91,10 @@ const ForgotPassword = (props) => {
                   </Grid>
 
                   <Grid item xs={12}>
+                    <Divider
+                      sx={{ flexGrow: 1, marginBottom: 2 }}
+                      orientation="horizontal"
+                    />
                     <Grid
                       item
                       container

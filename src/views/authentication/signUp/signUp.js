@@ -1,4 +1,4 @@
-import "./_signUp.scss";
+import "../_auth.scss";
 import * as React from "react";
 import { useTranslation, Trans } from "react-i18next";
 //#region mui-ui
@@ -37,7 +37,7 @@ const SignUp = (props) => {
             sx={{ minHeight: "calc(100vh - 68px)" }}
           >
             <Grid item sx={{ m: { xs: 1, sm: 3 }, mb: 0 }}>
-              <AuthCardWrapper>
+              <AuthCardWrapper className="auth sign-up">
                 <Grid
                   container
                   spacing={2}

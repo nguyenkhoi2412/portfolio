@@ -7,20 +7,20 @@ import CodeVerification from "@views/authentication/codeVerification";
 const AuthenticationRoutes = [
   {
     path: navigateLocation.AUTH.SIGNIN,
-    title: "SignIn | cxStudio",
-    element: <SignIn title="SignIn | cxStudio" />,
+    title: "SignIn 🤠",
+    element: <SignIn title="SignIn 🤠" />,
   },
   {
     path: navigateLocation.AUTH.SIGNUP,
-    element: <SignUp title="SignUp | cxStudio" />,
+    element: <SignUp title="SignUp 🤠" />,
   },
   {
     path: navigateLocation.AUTH.FORGOT_PASSWORD,
-    element: <ForgotPassword title="Forgot Password | cxStudio" />,
+    element: <ForgotPassword title="Forgot Password 🤠" />,
   },
   {
     path: navigateLocation.AUTH.CODE_VERIFICATION,
-    element: <CodeVerification title="Code verification | cxStudio" />,
+    element: <CodeVerification title="Code verification 🤠" />,
   },
 ];
 
@@ -30,19 +30,19 @@ export default AuthenticationRoutes;
 //   {
 //     path: navigateLocation.AUTH.SIGNIN,
 //     public: true,
-//     title: "SignIn | cxStudio",
+//     title: "SignIn 🤠",
 //     element: <SignIn />,
 //   },
 //   {
 //     path: navigateLocation.AUTH.SIGNUP,
 //     public: true,
-//     title: "SignUp | cxStudio",
+//     title: "SignUp 🤠",
 //     element: <SignUp />,
 //   },
 //   {
 //     path: navigateLocation.AUTH.FORGOT_PASSWORD,
 //     public: true,
-//     title: "Forgot Password | cxStudio",
+//     title: "Forgot Password 🤠",
 //     element: <ForgotPassword />,
 //   },
 // ];

@@ -81,7 +81,7 @@ const InputField = (props) => {
             props.type === "password" ? renderIconVisiblePassword() : <></>,
         }}
         id={props.id}
-        type={isPasswordField ? (showPassword ? "text" : "password") : "text"}
+        type={isPasswordField ? (showPassword ? "text" : "password") : props.type}
         label={props.label}
         name={props.name}
         value={props.value}

@@ -1,4 +1,4 @@
-import "./_signIn.scss";
+import "../_auth.scss";
 import * as React from "react";
 import { useTranslation, Trans } from "react-i18next";
 import _schema from "./_schema";
@@ -38,7 +38,7 @@ const SignIn = (props) => {
             sx={{ minHeight: "calc(100vh - 68px)" }}
           >
             <Grid item sx={{ m: { xs: 1, sm: 3 }, mb: 0 }}>
-              <AuthCardWrapper>
+              <AuthCardWrapper className="auth sign-in">
                 <Grid
                   container
                   spacing={2}

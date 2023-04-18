@@ -39,7 +39,6 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   REGISTER_USER,
   authState,
-  currentUserState,
 } from "@reduxproviders/auth.reducer";
 import { ROLE_GET_ALL, roleState } from "@reduxproviders/role.reducer";
 //#endregion

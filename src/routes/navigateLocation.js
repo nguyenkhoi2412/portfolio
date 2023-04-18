@@ -3,14 +3,15 @@ import vars from "@constants/variables";
 
 const ASSET_PATH = vars.ASSET_PATH;
 const DASHBOARD = ASSET_PATH + MODULES.DASHBOARD;
+const AUTH = DASHBOARD + "/auth";
 
 export const navigateLocation = {
   DASHBOARD: DASHBOARD,
   AUTH: {
-    SIGNIN: DASHBOARD + "/signin",
-    SIGNUP: DASHBOARD + "/signup",
-    FORGOT_PASSWORD: DASHBOARD + "/forgotpassword",
-    CODE_VERIFICATION: DASHBOARD + '/codeverification'
+    SIGNIN: AUTH + "/signin",
+    SIGNUP: AUTH + "/signup",
+    FORGOT_PASSWORD: AUTH + "/forgotpassword",
+    CODE_VERIFICATION: AUTH + "/codeverification",
   },
   CLIENTAPP: {
     ASSET_PATH: ASSET_PATH,

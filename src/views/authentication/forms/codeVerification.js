@@ -6,7 +6,7 @@ import { helpersExtension, objectExtension } from "@utils/helpersExtension";
 import { getYupSchemaFromMetaData } from "@utils/yupSchemaCreator.js";
 import { useSnackbar } from "notistack";
 import InputField from "@components/forms/inputField";
-import _schema from "../forgotPassword/_schema";
+import _schema from "../codeVerification/_schema";
 import Google from "@assets/images/icons/social-google.svg";
 import { useTheme } from "@mui/material/styles";
 import { navigateLocation } from "@routes/navigateLocation";
@@ -43,7 +43,6 @@ import AnimateButton from "@components/mui-ui/extended/animateButton";
 const FormCodeVerification = () => {
   const theme = useTheme();
   const navigate = useNavigate();
-  const matchDownSM = useMediaQuery(theme.breakpoints.down("md"));
 
   const { t } = useTranslation();
   const { enqueueSnackbar } = useSnackbar();
@@ -188,7 +187,7 @@ const FormCodeVerification = () => {
                 variant="contained"
                 color="secondary"
               >
-                {t("authentication.sendmail")}
+                {t("authentication.continue")}
               </Button>
             </AnimateButton>
           </Box>

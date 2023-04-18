@@ -1,4 +1,4 @@
-import "./_codeVerification.scss";
+import "../_auth.scss";
 import * as React from "react";
 import { useTranslation, Trans } from "react-i18next";
 import _schema from "./_schema";
@@ -6,9 +6,17 @@ import _schema from "./_schema";
 import Link from "@mui/material/Link";
 import { hooksInstance } from "@utils/hooksInstance";
 import { useTheme } from "@mui/material/styles";
-import { Divider, Grid, Stack, Typography, useMediaQuery } from "@mui/material";
+import {
+  Divider,
+  Grid,
+  Stack,
+  Typography,
+  useMediaQuery,
+  Button,
+} from "@mui/material";
 //#endregion
 //#region components
+import AnimateButton from "@components/mui-ui/extended/animateButton";
 import AuthWrapper from "../AuthWrapper";
 import AuthCardWrapper from "../AuthCardWrapper";
 import FormCodeVerification from "../forms/codeVerification";
@@ -38,7 +46,7 @@ const CodeVerification = (props) => {
             sx={{ minHeight: "calc(100vh - 68px)" }}
           >
             <Grid item sx={{ m: { xs: 1, sm: 3 }, mb: 0 }}>
-              <AuthCardWrapper>
+              <AuthCardWrapper className="auth verify-code">
                 <Grid
                   container
                   spacing={2}
@@ -68,16 +76,21 @@ const CodeVerification = (props) => {
                             gutterBottom
                             variant={matchDownSM ? "h3" : "h2"}
                           >
-                            {t("authentication.forgotpassword")}
+                            {t("authentication.enterverifycode")}
+                          </Typography>
+                          <Typography
+                            variant={matchDownSM ? "h5" : "h4"}
+                            fontSize="16px"
+                            textAlign={matchDownSM ? "center" : "inherit"}
+                          >
+                            {t("authentication.wesendyouonemail")}
                           </Typography>
                           <Typography
                             variant="caption"
                             fontSize="16px"
                             textAlign={matchDownSM ? "center" : "inherit"}
                           >
-                            {t(
-                              "authentication.enteryouemailaddressresetpassword"
-                            )}
+                            {t("authentication.wesendyoucode")}
                           </Typography>
                         </Stack>
                       </Grid>
@@ -89,8 +102,35 @@ const CodeVerification = (props) => {
                   <Grid item xs={12}>
                     <Divider />
                   </Grid>
-
                   <Grid item xs={12}>
+                    <Grid container spacing={2} className="resend-code">
+                      <Grid item xs={8}>
+                        <Typography
+                          variant="caption"
+                          fontSize="14px"
+                          textAlign={matchDownSM ? "center" : "inherit"}
+                        >
+                          {t("authentication.didnotreceivecodeverify")}
+                        </Typography>
+                      </Grid>
+                      <Grid item xs={4} className="link">
+                        <Typography
+                          // variant={matchDownSM ? "h6" : "h5"}
+                          fontSize="14px"
+                          textAlign="right"
+                        >
+                          <Link href="#" color={theme.palette.primary.main} underline="none">
+                            {t("authentication.resendcode")}
+                          </Link>
+                        </Typography>
+                      </Grid>
+                    </Grid>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Divider
+                      sx={{ flexGrow: 1, marginBottom: 2 }}
+                      orientation="horizontal"
+                    />
                     <Grid
                       item
                       container

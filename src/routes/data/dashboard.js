@@ -31,14 +31,14 @@ function RequireAuth({ children, redirectTo }) {
 // ==============================|| MAIN ROUTING ||============================== //
 
 const DashboardRoutes = {
-  path: "/",
+  path: "/dashboard",
   element: <DashboardLayout />,
   children: [
     {
       path: navigateLocation.DASHBOARD,
       element: (
         <RequireAuth redirectTo={"/"}>
-          <DashboardDefault title="Dashboard | 🤠" />
+          <DashboardDefault title="Dashboard 🤠" />
         </RequireAuth>
       ),
     },
