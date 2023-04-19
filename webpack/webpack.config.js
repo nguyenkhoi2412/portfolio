@@ -158,13 +158,14 @@ module.exports = (env, argv) => {
         "@": APP_DIR, // shortcut to reference src folder from anywhere
         "@@": path.resolve(),
         "@app": APP_DIR + "/app",
-        "@routes": APP_DIR + "/routes",
+        "@routes": APP_DIR + "/_routes",
         "@assets": APP_DIR + "/assets",
         "@utils": APP_DIR + "/utils",
         "@constants": APP_DIR + "/constants",
-        "@authentication": APP_DIR + "/authentication",
         "@clientapp": APP_DIR + "/clientapp",
         "@views": APP_DIR + "/views",
+        "@dashboard": APP_DIR + "/views/dashboard",
+        "@authentication": APP_DIR + "/views/authentication",
         "@components": APP_DIR + "/components",
         "@reduxproviders": APP_DIR + "/reduxproviders",
         "@services": APP_DIR + "/services"

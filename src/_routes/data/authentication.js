@@ -1,11 +1,16 @@
-import SignIn from "@views/authentication/signIn";
-import SignUp from "@views/authentication/signUp";
-import ForgotPassword from "@views/authentication/forgotPassword";
+import SignIn from "@authentication/signIn";
+import SignUp from "@authentication/signUp";
+import ForgotPassword from "@authentication/forgotPassword";
 import { navigateLocation } from "../navigateLocation";
-import CodeVerification from "@views/authentication/codeVerification";
+import CodeVerification from "@authentication/codeVerification";
 import { RequireLoggedIn } from "@utils/requireAuth";
 
 const AuthenticationRoutes = [
+  {
+    path: navigateLocation.CLIENTAPP.ASSET_PATH,
+    title: "SignIn 🤠",
+    element: <SignIn title="SignIn 🤠" />,
+  },
   {
     path: navigateLocation.AUTH.SIGNIN,
     title: "SignIn 🤠",

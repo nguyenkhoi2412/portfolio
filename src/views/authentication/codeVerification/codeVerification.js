@@ -18,8 +18,6 @@ import FormCodeVerification from "../forms/codeVerification";
 import Logo from "@components/ui/logo";
 //#endregion
 //#region reduxprovider
-import { useDispatch, useSelector } from "react-redux";
-import { currentUserState } from "@reduxproviders/auth.reducer";
 //#endregion
 
 const CodeVerification = (props) => {
@@ -29,13 +27,10 @@ const CodeVerification = (props) => {
   const matchDownSM = useMediaQuery(theme.breakpoints.down("md"));
   const { t } = useTranslation();
 
-  const currentUser = useSelector(currentUserState);
-
-  // React.useEffect(() => {
-  //   if (!helpersExtension.checkIsNotNull(currentUser)) {
-  //     navigate(navigateLocation.AUTH.SIGNIN);
-  //   }
-  // }, [currentUser]);
+  //#region useEffect
+  React.useEffect(() => {
+  }, []);
+  //#endregion
 
   return (
     <AuthWrapper>

@@ -1,8 +1,9 @@
 import "../_auth.scss";
 import * as React from "react";
-import { useTranslation, Trans } from "react-i18next";
+import { useTranslation } from "react-i18next";
 import _schema from "./_schema";
 import { hooksInstance } from "@utils/hooksInstance";
+import { navigateLocation } from "@routes/navigateLocation";
 //#region mui-ui
 import Link from "@mui/material/Link";
 import { useTheme } from "@mui/material/styles";
@@ -96,7 +97,7 @@ const SignIn = (props) => {
                       xs={12}
                     >
                       <Link
-                        href={`./signup`}
+                        href={navigateLocation.AUTH.SIGNUP}
                         underline="none"
                         variant="subtitle1"
                         color={theme.palette.grey[900]}

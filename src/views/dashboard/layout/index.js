@@ -9,7 +9,7 @@ import Breadcrumbs from "@components/mui-ui/extended/breadcrumbs";
 import Header from "./header";
 import Sidebar from "./sidebar";
 import Customization from "./customization";
-import navigation from "@views/dashboard/menuSidebar";
+import navigation from "@dashboard/menuSidebar";
 import { drawerWidth } from "@constants";
 import { SET_MENU } from "@reduxproviders/berry/actions";
 

@@ -11,8 +11,8 @@ export default {
     const { t } = useTranslation();
     return yup.object({
       code_verify: yup
-        .string()
-        .required(t("authentication.enteryouremailaddress")),
+        .number()
+        .required(t("authentication.token_expired")),
     });
   },
   dataForm: () => {

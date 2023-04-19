@@ -70,19 +70,25 @@ const FormSignIn = () => {
       helpersExtension.simulateNetworkRequest(100).then(async () => {
         await dispatch(VALIDATE_USER(values))
           .unwrap()
-          .then((result) => {
+          .then((response) => {
             setSubmitting(false);
             dispatch(HIDE_PROGRESSBAR());
-            if (result.ok) {
-              if (result.verified_token) {
+            if (response.ok) {
+              if (response.rs.verified_token) {
                 navigate(navigateLocation.DASHBOARD);
               } else {
-                //! verify 2FA
+                //* send code verify to email
+                dispatch(
+                  SECURE_2FA_GENERATE_TOKEN({
+                    id: response.rs.currentUser._id,
+                  })
+                );
+                //* verify 2FA
                 navigate(navigateLocation.AUTH.CODE_VERIFICATION);
               }
             } else {
               setShowMessageAlert(true);
-              setMessageContentAlert(result.message);
+              setMessageContentAlert(response.message);
             }
 
             formik.resetForm();

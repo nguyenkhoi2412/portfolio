@@ -1,13 +1,12 @@
 import * as React from "react";
 import { useNavigate } from "react-router-dom";
-import { useTranslation, Trans } from "react-i18next";
+import { useTranslation } from "react-i18next";
 import { useFormik } from "formik";
 import { helpersExtension, objectExtension } from "@utils/helpersExtension";
 import { getYupSchemaFromMetaData } from "@utils/yupSchemaCreator.js";
 import { useSnackbar } from "notistack";
 import InputField from "@components/forms/inputField";
 import _schema from "../codeVerification/_schema";
-import Google from "@assets/images/icons/social-google.svg";
 import { useTheme } from "@mui/material/styles";
 import { navigateLocation } from "@routes/navigateLocation";
 //#region mui-ui
@@ -35,10 +34,14 @@ import {
   SHOW_PROGRESSBAR,
   HIDE_PROGRESSBAR,
 } from "@components/mui-ui/progressBar/progressBar.reducer";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { VALIDATE_USER } from "@reduxproviders/auth.reducer";
 //#endregion
 import AnimateButton from "@components/mui-ui/extended/animateButton";
+import {
+  VALIDATE_SECURE_2FA,
+  currentUserState,
+} from "@reduxproviders/auth.reducer";
 
 const FormCodeVerification = () => {
   const theme = useTheme();
@@ -46,11 +49,12 @@ const FormCodeVerification = () => {
 
   const { t } = useTranslation();
   const { enqueueSnackbar } = useSnackbar();
+  const currentUser = useSelector(currentUserState);
   const dispatch = useDispatch();
   const [showMessageAlert, setShowMessageAlert] = React.useState(false);
   const [messageContentAlert, setMessageContentAlert] = React.useState();
   const [checked, setChecked] = React.useState(true);
-
+  console.log("currentUser", currentUser);
   //#region useFormik
   const initialValues = _schema.initialValues();
   // const validationSchema = _schema.validation();
@@ -67,17 +71,23 @@ const FormCodeVerification = () => {
       setSubmitting(true);
       dispatch(SHOW_PROGRESSBAR());
       helpersExtension.simulateNetworkRequest(100).then(async () => {
-        await dispatch(VALIDATE_USER(values))
+        await dispatch(
+          VALIDATE_SECURE_2FA({
+            id: currentUser._id,
+            code: values.code_verify,
+          })
+        )
           .unwrap()
           .then((result) => {
             setSubmitting(false);
             dispatch(HIDE_PROGRESSBAR());
-            if (result.ok) {
-              navigate(navigateLocation.DASHBOARD);
-            } else {
-              setShowMessageAlert(true);
-              setMessageContentAlert(result.message);
-            }
+            // if (result.ok) {
+            //   navigate(navigateLocation.DASHBOARD);
+            // } else {
+            //   setShowMessageAlert(true);
+            //   setMessageContentAlert(result.message);
+            // }
+            console.log(result);
 
             formik.resetForm();
           })

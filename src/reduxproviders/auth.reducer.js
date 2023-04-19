@@ -24,6 +24,21 @@ export const REGISTER_USER = createAsyncThunk(
   }
 );
 
+export const VALIDATE_SECURE_2FA = createAsyncThunk(
+  "auth/secure_2fa/validate",
+  async (params, thunkAPI) => {
+    return await authServices.verified_2fa(params);
+  }
+);
+
+
+export const SECURE_2FA_GENERATE_TOKEN = createAsyncThunk(
+  "auth/secure_2fa/gettoken",
+  async (params, thunkAPI) => {
+    return await authServices.getToken_2fa(params);
+  }
+);
+
 const currentUser = () => {
   if (localStorage.getItem(storageHandler.DASHBOARD.CURRENT_USER)) {
     return JSON.parse(

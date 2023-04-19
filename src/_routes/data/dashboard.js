@@ -2,10 +2,10 @@ import { Navigate } from "react-router-dom";
 import { navigateLocation } from "../navigateLocation";
 
 // project imports
-import DashboardLayout from "@views/dashboard/layout";
+import DashboardLayout from "@dashboard/layout";
 
 // dashboard routing
-import DashboardDefault from "@views/dashboard/default";
+import DashboardDefault from "@dashboard/default";
 
 // // utilities routing
 // const UtilsTypography = Loadable(
@@ -97,7 +97,7 @@ const DashboardRoutes = {
 export default DashboardRoutes;
 
 // import { MODULES } from "@routes/_modules";
-// import DashboardLayout from "@views/dashboard/layout";
+// import DashboardLayout from "@dashboard/layout";
 
 // export default [
 //   {
