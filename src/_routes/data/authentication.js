@@ -10,7 +10,7 @@ const AuthenticationRoutes = [
     path: navigateLocation.CLIENTAPP.ASSET_PATH,
     title: "SignIn 🤠",
     element: (
-      <RequireAuth navigateTo={navigateLocation.DASHBOARD} isAuthentication={true}>
+      <RequireAuth redirectTo={navigateLocation.DASHBOARD} isAuthentication={true}>
         <SignIn title="SignIn 🤠" />,
       </RequireAuth>
     ),
@@ -19,7 +19,7 @@ const AuthenticationRoutes = [
     path: navigateLocation.AUTH.SIGNIN,
     title: "SignIn 🤠",
     element: (
-      <RequireAuth navigateTo={navigateLocation.DASHBOARD} isAuthentication={true}>
+      <RequireAuth redirectTo={navigateLocation.DASHBOARD} isAuthentication={true}>
         <SignIn title="SignIn 🤠" />,
       </RequireAuth>
     ),
