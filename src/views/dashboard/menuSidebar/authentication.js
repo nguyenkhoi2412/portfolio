@@ -1,5 +1,7 @@
 // assets
 import { IconKey } from "@tabler/icons-react";
+import { Trans } from "react-i18next";
+import { navigateLocation } from "@routes/navigateLocation";
 
 // constant
 const icons = {
@@ -8,10 +10,10 @@ const icons = {
 
 // ==============================|| EXTRA PAGES MENU ITEMS ||============================== //
 
-const pages = {
-  id: "pages",
-  title: "Pages",
-  caption: "Pages Caption",
+const authentication = {
+  id: "authentication",
+  title: <Trans i18nKey={`authentication.authentication`}></Trans>,
+  caption: "",
   type: "group",
   children: [
     {
@@ -19,20 +21,12 @@ const pages = {
       title: "Authentication",
       type: "collapse",
       icon: icons.IconKey,
-
       children: [
         {
-          id: "login3",
-          title: "Login",
-          type: "item",
-          url: "/pages/login/login3",
-          target: true,
-        },
-        {
           id: "register3",
-          title: "Register",
+          title: <Trans i18nKey={"authentication.register"}></Trans>,
           type: "item",
-          url: "/pages/register/register3",
+          url: navigateLocation.AUTH.SIGNUP,
           target: true,
         },
       ],
@@ -40,4 +34,4 @@ const pages = {
   ],
 };
 
-export default pages;
+export default authentication;

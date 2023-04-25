@@ -131,24 +131,13 @@ const App = (props) => {
 export default App;
 
 const dynamicFavicons = () => {
-  // var link = document.querySelector("link[rel~='icon']");
-  // if (!link) {
-  //   link = document.createElement("link");
-  //   link.rel = "shortcut icon";
-  //   document.getElementsByTagName("head")[0].appendChild(link);
-  // }
-  // const { CURRENT_MODULES, MODULES } = routes;
-  // switch (CURRENT_MODULES()) {
-  //   case MODULES.SURVEY:
-  //     link.href = surveyFavicon;
-  //     break;
-  //   // case MODULES.DASHBOARD:
-  //   //   link.href = cmsFavicon;
-  //   //   break;
-  //   default:
-  //     link.href = defaultFavicon;
-  //     break;
-  // }
+  var link = document.querySelector("link[rel~='icon']");
+  if (!link) {
+    link = document.createElement("link");
+    link.rel = "shortcut icon";
+    document.getElementsByTagName("head")[0].appendChild(link);
+  }
+  link.href = defaultFavicon;
   // if (CURRENT_MODULES() !== "") {
   //   document.body.classList.add(CURRENT_MODULES());
   // } else document.body.classList.add("home");
