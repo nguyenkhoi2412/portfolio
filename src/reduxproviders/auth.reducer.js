@@ -31,7 +31,6 @@ export const VALIDATE_SECURE_2FA = createAsyncThunk(
   }
 );
 
-
 export const SECURE_2FA_GENERATE_TOKEN = createAsyncThunk(
   "auth/secure_2fa/gettoken",
   async (params, thunkAPI) => {
@@ -127,13 +126,50 @@ export const auth = createSlice({
           storageHandler.DASHBOARD.ACCESS_TOKEN,
           results.access_token
         );
-        storedExtension.setCookie(
-          storageHandler.DASHBOARD.REFRESH_TOKEN,
-          results.refresh_token
-        );
+
+        // storedExtension.setCookie(
+        //   storageHandler.DASHBOARD.REFRESH_TOKEN,
+        //   results.refresh_token
+        // );
       }
 
       return newState;
+    },
+    //#endregion
+    //#region VALIDATE_SECURE_2FA
+    [VALIDATE_SECURE_2FA.pending]: (state) => {
+      return {
+        ...state,
+        isFetching: true,
+      };
+    },
+    [VALIDATE_SECURE_2FA.rejected]: (state) => {
+      return {
+        ...state,
+        isFetching: false,
+      };
+    },
+    [VALIDATE_SECURE_2FA.fulfilled]: (state, action) => {
+      const response = action.payload;
+      const results = response.rs;
+
+      if (response.ok) {
+        // save token to cookie
+        storedExtension.setCookie(
+          storageHandler.DASHBOARD.VERIFIED_2FA,
+          results.verified_token + ""
+        );
+
+        storedExtension.setCookie(
+          storageHandler.DASHBOARD.ACCESS_TOKEN,
+          results.access_token
+        );
+      }
+
+      return {
+        ...state,
+        isFetching: false,
+      };
     },
     //#endregion
   },

@@ -35,7 +35,7 @@ import {
   HIDE_PROGRESSBAR,
 } from "@components/mui-ui/progressBar/progressBar.reducer";
 import { useDispatch, useSelector } from "react-redux";
-import { VALIDATE_USER } from "@reduxproviders/auth.reducer";
+import { SECURE_2FA_GENERATE_TOKEN } from "@reduxproviders/auth.reducer";
 //#endregion
 import AnimateButton from "@components/mui-ui/extended/animateButton";
 import {
@@ -54,7 +54,39 @@ const FormCodeVerification = () => {
   const [showMessageAlert, setShowMessageAlert] = React.useState(false);
   const [messageContentAlert, setMessageContentAlert] = React.useState();
   const [checked, setChecked] = React.useState(true);
-  console.log("currentUser", currentUser);
+
+  const validateSecure2FA = (values) => {
+    helpersExtension.simulateNetworkRequest(100).then(async () => {
+      //? validate token
+      await dispatch(
+        VALIDATE_SECURE_2FA({
+          id: currentUser._id,
+          code: values.code_verify,
+        })
+      )
+        .unwrap()
+        .then((result) => {
+          setSubmitting(false);
+          dispatch(HIDE_PROGRESSBAR());
+          if (result.ok) {
+            navigate(navigateLocation.DASHBOARD);
+          } else {
+            setShowMessageAlert(true);
+            setMessageContentAlert(result.message);
+          }
+          formik.resetForm();
+        })
+        .catch((error) => {
+          dispatch(HIDE_PROGRESSBAR());
+          // variant could be success, error, warning, info, or default
+          enqueueSnackbar(t("connection.error"), {
+            variant: severity.error,
+          });
+          formik.resetForm();
+        });
+    });
+  };
+
   //#region useFormik
   const initialValues = _schema.initialValues();
   // const validationSchema = _schema.validation();
@@ -70,36 +102,8 @@ const FormCodeVerification = () => {
     onSubmit: (values) => {
       setSubmitting(true);
       dispatch(SHOW_PROGRESSBAR());
-      helpersExtension.simulateNetworkRequest(100).then(async () => {
-        await dispatch(
-          VALIDATE_SECURE_2FA({
-            id: currentUser._id,
-            code: values.code_verify,
-          })
-        )
-          .unwrap()
-          .then((result) => {
-            setSubmitting(false);
-            dispatch(HIDE_PROGRESSBAR());
-            // if (result.ok) {
-            //   navigate(navigateLocation.DASHBOARD);
-            // } else {
-            //   setShowMessageAlert(true);
-            //   setMessageContentAlert(result.message);
-            // }
-            console.log(result);
 
-            formik.resetForm();
-          })
-          .catch((error) => {
-            dispatch(HIDE_PROGRESSBAR());
-            // variant could be success, error, warning, info, or default
-            enqueueSnackbar(t("connection.error"), {
-              variant: severity.error,
-            });
-            formik.resetForm();
-          });
-      });
+      validateSecure2FA(values);
     },
   });
   //#endregion

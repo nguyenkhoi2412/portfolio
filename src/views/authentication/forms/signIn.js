@@ -36,7 +36,10 @@ import {
   HIDE_PROGRESSBAR,
 } from "@components/mui-ui/progressBar/progressBar.reducer";
 import { useDispatch } from "react-redux";
-import { VALIDATE_USER } from "@reduxproviders/auth.reducer";
+import {
+  VALIDATE_USER,
+  SECURE_2FA_GENERATE_TOKEN,
+} from "@reduxproviders/auth.reducer";
 //#endregion
 import AnimateButton from "@components/mui-ui/extended/animateButton";
 
@@ -73,6 +76,7 @@ const FormSignIn = () => {
           .then((response) => {
             setSubmitting(false);
             dispatch(HIDE_PROGRESSBAR());
+
             if (response.ok) {
               if (response.rs.verified_token) {
                 navigate(navigateLocation.DASHBOARD);
@@ -87,6 +91,7 @@ const FormSignIn = () => {
                 navigate(navigateLocation.AUTH.CODE_VERIFICATION);
               }
             } else {
+              //* show message
               setShowMessageAlert(true);
               setMessageContentAlert(response.message);
             }

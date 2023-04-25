@@ -6,7 +6,8 @@ import { useTranslation, Trans } from "react-i18next";
 import _schema from "./_schema";
 //#region mui-ui
 import Link from "@mui/material/Link";
-import { helpersExtension, objectExtension } from "@utils/helpersExtension";
+import { useSnackbar } from "notistack";
+import { helpersExtension, objectExtension, stringExtension } from "@utils/helpersExtension";
 import { hooksInstance } from "@utils/hooksInstance";
 import { useTheme } from "@mui/material/styles";
 import { Divider, Grid, Stack, Typography, useMediaQuery } from "@mui/material";
@@ -16,21 +17,52 @@ import AuthWrapper from "../AuthWrapper";
 import AuthCardWrapper from "../AuthCardWrapper";
 import FormCodeVerification from "../forms/codeVerification";
 import Logo from "@components/ui/logo";
+import severity from "@constants/severity";
 //#endregion
 //#region reduxprovider
+import { useDispatch, useSelector } from "react-redux";
+import {
+  SECURE_2FA_GENERATE_TOKEN,
+  currentUserState,
+} from "@reduxproviders/auth.reducer";
 //#endregion
 
 const CodeVerification = (props) => {
   const theme = useTheme();
   const navigate = useNavigate();
+  const { enqueueSnackbar } = useSnackbar();
   hooksInstance.useDocumentTitle(props.title);
   const matchDownSM = useMediaQuery(theme.breakpoints.down("md"));
   const { t } = useTranslation();
 
+  const dispatch = useDispatch();
+  const currentUser = useSelector(currentUserState);
+
   //#region useEffect
-  React.useEffect(() => {
-  }, []);
+  React.useEffect(() => {}, []);
   //#endregion
+
+  const resendCode = (e) => {
+    //* send code verify to email
+    dispatch(
+      SECURE_2FA_GENERATE_TOKEN({
+        id: currentUser._id,
+      })
+    )
+      .unwrap()
+      .then((result) => {
+        // variant could be success, error, warning, info, or default
+        enqueueSnackbar(result.message, {
+          variant: severity.success,
+        });
+      })
+      .catch((error) => {
+        // variant could be success, error, warning, info, or default
+        enqueueSnackbar(t("connection.error"), {
+          variant: severity.error,
+        });
+      });
+  };
 
   return (
     <AuthWrapper>
@@ -92,7 +124,7 @@ const CodeVerification = (props) => {
                             fontSize="16px"
                             textAlign={matchDownSM ? "center" : "inherit"}
                           >
-                            {t("authentication.wesendyoucode")}
+                            {stringExtension.mungeEmailAddress(currentUser.email)}
                           </Typography>
                         </Stack>
                       </Grid>
@@ -125,6 +157,7 @@ const CodeVerification = (props) => {
                             href="#"
                             color={theme.palette.primary.main}
                             underline="none"
+                            onClick={resendCode}
                           >
                             {t("authentication.resendcode")}
                           </Link>

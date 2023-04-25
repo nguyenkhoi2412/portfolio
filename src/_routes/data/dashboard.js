@@ -1,5 +1,10 @@
 import { Navigate } from "react-router-dom";
 import { navigateLocation } from "../navigateLocation";
+import SignIn from "@authentication/signIn";
+import SignUp from "@authentication/signUp";
+import ForgotPassword from "@authentication/forgotPassword";
+import CodeVerification from "@authentication/codeVerification";
+import { RequireLoggedIn, RequireAuth } from "@utils/requireAuth";
 
 // project imports
 import DashboardLayout from "@dashboard/layout";
@@ -22,12 +27,6 @@ import DashboardDefault from "@dashboard/default";
 
 // // sample page routing
 // const SamplePage = Loadable(lazy(() => import("views/sample-page")));
-
-function RequireAuth({ children, redirectTo }) {
-  let isAuthenticated = true;
-  return isAuthenticated ? children : <Navigate to={redirectTo} />;
-}
-
 // ==============================|| MAIN ROUTING ||============================== //
 
 const DashboardRoutes = {
@@ -37,7 +36,7 @@ const DashboardRoutes = {
     {
       path: navigateLocation.DASHBOARD,
       element: (
-        <RequireAuth redirectTo={"/"}>
+        <RequireAuth redirectTo={navigateLocation.AUTH.SIGNIN}>
           <DashboardDefault title="Dashboard 🤠" />
         </RequireAuth>
       ),

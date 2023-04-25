@@ -547,6 +547,18 @@ export class stringExtension {
 
     return text;
   };
+
+  static mungeEmailAddress = (text) => {
+    var i = text.indexOf("@");
+    var startIndex = (i * 0.2) | 0;
+    var endIndex = (i * 0.9) | 0;
+    return (
+      text.slice(0, startIndex) +
+      text.slice(startIndex, endIndex).replace(/./g, "*") +
+      text.slice(endIndex)
+    );
+  };
+
   //#region convert currency
   static numberWithSympol(value, dot = ",", decimal_point = 0) {
     let valueCheck = isNaN(value) ? 0 : parseFloat(value);

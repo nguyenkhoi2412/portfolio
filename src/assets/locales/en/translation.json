@@ -54,7 +54,7 @@
     "token_expired": "Your token is invalid or expires",
     "agreewith": "Agree with",
     "termsandcondition": "Terms & Condition.",
-    "wesendyoucode": "We’ve send you code on {emailaddress}",
+    "wesendyoucode": "We’ve send you code on {{emailaddress}}",
     "wesendyouonemail": "We’ve send you on email",
     "continue": "Continue",
     "didnotreceivecodeverify": "Did not receive the email? Check your spam filter, or",

@@ -1,20 +1,28 @@
 import SignIn from "@authentication/signIn";
 import SignUp from "@authentication/signUp";
 import ForgotPassword from "@authentication/forgotPassword";
-import { navigateLocation } from "../navigateLocation";
 import CodeVerification from "@authentication/codeVerification";
-import { RequireLoggedIn } from "@utils/requireAuth";
+import { navigateLocation } from "../navigateLocation";
+import { RequireLoggedIn, RequireAuth } from "@utils/requireAuth";
 
 const AuthenticationRoutes = [
   {
     path: navigateLocation.CLIENTAPP.ASSET_PATH,
     title: "SignIn 🤠",
-    element: <SignIn title="SignIn 🤠" />,
+    element: (
+      <RequireAuth navigateTo={navigateLocation.DASHBOARD} isAuthentication={true}>
+        <SignIn title="SignIn 🤠" />,
+      </RequireAuth>
+    ),
   },
   {
     path: navigateLocation.AUTH.SIGNIN,
     title: "SignIn 🤠",
-    element: <SignIn title="SignIn 🤠" />,
+    element: (
+      <RequireAuth navigateTo={navigateLocation.DASHBOARD} isAuthentication={true}>
+        <SignIn title="SignIn 🤠" />,
+      </RequireAuth>
+    ),
   },
   {
     path: navigateLocation.AUTH.SIGNUP,
@@ -27,7 +35,10 @@ const AuthenticationRoutes = [
   {
     path: navigateLocation.AUTH.CODE_VERIFICATION,
     element: (
-      <RequireLoggedIn redirectTo={navigateLocation.AUTH.SIGNIN}>
+      <RequireLoggedIn
+        redirectTo={navigateLocation.AUTH.SIGNIN}
+        navigateTo={navigateLocation.DASHBOARD}
+      >
         <CodeVerification title="Code verification 🤠" />,
       </RequireLoggedIn>
     ),
