@@ -14,7 +14,7 @@
 //   element: <DashboardLayout />,
 //   children: [
 //     {
-//       path: navigateLocation.DASHBOARD,
+//       path: navigateLocation.DASHBOARD.DEFAULT,
 //       element: (
 //         <DashboardDefault title="Dashboard 🤠" />
 //       ),

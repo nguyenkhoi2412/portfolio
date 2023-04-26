@@ -5,6 +5,7 @@ import _schema from "./_schema";
 //#region mui-ui
 import Link from "@mui/material/Link";
 import { hooksInstance } from "@utils/hooksInstance";
+import { navigateLocation } from "@routes/navigateLocation"
 import { useTheme } from "@mui/material/styles";
 import { Divider, Grid, Stack, Typography, useMediaQuery } from "@mui/material";
 //#endregion
@@ -108,7 +109,7 @@ const ForgotPassword = (props) => {
                         spacing={1}
                       >
                         <Link
-                          href={`./signin`}
+                          href={navigateLocation.AUTH.SIGNIN}
                           underline="none"
                           variant="subtitle1"
                           color={theme.palette.grey[900]}
@@ -116,7 +117,7 @@ const ForgotPassword = (props) => {
                           {t("authentication.alreadyhaveanaccount")}
                         </Link>
                         <Link
-                          href={`./signup`}
+                          href={navigateLocation.AUTH.SIGNUP}
                           underline="none"
                           variant="subtitle1"
                           color={theme.palette.grey[900]}

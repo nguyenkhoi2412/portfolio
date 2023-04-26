@@ -12,6 +12,7 @@ import AuthWrapper from "../AuthWrapper";
 import AuthCardWrapper from "../AuthCardWrapper";
 import FormSignUp from "../forms/signUp";
 import Logo from "@components/ui/logo";
+import { navigateLocation } from "@routes/navigateLocation"
 // import AuthFooter from "../AuthFooter";
 //#endregion
 
@@ -95,7 +96,7 @@ const SignUp = (props) => {
                       xs={12}
                     >
                       <Link
-                        href={`./signin`}
+                        href={navigateLocation.AUTH.SIGNIN}
                         underline="none"
                         variant="subtitle1"
                         color={theme.palette.grey[900]}

@@ -79,7 +79,7 @@ const FormSignIn = () => {
 
             if (response.ok) {
               if (response.rs.verified_token) {
-                navigate(navigateLocation.DASHBOARD);
+                navigate(navigateLocation.DASHBOARD.DEFAULT);
               } else {
                 //* send code verify to email
                 dispatch(

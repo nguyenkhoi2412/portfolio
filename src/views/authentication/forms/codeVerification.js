@@ -69,7 +69,7 @@ const FormCodeVerification = () => {
           setSubmitting(false);
           dispatch(HIDE_PROGRESSBAR());
           if (result.ok) {
-            navigate(navigateLocation.DASHBOARD);
+            navigate(navigateLocation.DASHBOARD.DEFAULT);
           } else {
             setShowMessageAlert(true);
             setMessageContentAlert(result.message);

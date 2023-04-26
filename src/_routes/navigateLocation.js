@@ -6,7 +6,9 @@ const DASHBOARD = ASSET_PATH + MODULES.DASHBOARD;
 const AUTH = DASHBOARD + "/auth";
 
 export const navigateLocation = {
-  DASHBOARD: DASHBOARD,
+  DASHBOARD: {
+    DEFAULT: DASHBOARD
+  },
   AUTH: {
     SIGNIN: AUTH + "/signin",
     SIGNUP: AUTH + "/signup",
