@@ -69,19 +69,6 @@ export const auth = createSlice({
 
       return { ...state, ...initialState };
     },
-    SECURE_2FA_UPDATE: (state, action) => {
-      const payload = action.payload;
-
-      // update cookie verified code 2fa
-      storedExtension.setCookie(
-        storageHandler.DASHBOARD.VERIFIED_2FA,
-        payload.verified + ""
-      );
-
-      return {
-        ...state,
-      };
-    },
   },
   extraReducers: {
     //#region VALIDATE_USER
@@ -176,7 +163,7 @@ export const auth = createSlice({
 });
 
 // export actions to use
-export const { SIGN_OUT, SECURE_2FA_UPDATE } = auth.actions;
+export const { SIGN_OUT } = auth.actions;
 
 //#region The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of

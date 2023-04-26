@@ -1,7 +1,8 @@
 import { useState, useRef, useEffect } from "react";
 
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { navigateLocation } from "@routes/navigateLocation";
 
 // material-ui
 import { useTheme } from "@mui/material/styles";
@@ -43,12 +44,14 @@ import {
   IconSettings,
   IconUser,
 } from "@tabler/icons-react";
+import { SIGN_OUT } from "@reduxproviders/auth.reducer";
 
 // ==============================|| PROFILE MENU ||============================== //
 
 const ProfileSection = () => {
   const theme = useTheme();
   const customization = useSelector((state) => state.customization);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [sdm, setSdm] = useState(true);
@@ -61,7 +64,9 @@ const ProfileSection = () => {
    * */
   const anchorRef = useRef(null);
   const handleLogout = async () => {
-    console.log("Logout");
+    dispatch(SIGN_OUT());
+
+    navigate(navigateLocation.AUTH.SIGNIN)
   };
 
   const handleClose = (event) => {

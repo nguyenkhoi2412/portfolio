@@ -68,7 +68,12 @@ export default {
       field: "role",
       type: "select",
       label: t("authentication.rolename"),
-      listItems: lsRoles,
+      listItems: lsRoles.map((x) => {
+        return {
+          _id: x.lowercase,
+          name: x.name,
+        };
+      }),
       preventXSS: true,
       helperText: t("authentication.selectrole"),
     };

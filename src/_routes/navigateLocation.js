@@ -11,6 +11,7 @@ export const navigateLocation = {
     SIGNIN: AUTH + "/signin",
     SIGNUP: AUTH + "/signup",
     FORGOT_PASSWORD: AUTH + "/forgotpassword",
+    RESET_PASSWORD: AUTH + "/resetpassword",
     CODE_VERIFICATION: AUTH + "/codeverification",
   },
   CLIENTAPP: {

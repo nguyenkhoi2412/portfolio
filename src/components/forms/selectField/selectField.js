@@ -50,10 +50,16 @@ const SelectField = (props) => {
 
   const selectOnChange = (e) => {
     props.onChange(e);
+
+    let val = e.target.value;
+    if (props.setValue instanceof Function) {
+      props.setValue(props.name, val);
+    }
+
     if (multiple) {
-      setDataValueMultiple(e.target.value);
+      setDataValueMultiple(val);
     } else {
-      setDataValue(e.target.value);
+      setDataValue(val);
     }
   };
 
@@ -109,7 +115,7 @@ const SelectField = (props) => {
             return (
               <MenuItem
                 key={`MenuItem_` + index}
-                value={item.name.toLowerCase()}
+                value={item._id}
               >
                 {item.name}
               </MenuItem>

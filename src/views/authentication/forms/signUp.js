@@ -1,7 +1,11 @@
 import * as React from "react";
 import { useTranslation, Trans } from "react-i18next";
 import { useFormik } from "formik";
-import { helpersExtension, objectExtension, hooksInstance } from "@utils/helpersExtension";
+import {
+  helpersExtension,
+  objectExtension,
+  hooksInstance,
+} from "@utils/helpersExtension";
 import { strengthColor, strengthIndicator } from "@utils/passwordStrength";
 import { getYupSchemaFromMetaData } from "@utils/yupSchemaCreator.js";
 import { useSnackbar } from "notistack";
@@ -36,10 +40,7 @@ import {
   HIDE_PROGRESSBAR,
 } from "@components/mui-ui/progressBar/progressBar.reducer";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  REGISTER_USER,
-  authState,
-} from "@reduxproviders/auth.reducer";
+import { REGISTER_USER, authState } from "@reduxproviders/auth.reducer";
 import { ROLE_GET_ALL, roleState } from "@reduxproviders/role.reducer";
 //#endregion
 import AnimateButton from "@components/mui-ui/extended/animateButton";
@@ -237,7 +238,10 @@ const FormSignUp = () => {
           <Grid container spacing={matchDownSM ? 0 : 2}>
             {dataForm.map((item, index) => {
               let keyField = item.id + "_" + index;
-              let errorText = objectExtension.getValue(formik, "errors." + item.field)
+              let errorText = objectExtension.getValue(
+                formik,
+                "errors." + item.field
+              );
               let hasError =
                 Boolean(
                   objectExtension.getValue(formik, "touched." + item.field)
