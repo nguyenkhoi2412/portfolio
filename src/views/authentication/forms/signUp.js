@@ -286,6 +286,7 @@ const FormSignUp = () => {
                       tabIndex={item.tabIndex}
                       label={item.label}
                       name={item.field}
+                      disabled={item.disabled}
                       value={objectExtension.getValue(
                         formik,
                         "values." + item.field

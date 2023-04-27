@@ -1,8 +1,11 @@
+import { ROLE } from "@constants/enumRoles";
 import { createSlice, current, createAsyncThunk } from "@reduxjs/toolkit";
 import authServices from "@services/auth";
 import { storedExtension } from "@utils/helpersExtension";
 import storageHandler from "@constants//storageHandler";
 
+// ==============================|| ACTIONS ||============================== //
+//#region ACTIONS
 export const FIND_BY_USER = createAsyncThunk(
   "auth/findbyuser",
   async (params, thunkAPI) => {
@@ -37,6 +40,7 @@ export const SECURE_2FA_GENERATE_TOKEN = createAsyncThunk(
     return await authServices.getToken_2fa(params);
   }
 );
+//#endregion
 
 const currentUser = () => {
   if (localStorage.getItem(storageHandler.DASHBOARD.CURRENT_USER)) {
@@ -45,9 +49,16 @@ const currentUser = () => {
     );
   }
 
-  return {};
+  return {
+    isAdmin: false,
+    isSupervisor: false,
+    isUser: false,
+    isVisitor: true,
+  };
 };
 
+// ==============================|| REDUX PROVIDER ||============================== //
+//#region REDUX PROVIDER
 // init state auth
 const initialState = {
   isFetching: false,
@@ -93,14 +104,20 @@ export const auth = createSlice({
         isFetching: false,
         ok: response.ok,
         message: response.message,
-        currentUser: results.currentUser,
+        currentUser: {
+          ...results.currentUser,
+          isAdmin: results.currentUser.role === ROLE.ADMIN.name,
+          isSupervisor: results.currentUser.role === ROLE.SUPERVISOR.name,
+          isUser: results.currentUser.role === ROLE.USER.name,
+          isVisitor: results.currentUser.role === ROLE.VISITOR.name,
+        },
       };
 
       if (response.ok) {
         // save localStore USER INFOS
         localStorage.setItem(
           storageHandler.DASHBOARD.CURRENT_USER,
-          JSON.stringify(results.currentUser)
+          JSON.stringify(newState.currentUser)
         );
 
         // save token to cookie
@@ -161,6 +178,7 @@ export const auth = createSlice({
     //#endregion
   },
 });
+//#endregion
 
 // export actions to use
 export const { SIGN_OUT } = auth.actions;
@@ -170,6 +188,10 @@ export const { SIGN_OUT } = auth.actions;
 // in the slice file. For example: `useSelector((state) => state.counter.value)`
 export const authState = (state) => state.auth;
 export const currentUserState = (state) => state.auth.currentUser;
+export const isAdminState = (state) => state.auth.currentUser.isAdmin;
+export const isSupervisorState = (state) => state.auth.currentUser.isSupervisor;
+export const isUserState = (state) => state.auth.currentUser.isUser;
+export const isVisitorState = (state) => state.auth.currentUser.isVisitor;
 //#endregion
 
 export default auth.reducer;

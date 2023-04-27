@@ -10,11 +10,11 @@ import { useTheme } from "@mui/material/styles";
 import { Divider, Grid, Stack, Typography, useMediaQuery } from "@mui/material";
 //#endregion
 //#region components
-import AuthWrapper from "../AuthWrapper";
-import AuthCardWrapper from "../AuthCardWrapper";
+import AuthWrapper from "../authWrapper";
+import AuthCardWrapper from "../authCardWrapper";
 import FormSignIn from "../forms/signIn";
 import Logo from "@components/ui/logo";
-// import AuthFooter from "../AuthFooter";
+// import AuthFooter from "../authFooter";
 //#endregion
 
 const SignIn = (props) => {
@@ -25,95 +25,76 @@ const SignIn = (props) => {
 
   return (
     <AuthWrapper>
-      <Grid
-        container
-        direction="column"
-        justifyContent="flex-end"
-        sx={{ minHeight: "100vh" }}
-      >
-        <Grid item xs={12}>
+      <Grid item sx={{ m: { xs: 1, sm: 3 }, mb: 0 }}>
+        <AuthCardWrapper className="auth sign-in">
           <Grid
             container
-            justifyContent="center"
+            spacing={2}
             alignItems="center"
-            sx={{ minHeight: "calc(100vh - 68px)" }}
+            justifyContent="center"
           >
-            <Grid item sx={{ m: { xs: 1, sm: 3 }, mb: 0 }}>
-              <AuthCardWrapper className="auth sign-in">
-                <Grid
-                  container
-                  spacing={2}
-                  alignItems="center"
-                  justifyContent="center"
-                >
-                  <Grid item sx={{ mb: 3 }}>
-                    <Link to="#">
-                      <Logo />
-                    </Link>
-                  </Grid>
-                  <Grid item xs={12}>
-                    <Grid
-                      container
-                      direction={matchDownSM ? "column-reverse" : "row"}
-                      alignItems="center"
-                      justifyContent="center"
+            <Grid item sx={{ mb: 3 }}>
+              <Link to="#">
+                <Logo />
+              </Link>
+            </Grid>
+            <Grid item xs={12}>
+              <Grid
+                container
+                direction={matchDownSM ? "column-reverse" : "row"}
+                alignItems="center"
+                justifyContent="center"
+              >
+                <Grid item>
+                  <Stack
+                    alignItems="center"
+                    justifyContent="center"
+                    spacing={1}
+                  >
+                    <Typography
+                      color={theme.palette.secondary.main}
+                      gutterBottom
+                      variant={matchDownSM ? "h3" : "h2"}
                     >
-                      <Grid item>
-                        <Stack
-                          alignItems="center"
-                          justifyContent="center"
-                          spacing={1}
-                        >
-                          <Typography
-                            color={theme.palette.secondary.main}
-                            gutterBottom
-                            variant={matchDownSM ? "h3" : "h2"}
-                          >
-                            {t("authentication.hiwelcomeback")}
-                          </Typography>
-                          <Typography
-                            variant="caption"
-                            fontSize="16px"
-                            textAlign={matchDownSM ? "center" : "inherit"}
-                          >
-                            {t("authentication.enteryourcredentialstocontinue")}
-                          </Typography>
-                        </Stack>
-                      </Grid>
-                    </Grid>
-                  </Grid>
-                  <Grid item xs={12}>
-                    <FormSignIn />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <Divider />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <Grid
-                      item
-                      container
-                      direction="column"
-                      alignItems="center"
-                      xs={12}
+                      {t("authentication.hiwelcomeback")}
+                    </Typography>
+                    <Typography
+                      variant="caption"
+                      fontSize="16px"
+                      textAlign={matchDownSM ? "center" : "inherit"}
                     >
-                      <Link
-                        href={navigateLocation.AUTH.SIGNUP}
-                        underline="none"
-                        variant="subtitle1"
-                        color={theme.palette.grey[900]}
-                      >
-                        {t("authentication.donthaveanaccount")}
-                      </Link>
-                    </Grid>
-                  </Grid>
+                      {t("authentication.enteryourcredentialstocontinue")}
+                    </Typography>
+                  </Stack>
                 </Grid>
-              </AuthCardWrapper>
+              </Grid>
+            </Grid>
+            <Grid item xs={12}>
+              <FormSignIn />
+            </Grid>
+            <Grid item xs={12}>
+              <Divider />
+            </Grid>
+            <Grid item xs={12}>
+              <Grid
+                item
+                container
+                direction="column"
+                alignItems="center"
+                xs={12}
+              >
+                <Link
+                  href={navigateLocation.AUTH.SIGNUP}
+                  underline="none"
+                  variant="subtitle1"
+                  color={theme.palette.grey[900]}
+                >
+                  {t("authentication.donthaveanaccount")}
+                </Link>
+              </Grid>
             </Grid>
           </Grid>
-        </Grid>
-        {/* <Grid item xs={12} sx={{ m: 3, mt: 1 }}>
-          <AuthFooter />
-        </Grid> */}
+        </AuthCardWrapper>
       </Grid>
     </AuthWrapper>
   );

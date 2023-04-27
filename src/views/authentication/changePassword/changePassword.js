@@ -1,7 +1,6 @@
 import "../_auth.scss";
 import * as React from "react";
 import { useTranslation, Trans } from "react-i18next";
-import _schema from "./_schema";
 //#region mui-ui
 import Link from "@mui/material/Link";
 import { hooksInstance } from "@utils/hooksInstance";
@@ -12,12 +11,12 @@ import { Divider, Grid, Stack, Typography, useMediaQuery } from "@mui/material";
 //#region components
 import AuthWrapper from "../authWrapper";
 import AuthCardWrapper from "../authCardWrapper";
-import FormForgotPassword from "../forms/forgotPassword";
+import FormChangePassword from "../forms/changePassword";
 import Logo from "@components/ui/logo";
 // import AuthFooter from "../authFooter";
 //#endregion
 
-const ForgotPassword = (props) => {
+const ChangePassword = (props) => {
   const theme = useTheme();
   hooksInstance.useDocumentTitle(props.title);
   const matchDownSM = useMediaQuery(theme.breakpoints.down("md"));
@@ -26,7 +25,7 @@ const ForgotPassword = (props) => {
   return (
     <AuthWrapper>
       <Grid item sx={{ m: { xs: 1, sm: 3 }, mb: 0 }}>
-        <AuthCardWrapper className="auth forgot-password">
+        <AuthCardWrapper className="auth change-password">
           <Grid
             container
             spacing={2}
@@ -56,21 +55,21 @@ const ForgotPassword = (props) => {
                       gutterBottom
                       variant={matchDownSM ? "h3" : "h2"}
                     >
-                      {t("authentication.forgotpassword")}
+                      {t("authentication.changepassword")}
                     </Typography>
                     <Typography
                       variant="caption"
                       fontSize="16px"
                       textAlign={matchDownSM ? "center" : "inherit"}
                     >
-                      {t("authentication.enteryouemailaddressresetpassword")}
+                      {t("authentication.createnewpassword")}
                     </Typography>
                   </Stack>
                 </Grid>
               </Grid>
             </Grid>
             <Grid item xs={12}>
-              <FormForgotPassword />
+              <FormChangePassword />
             </Grid>
             <Grid item xs={12}>
               <Divider />
@@ -88,7 +87,7 @@ const ForgotPassword = (props) => {
                 alignItems="center"
                 xs={12}
               >
-                <Stack alignItems="center" justifyContent="center" spacing={1}>
+                {/* <Stack alignItems="center" justifyContent="center" spacing={1}>
                   <Link
                     href={navigateLocation.AUTH.SIGNIN}
                     underline="none"
@@ -105,7 +104,7 @@ const ForgotPassword = (props) => {
                   >
                     {t("authentication.donthaveanaccount")}
                   </Link>
-                </Stack>
+                </Stack> */}
               </Grid>
             </Grid>
           </Grid>
@@ -115,4 +114,4 @@ const ForgotPassword = (props) => {
   );
 };
 
-export default ForgotPassword;
+export default ChangePassword;

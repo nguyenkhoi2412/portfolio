@@ -1,6 +1,8 @@
 import { useTranslation } from "react-i18next";
 import { ROLE } from "@constants/enumRoles";
+import { useDispatch, useSelector } from "react-redux";
 import * as yup from "yup";
+import { isUserState, isVisitorState } from "@reduxproviders/auth.reducer";
 
 export default {
   initialValues: () => {
@@ -8,6 +10,7 @@ export default {
       detailInfos: {
         firstname: "",
         lastname: "",
+        avatarPath: "",
       },
       role: ROLE.USER.name,
       username: "",
@@ -34,6 +37,8 @@ export default {
   },
   dataForm: (lsRoles) => {
     const { t } = useTranslation();
+    const isVisitor = useSelector(isVisitorState);
+    const isUser = useSelector(isUserState);
     // render firstname
     const firstname = {
       tabIndex: 0,
@@ -75,6 +80,7 @@ export default {
         };
       }),
       preventXSS: true,
+      disabled: isVisitor || isUser,
       helperText: t("authentication.selectrole"),
     };
 

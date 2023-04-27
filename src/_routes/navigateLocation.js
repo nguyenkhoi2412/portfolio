@@ -8,7 +8,7 @@ const ACCOUNT = DASHBOARD + "/account";
 
 export const navigateLocation = {
   DASHBOARD: {
-    DEFAULT: DASHBOARD
+    DEFAULT: DASHBOARD,
   },
   AUTH: {
     SIGNIN: AUTH + "/signin",
@@ -18,7 +18,11 @@ export const navigateLocation = {
     CODE_VERIFICATION: AUTH + "/codeverification",
   },
   ACCOUNT: {
-    PROFILES: ACCOUNT + "/profiles"
+    PROFILE: ACCOUNT + "/profile",
+    INFO: ACCOUNT + "/info",
+    CHANGE_PASSOWRD: ACCOUNT + "/changepassword",
+    CREATE_NEW: ACCOUNT + "/createnew",
+    RESET_PASSWORD: ACCOUNT + "/resetpassword",
   },
   CLIENTAPP: {
     ASSET_PATH: ASSET_PATH,

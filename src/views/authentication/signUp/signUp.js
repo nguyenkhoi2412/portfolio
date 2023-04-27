@@ -1,19 +1,23 @@
 import "../_auth.scss";
 import * as React from "react";
-import { useTranslation, Trans } from "react-i18next";
+import { useTranslation } from "react-i18next";
+//#region utils support
+import { hooksInstance } from "@utils/hooksInstance";
+//#endregion
 //#region mui-ui
 import { useTheme } from "@mui/material/styles";
-import { hooksInstance } from "@utils/hooksInstance";
 import Link from "@mui/material/Link";
 import { Divider, Grid, Stack, Typography, useMediaQuery } from "@mui/material";
 //#endregion
 //#region components
-import AuthWrapper from "../AuthWrapper";
-import AuthCardWrapper from "../AuthCardWrapper";
+import AuthWrapper from "../authWrapper";
+import AuthCardWrapper from "../authCardWrapper";
 import FormSignUp from "../forms/signUp";
 import Logo from "@components/ui/logo";
-import { navigateLocation } from "@routes/navigateLocation"
-// import AuthFooter from "../AuthFooter";
+import { navigateLocation } from "@routes/navigateLocation";
+// import AuthFooter from "../authFooter";
+//#endregion
+//#region redux provider
 //#endregion
 
 const SignUp = (props) => {
@@ -22,97 +26,82 @@ const SignUp = (props) => {
   const matchDownSM = useMediaQuery(theme.breakpoints.down("md"));
   const { t } = useTranslation();
 
+  //#region useEffect
+  React.useEffect(() => {}, []);
+  //#endregion
+
   return (
     <AuthWrapper>
-      <Grid
-        container
-        direction="column"
-        justifyContent="flex-end"
-        sx={{ minHeight: "100vh" }}
-      >
-        <Grid item xs={12}>
+      <Grid item sx={{ m: { xs: 1, sm: 3 }, mb: 0 }}>
+        <AuthCardWrapper className="auth sign-up">
           <Grid
             container
-            justifyContent="center"
+            spacing={2}
             alignItems="center"
-            sx={{ minHeight: "calc(100vh - 68px)" }}
+            justifyContent="center"
           >
-            <Grid item sx={{ m: { xs: 1, sm: 3 }, mb: 0 }}>
-              <AuthCardWrapper className="auth sign-up">
-                <Grid
-                  container
-                  spacing={2}
-                  alignItems="center"
-                  justifyContent="center"
-                >
-                  <Grid item sx={{ mb: 3 }}>
-                    <Link to="#">
-                      <Logo />
-                    </Link>
-                  </Grid>
-                  <Grid item xs={12}>
-                    <Grid
-                      container
-                      direction={matchDownSM ? "column-reverse" : "row"}
-                      alignItems="center"
-                      justifyContent="center"
+            <Grid item sx={{ mb: 3 }}>
+              <Link to="#">
+                <Logo />
+              </Link>
+            </Grid>
+            <Grid item xs={12}>
+              <Grid
+                container
+                direction={matchDownSM ? "column-reverse" : "row"}
+                alignItems="center"
+                justifyContent="center"
+              >
+                <Grid item>
+                  <Stack
+                    alignItems="center"
+                    justifyContent="center"
+                    spacing={1}
+                  >
+                    <Typography
+                      color={theme.palette.secondary.main}
+                      gutterBottom
+                      variant={matchDownSM ? "h3" : "h2"}
                     >
-                      <Grid item>
-                        <Stack
-                          alignItems="center"
-                          justifyContent="center"
-                          spacing={1}
-                        >
-                          <Typography
-                            color={theme.palette.secondary.main}
-                            gutterBottom
-                            variant={matchDownSM ? "h3" : "h2"}
-                          >
-                            {t("authentication.signup")}
-                          </Typography>
-                          <Typography
-                            variant="caption"
-                            fontSize="16px"
-                            textAlign={matchDownSM ? "center" : "inherit"}
-                          >
-                            {t("authentication.enteryourcredentialstocontinue")}
-                          </Typography>
-                        </Stack>
-                      </Grid>
-                    </Grid>
-                  </Grid>
-                  <Grid item xs={12}>
-                    <FormSignUp />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <Divider />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <Grid
-                      item
-                      container
-                      direction="column"
-                      alignItems="center"
-                      xs={12}
+                      {t("authentication.signup")}
+                    </Typography>
+                    <Typography
+                      variant="caption"
+                      fontSize="16px"
+                      textAlign={matchDownSM ? "center" : "inherit"}
                     >
-                      <Link
-                        href={navigateLocation.AUTH.SIGNIN}
-                        underline="none"
-                        variant="subtitle1"
-                        color={theme.palette.grey[900]}
-                      >
-                        {t("authentication.alreadyhaveanaccount")}
-                      </Link>
-                    </Grid>
-                  </Grid>
+                      {t("authentication.enteryourcredentialstocontinue")}
+                    </Typography>
+                  </Stack>
                 </Grid>
-              </AuthCardWrapper>
+              </Grid>
+            </Grid>
+            <Grid item xs={12}>
+              <FormSignUp />
+            </Grid>
+            <Grid item xs={12}>
+              <Divider />
+            </Grid>
+            <Grid item xs={12}>
+              <Grid
+                item
+                container
+                direction="column"
+                alignItems="center"
+                xs={12}
+              >
+                <Link
+                  href={navigateLocation.AUTH.SIGNIN}
+                  underline="none"
+                  variant="subtitle1"
+                  color={theme.palette.grey[900]}
+                >
+                  {t("authentication.alreadyhaveanaccount")}
+                </Link>
+              </Grid>
             </Grid>
           </Grid>
-        </Grid>
-        {/* <Grid item xs={12} sx={{ m: 3, mt: 1 }}>
-          <AuthFooter />
-        </Grid> */}
+        </AuthCardWrapper>
       </Grid>
     </AuthWrapper>
   );

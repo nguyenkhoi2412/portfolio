@@ -1,13 +1,16 @@
 import { Navigate } from "react-router-dom";
 import { navigateLocation } from "../navigateLocation";
-import SignIn from "@authentication/signIn";
-import SignUp from "@authentication/signUp";
-import ForgotPassword from "@authentication/forgotPassword";
-import CodeVerification from "@authentication/codeVerification";
 import { RequireLoggedIn, RequireAuth } from "@utils/requireAuth";
 
 // project imports
 import DashboardLayout from "@dashboard/_layout";
+
+// account routing
+import AccountProfile from "@dashboard/account/profile";
+import AccountInfo from "@dashboard/account/info";
+import ChangePassword from "@dashboard/account/changePassword";
+import ResetPassword from "@dashboard/account/resetPassword";
+import CreateNew from "@dashboard/account/createNew";
 
 // dashboard routing
 import DashboardDefault from "@dashboard/default";
@@ -34,10 +37,42 @@ const DashboardRoutes = {
   element: <DashboardLayout />,
   children: [
     {
-      path: navigateLocation.DASHBOARD.DEFAULT,
+      path: navigateLocation.ACCOUNT.PROFILE,
       element: (
         <RequireAuth redirectTo={navigateLocation.AUTH.SIGNIN}>
-          <DashboardDefault title="Dashboard 🤠" />
+          <AccountProfile title="Account profile 🤠" />
+        </RequireAuth>
+      ),
+    },
+    {
+      path: navigateLocation.ACCOUNT.INFO,
+      element: (
+        <RequireAuth redirectTo={navigateLocation.AUTH.SIGNIN}>
+          <AccountInfo title="Account info 🤠" />
+        </RequireAuth>
+      ),
+    },
+    {
+      path: navigateLocation.ACCOUNT.CHANGE_PASSOWRD,
+      element: (
+        <RequireAuth redirectTo={navigateLocation.ACCOUNT.CHANGE_PASSOWRD}>
+          <ChangePassword title="Change password 🤠" />
+        </RequireAuth>
+      ),
+    },
+    {
+      path: navigateLocation.ACCOUNT.RESET_PASSWORD,
+      element: (
+        <RequireAuth redirectTo={navigateLocation.ACCOUNT.RESET_PASSWORD}>
+          <ResetPassword title="Reset password 🤠" />
+        </RequireAuth>
+      ),
+    },
+    {
+      path: navigateLocation.ACCOUNT.CREATE_NEW,
+      element: (
+        <RequireAuth redirectTo={navigateLocation.AUTH.SIGNIN}>
+          <CreateNew title="Create new 🤠" />
         </RequireAuth>
       ),
     },
