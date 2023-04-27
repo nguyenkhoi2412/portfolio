@@ -14,7 +14,7 @@ const dashboard = {
   children: [
     {
       id: "default",
-      title: "Dashboard",
+      title: "Reports",
       type: "item",
       url: navigateLocation.DASHBOARD.DEFAULT,
       icon: icons.IconDashboard,

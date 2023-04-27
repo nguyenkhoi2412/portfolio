@@ -23,6 +23,13 @@ const authentication = {
       icon: icons.IconKey,
       children: [
         {
+          id: "accountprofile",
+          title: <Trans i18nKey={"authentication.accountprofile"}></Trans>,
+          type: "item",
+          url: navigateLocation.ACCOUNT.PROFILES,
+          target: false,
+        },
+        {
           id: "register3",
           title: <Trans i18nKey={"authentication.register"}></Trans>,
           type: "item",

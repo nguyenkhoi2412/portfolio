@@ -7,7 +7,7 @@ import CodeVerification from "@authentication/codeVerification";
 import { RequireLoggedIn, RequireAuth } from "@utils/requireAuth";
 
 // project imports
-import DashboardLayout from "@dashboard/layout";
+import DashboardLayout from "@dashboard/_layout";
 
 // dashboard routing
 import DashboardDefault from "@dashboard/default";
@@ -96,7 +96,7 @@ const DashboardRoutes = {
 export default DashboardRoutes;
 
 // import { MODULES } from "@routes/_modules";
-// import DashboardLayout from "@dashboard/layout";
+// import DashboardLayout from "@dashboard/_layout";
 
 // export default [
 //   {

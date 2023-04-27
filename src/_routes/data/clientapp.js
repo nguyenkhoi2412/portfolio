@@ -2,7 +2,7 @@
 // import { navigateLocation } from "../navigateLocation";
 
 // // project imports
-// import DashboardLayout from "@dashboard/layout";
+// import DashboardLayout from "@dashboard/_layout";
 
 // // dashboard routing
 // import DashboardDefault from "@dashboard/default";

@@ -4,6 +4,7 @@ import vars from "@constants/variables";
 const ASSET_PATH = vars.ASSET_PATH;
 const DASHBOARD = ASSET_PATH + MODULES.DASHBOARD;
 const AUTH = DASHBOARD + "/auth";
+const ACCOUNT = DASHBOARD + "/account";
 
 export const navigateLocation = {
   DASHBOARD: {
@@ -15,6 +16,9 @@ export const navigateLocation = {
     FORGOT_PASSWORD: AUTH + "/forgotpassword",
     RESET_PASSWORD: AUTH + "/resetpassword",
     CODE_VERIFICATION: AUTH + "/codeverification",
+  },
+  ACCOUNT: {
+    PROFILES: ACCOUNT + "/profiles"
   },
   CLIENTAPP: {
     ASSET_PATH: ASSET_PATH,

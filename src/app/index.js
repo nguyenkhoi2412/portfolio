@@ -7,7 +7,7 @@ import defaultFavicon from "@assets/favicons/default/favicon.ico";
 import { SnackbarProvider } from "notistack";
 // import BuildPagesRoute from "@routes/buildPagesRoute";
 import Routes from "@routes";
-import NavigationScroll from "@utils/layout/navigationScroll";
+import NavigationScroll from "@utils/_layout/navigationScroll";
 import { ThemeProvider } from "@mui/system";
 import { CssBaseline, StyledEngineProvider } from "@mui/material";
 import { BrowserRouter } from "react-router-dom";
