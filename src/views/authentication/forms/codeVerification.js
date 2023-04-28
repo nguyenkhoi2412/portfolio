@@ -7,26 +7,17 @@ import { getYupSchemaFromMetaData } from "@utils/yupSchemaCreator.js";
 import { useSnackbar } from "notistack";
 import InputField from "@components/forms/inputField";
 import _schema from "../codeVerification/_schema";
-import { useTheme } from "@mui/material/styles";
 import { navigateLocation } from "@routes/navigateLocation";
 //#region mui-ui
 import FormControl from "@mui/material/FormControl";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import Alert from "@mui/material/Alert";
 import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
-import Link from "@mui/material/Link";
-import CloseIcon from "@mui/icons-material/Close";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import severity from "@constants/severity";
 import {
-  Divider,
-  Typography,
   Button,
-  Stack,
-  useMediaQuery,
 } from "@mui/material";
 //#endregion
 //#region redux providers
@@ -35,7 +26,6 @@ import {
   HIDE_PROGRESSBAR,
 } from "@components/mui-ui/progressBar/progressBar.reducer";
 import { useDispatch, useSelector } from "react-redux";
-import { SECURE_2FA_GENERATE_TOKEN } from "@reduxproviders/auth.reducer";
 //#endregion
 import AnimateButton from "@components/mui-ui/extended/animateButton";
 import {
@@ -44,7 +34,6 @@ import {
 } from "@reduxproviders/auth.reducer";
 
 const FormCodeVerification = () => {
-  const theme = useTheme();
   const navigate = useNavigate();
 
   const { t } = useTranslation();
@@ -53,7 +42,6 @@ const FormCodeVerification = () => {
   const dispatch = useDispatch();
   const [showMessageAlert, setShowMessageAlert] = React.useState(false);
   const [messageContentAlert, setMessageContentAlert] = React.useState();
-  const [checked, setChecked] = React.useState(true);
 
   const validateSecure2FA = (values) => {
     helpersExtension.simulateNetworkRequest(100).then(async () => {

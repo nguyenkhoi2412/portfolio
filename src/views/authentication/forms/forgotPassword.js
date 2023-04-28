@@ -7,7 +7,6 @@ import { getYupSchemaFromMetaData } from "@utils/yupSchemaCreator.js";
 import { useSnackbar } from "notistack";
 import InputField from "@components/forms/inputField";
 import _schema from "../forgotPassword/_schema";
-import { useTheme } from "@mui/material/styles";
 import { navigateLocation } from "@routes/navigateLocation";
 //#region mui-ui
 import FormControl from "@mui/material/FormControl";
@@ -33,7 +32,6 @@ import { VALIDATE_USER } from "@reduxproviders/auth.reducer";
 import AnimateButton from "@components/mui-ui/extended/animateButton";
 
 const FormForgotPassword = () => {
-  const theme = useTheme();
   const navigate = useNavigate();
 
   const { t } = useTranslation();
@@ -41,7 +39,6 @@ const FormForgotPassword = () => {
   const dispatch = useDispatch();
   const [showMessageAlert, setShowMessageAlert] = React.useState(false);
   const [messageContentAlert, setMessageContentAlert] = React.useState();
-  const [checked, setChecked] = React.useState(true);
 
   //#region useFormik
   const initialValues = _schema.initialValues();

@@ -4,10 +4,8 @@ import { useFormik } from "formik";
 import {
   helpersExtension,
   objectExtension,
-  hooksInstance,
 } from "@utils/helpersExtension";
 import { strengthColor, strengthIndicator } from "@utils/passwordStrength";
-import { getYupSchemaFromMetaData } from "@utils/yupSchemaCreator.js";
 import { useSnackbar } from "notistack";
 import InputField from "@components/forms/inputField";
 import SelectField from "@components/forms/selectField";
@@ -30,7 +28,6 @@ import {
   Divider,
   Typography,
   Button,
-  Stack,
   useMediaQuery,
 } from "@mui/material";
 //#endregion
@@ -50,7 +47,6 @@ const FormSignUp = () => {
   const matchDownSM = useMediaQuery(theme.breakpoints.down("md"));
   const { t } = useTranslation();
 
-  const dataRoleValues = useSelector(roleState);
   const dispatch = useDispatch();
   const { enqueueSnackbar } = useSnackbar();
   const [showMessageAlert, setShowMessageAlert] = React.useState(false);
@@ -58,7 +54,6 @@ const FormSignUp = () => {
   const [alertBoxSeverity, setAlertBoxSeverity] = React.useState(
     severity.error
   );
-  const dataValues = useSelector(authState);
   const [lsRoles, setLsRoles] = React.useState([]);
   const [checked, setChecked] = React.useState(true);
   const [strength, setStrength] = React.useState(0);
