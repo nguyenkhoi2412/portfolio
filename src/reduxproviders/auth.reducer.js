@@ -27,6 +27,13 @@ export const REGISTER_USER = createAsyncThunk(
   }
 );
 
+export const CHANGE_PASSWORD = createAsyncThunk(
+  "auth/changepassword",
+  async (params, thunkAPI) => {
+    return await authServices.changePassword(params);
+  }
+);
+
 export const VALIDATE_SECURE_2FA = createAsyncThunk(
   "auth/secure_2fa/validate",
   async (params, thunkAPI) => {
@@ -106,10 +113,10 @@ export const auth = createSlice({
         message: response.message,
         currentUser: {
           ...results.currentUser,
-          isAdmin: results.currentUser.role === ROLE.ADMIN.name,
-          isSupervisor: results.currentUser.role === ROLE.SUPERVISOR.name,
-          isUser: results.currentUser.role === ROLE.USER.name,
-          isVisitor: results.currentUser.role === ROLE.VISITOR.name,
+          isAdmin: results?.currentUser?.role === ROLE.ADMIN.name,
+          isSupervisor: results?.currentUser?.role === ROLE.SUPERVISOR.name,
+          isUser: results?.currentUser?.role === ROLE.USER.name,
+          isVisitor: results?.currentUser?.role === ROLE.VISITOR.name,
         },
       };
 

@@ -1,14 +1,12 @@
 import * as React from "react";
-import { useNavigate } from "react-router-dom";
+//#region hooks, utils support
 import { useTranslation, Trans } from "react-i18next";
 import { useFormik } from "formik";
 import { helpersExtension, objectExtension } from "@utils/helpersExtension";
-import { getYupSchemaFromMetaData } from "@utils/yupSchemaCreator.js";
 import { useSnackbar } from "notistack";
 import InputField from "@components/forms/inputField";
 import _schema from "../changePassword/_schema";
-import { useTheme } from "@mui/material/styles";
-import { navigateLocation } from "@routes/navigateLocation";
+//#endregion
 //#region mui-ui
 import FormControl from "@mui/material/FormControl";
 import Alert from "@mui/material/Alert";
@@ -18,9 +16,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import severity from "@constants/severity";
-import {
-  Button,
-} from "@mui/material";
+import { Button } from "@mui/material";
 //#endregion
 //#region redux providers
 import {
@@ -28,60 +24,69 @@ import {
   HIDE_PROGRESSBAR,
 } from "@components/mui-ui/progressBar/progressBar.reducer";
 import { useDispatch } from "react-redux";
-import { VALIDATE_USER } from "@reduxproviders/auth.reducer";
+import {
+  CHANGE_PASSWORD,
+  currentUserState,
+} from "@reduxproviders/auth.reducer";
 //#endregion
 import AnimateButton from "@components/mui-ui/extended/animateButton";
 
 const FormChangePassword = () => {
-  const theme = useTheme();
-  const navigate = useNavigate();
-
   const { t } = useTranslation();
   const { enqueueSnackbar } = useSnackbar();
   const dispatch = useDispatch();
   const [showMessageAlert, setShowMessageAlert] = React.useState(false);
   const [messageContentAlert, setMessageContentAlert] = React.useState();
-  const [checked, setChecked] = React.useState(true);
+  const [statusMessage, setStatusMessage] = React.useState(severity.success);
+
+  //#region call API process
+  const changePassword = (values) => {
+    helpersExtension.simulateNetworkRequest(100).then(async () => {
+      await dispatch(CHANGE_PASSWORD(values))
+        .unwrap()
+        .then((result) => {
+          setSubmitting(false);
+          dispatch(HIDE_PROGRESSBAR());
+          if (result.ok) {
+            setStatusMessage(severity.success);
+            setShowMessageAlert(true);
+            setMessageContentAlert(t("authentication.changepasswordsuccess"));
+          } else {
+            setStatusMessage(severity.error);
+            setShowMessageAlert(true);
+            setMessageContentAlert(result.message);
+          }
+
+          formik.resetForm();
+        })
+        .catch((error) => {
+          dispatch(HIDE_PROGRESSBAR());
+          // variant could be success, error, warning, info, or default
+          enqueueSnackbar(t("connection.error"), {
+            variant: severity.error,
+          });
+          formik.resetForm();
+        });
+    });
+  };
+  //#endregion
 
   //#region useFormik
   const initialValues = _schema.initialValues();
-  // const validationSchema = _schema.validation();
+  const validationSchema = _schema.validation();
   const dataForm = _schema.dataForm();
   const [enableValidation, setEnableValidation] = React.useState(false);
   const [submitting, setSubmitting] = React.useState(false);
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: initialValues,
-    validationSchema: getYupSchemaFromMetaData(dataForm),
+    validationSchema: validationSchema,
     validateOnChange: enableValidation,
     validateOnBlur: enableValidation,
     onSubmit: (values) => {
       setSubmitting(true);
       dispatch(SHOW_PROGRESSBAR());
-      helpersExtension.simulateNetworkRequest(100).then(async () => {
-        await dispatch(VALIDATE_USER(values))
-          .unwrap()
-          .then((result) => {
-            setSubmitting(false);
-            dispatch(HIDE_PROGRESSBAR());
-            if (result.ok) {
-              navigate(navigateLocation.DASHBOARD.DEFAULT);
-            } else {
-              setShowMessageAlert(true);
-              setMessageContentAlert(result.message);
-            }
-
-            formik.resetForm();
-          })
-          .catch((error) => {
-            dispatch(HIDE_PROGRESSBAR());
-            // variant could be success, error, warning, info, or default
-            enqueueSnackbar(t("connection.error"), {
-              variant: severity.error,
-            });
-            formik.resetForm();
-          });
-      });
+      changePassword(values);
     },
   });
   //#endregion
@@ -124,10 +129,8 @@ const FormChangePassword = () => {
                 Boolean(
                   objectExtension.getValue(formik, "touched." + item.field)
                 ) && errorText;
-              let dataValue = objectExtension.getValue(
-                formik,
-                "values." + item.field
-              );
+              let dataValue =
+                objectExtension.getValue(formik, "values." + item.field) || "";
               return (
                 <InputField
                   margin="normal"
@@ -163,7 +166,7 @@ const FormChangePassword = () => {
                     </IconButton>
                   }
                   sx={{ mb: 2 }}
-                  severity="error"
+                  severity={statusMessage}
                 >
                   {messageContentAlert}
                 </Alert>

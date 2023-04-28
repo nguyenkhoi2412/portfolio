@@ -6,11 +6,7 @@ import { RequireLoggedIn, RequireAuth } from "@utils/requireAuth";
 import DashboardLayout from "@dashboard/_layout";
 
 // account routing
-import AccountProfile from "@dashboard/account/profile";
-import AccountInfo from "@dashboard/account/info";
-import ChangePassword from "@dashboard/account/changePassword";
-import ResetPassword from "@dashboard/account/resetPassword";
-import CreateNew from "@dashboard/account/createNew";
+import { AccountRoutes } from "./_account";
 
 // dashboard routing
 import DashboardDefault from "@dashboard/default";
@@ -37,45 +33,14 @@ const DashboardRoutes = {
   element: <DashboardLayout />,
   children: [
     {
-      path: navigateLocation.ACCOUNT.PROFILE,
+      path: navigateLocation.DASHBOARD.DEFAULT,
       element: (
         <RequireAuth redirectTo={navigateLocation.AUTH.SIGNIN}>
-          <AccountProfile title="Account profile 🤠" />
+          <DashboardDefault title="DashboardDefault 🤠" />
         </RequireAuth>
       ),
     },
-    {
-      path: navigateLocation.ACCOUNT.INFO,
-      element: (
-        <RequireAuth redirectTo={navigateLocation.AUTH.SIGNIN}>
-          <AccountInfo title="Account info 🤠" />
-        </RequireAuth>
-      ),
-    },
-    {
-      path: navigateLocation.ACCOUNT.CHANGE_PASSOWRD,
-      element: (
-        <RequireAuth redirectTo={navigateLocation.ACCOUNT.CHANGE_PASSOWRD}>
-          <ChangePassword title="Change password 🤠" />
-        </RequireAuth>
-      ),
-    },
-    {
-      path: navigateLocation.ACCOUNT.RESET_PASSWORD,
-      element: (
-        <RequireAuth redirectTo={navigateLocation.ACCOUNT.RESET_PASSWORD}>
-          <ResetPassword title="Reset password 🤠" />
-        </RequireAuth>
-      ),
-    },
-    {
-      path: navigateLocation.ACCOUNT.CREATE_NEW,
-      element: (
-        <RequireAuth redirectTo={navigateLocation.AUTH.SIGNIN}>
-          <CreateNew title="Create new 🤠" />
-        </RequireAuth>
-      ),
-    },
+    ...AccountRoutes,
     // {
     //   path: "utils",
     //   children: [

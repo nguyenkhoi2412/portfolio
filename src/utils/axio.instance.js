@@ -44,7 +44,7 @@ axiosInstance.interceptors.request.use(
     return request;
   },
   (requestError) => {
-    console.log('requestError', responseError)
+    console.log("requestError", responseError);
     return Promise.reject(requestError);
   }
 );
@@ -57,7 +57,7 @@ axiosInstance.interceptors.response.use(
     return response;
   },
   (responseError) => {
-    console.log('responseError', responseError)
+    console.log("responseError", responseError);
     // 405: Method Not Allowed
     if (responseError.response.status !== 405) {
       removeLocalToken();
@@ -103,12 +103,12 @@ const getLocalAccessToken = () => {
 };
 
 const removeLocalToken = () => {
-  const module = CURRENT_MODULES();
-  localStorage.removeItem(stored.DASHBOARD.CURRENT_USER);
-  storedExtension.removeCookie(stored.DASHBOARD.ACCESS_TOKEN);
-  storedExtension.removeCookie(stored.DASHBOARD.REFRESH_TOKEN);
+  // const module = CURRENT_MODULES();
+  // localStorage.removeItem(stored.DASHBOARD.CURRENT_USER);
+  // storedExtension.removeCookie(stored.DASHBOARD.ACCESS_TOKEN);
+  // storedExtension.removeCookie(stored.DASHBOARD.REFRESH_TOKEN);
 
-  window.location.href = "/" + module + "/login";
+  // window.location.href = "/" + module + "/login";
 };
 
 // const referedEvent = (res) => {

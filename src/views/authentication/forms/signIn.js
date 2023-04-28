@@ -55,6 +55,48 @@ const FormSignIn = () => {
   const [messageContentAlert, setMessageContentAlert] = React.useState();
   const [checked, setChecked] = React.useState(true);
 
+  const validateUser = (values) => {
+    helpersExtension.simulateNetworkRequest(100).then(async () => {
+      await dispatch(VALIDATE_USER(values))
+        .unwrap()
+        .then((response) => {
+          setSubmitting(false);
+          dispatch(HIDE_PROGRESSBAR());
+          console.log('adsfsfsdf', response);
+          if (response.ok) {
+            if (response.rs.verified_token) {
+              navigate(navigateLocation.DASHBOARD.DEFAULT);
+            } else {
+              //* send code verify to email
+              dispatch(
+                SECURE_2FA_GENERATE_TOKEN({
+                  id: response.rs.currentUser._id,
+                })
+              );
+              //* verify 2FA
+              navigate(navigateLocation.AUTH.CODE_VERIFICATION);
+            }
+          } else {
+            //* show message
+            setShowMessageAlert(true);
+            setMessageContentAlert(response.message);
+          }
+
+          formik.resetForm();
+        })
+        .catch((error) => {
+          console.log('sdfsfsdf', error);
+          setSubmitting(false);
+          dispatch(HIDE_PROGRESSBAR());
+          // variant could be success, error, warning, info, or default
+          enqueueSnackbar(error, {
+            variant: severity.error,
+          });
+          formik.resetForm();
+        });
+    });
+  };
+
   //#region useFormik
   const initialValues = _schema.initialValues();
   // const validationSchema = _schema.validation();
@@ -70,43 +112,7 @@ const FormSignIn = () => {
     onSubmit: (values) => {
       setSubmitting(true);
       dispatch(SHOW_PROGRESSBAR());
-      helpersExtension.simulateNetworkRequest(100).then(async () => {
-        await dispatch(VALIDATE_USER(values))
-          .unwrap()
-          .then((response) => {
-            setSubmitting(false);
-            dispatch(HIDE_PROGRESSBAR());
-
-            if (response.ok) {
-              if (response.rs.verified_token) {
-                navigate(navigateLocation.DASHBOARD.DEFAULT);
-              } else {
-                //* send code verify to email
-                dispatch(
-                  SECURE_2FA_GENERATE_TOKEN({
-                    id: response.rs.currentUser._id,
-                  })
-                );
-                //* verify 2FA
-                navigate(navigateLocation.AUTH.CODE_VERIFICATION);
-              }
-            } else {
-              //* show message
-              setShowMessageAlert(true);
-              setMessageContentAlert(response.message);
-            }
-
-            formik.resetForm();
-          })
-          .catch((error) => {
-            dispatch(HIDE_PROGRESSBAR());
-            // variant could be success, error, warning, info, or default
-            enqueueSnackbar(t("connection.error"), {
-              variant: severity.error,
-            });
-            formik.resetForm();
-          });
-      });
+      validateUser(values);
     },
   });
   //#endregion

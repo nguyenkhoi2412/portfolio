@@ -35,6 +35,19 @@ export default {
         .catch((error) => reject(error));
     });
   },
+  changePassword: (params) => {
+    return new Promise((resolve, reject) => {
+      params.username = encryptHelper.rsa.encrypt(params.username);
+      params.currentPassword = encryptHelper.rsa.encrypt(params.currentPassword);
+      params.newPassword = encryptHelper.rsa.encrypt(params.newPassword);
+      params.confirmPassword = encryptHelper.rsa.encrypt(params.confirmPassword);
+
+      axios
+        .put(`auth/changepassword/`, params)
+        .then((response) => resolve(response))
+        .catch((error) => reject(error));
+    });
+  },
   verified_2fa: (params) => {
     return new Promise((resolve, reject) => {
       axios

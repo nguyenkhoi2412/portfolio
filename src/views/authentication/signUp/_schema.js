@@ -31,8 +31,8 @@ export default {
         .required(t("authentication.enterusername")),
       password: yup
         .string()
-        .max(255)
-        .required(t("authentication.enterpassword")),
+        .required(t("authentication.enterpassword"))
+        .min(8, t("authentication.passwordmusgreater8")),
     });
   },
   dataForm: (lsRoles) => {
