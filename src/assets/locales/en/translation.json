@@ -78,7 +78,8 @@
     "wesendyouonemail": "We’ve send you code on email",
     "continue": "Continue",
     "didnotreceivecodeverify": "Did not receive the email? Check your spam filter, or",
-    "resendcode": "Resend code."
+    "resendcode": "Resend code.",
+    "usernotfound": "User not found"
   },
   "user": {
     "firstname": "First name",

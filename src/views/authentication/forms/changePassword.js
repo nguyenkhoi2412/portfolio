@@ -54,13 +54,13 @@ const FormChangePassword = () => {
           } else {
             setStatusMessage(severity.error);
             setShowMessageAlert(true);
-            setMessageContentAlert(result.message);
+            setMessageContentAlert(t("authentication.usernotfound"));
           }
 
           formik.resetForm();
         })
         .catch((error) => {
-          console.log('error', error);
+          console.log("error", error);
           dispatch(HIDE_PROGRESSBAR());
           // variant could be success, error, warning, info, or default
           enqueueSnackbar(t("connection.error"), {
