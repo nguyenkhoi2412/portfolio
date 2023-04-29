@@ -1,4 +1,4 @@
-import { useRoutes, useOutlet } from "react-router-dom";
+import { useRoutes } from "react-router-dom";
 
 // routes
 import AuthenticationRoutes from "./data/authentication";

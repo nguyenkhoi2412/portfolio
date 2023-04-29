@@ -1,6 +1,6 @@
 import "../_auth.scss";
 import * as React from "react";
-import { useTranslation, Trans } from "react-i18next";
+import { useTranslation } from "react-i18next";
 //#region mui-ui
 import Link from "@mui/material/Link";
 import { hooksInstance } from "@utils/hooksInstance";
@@ -15,12 +15,17 @@ import FormChangePassword from "../forms/changePassword";
 import Logo from "@components/ui/logo";
 // import AuthFooter from "../authFooter";
 //#endregion
+//#region reduxprovider
+import { useSelector } from "react-redux";
+import { currentUserState } from "@reduxproviders/auth.reducer";
+//#endregion
 
 const ChangePassword = (props) => {
   const theme = useTheme();
   hooksInstance.useDocumentTitle(props.title);
   const matchDownSM = useMediaQuery(theme.breakpoints.down("md"));
   const { t } = useTranslation();
+  const currentUser = useSelector(currentUserState);
 
   return (
     <AuthWrapper>
@@ -62,7 +67,9 @@ const ChangePassword = (props) => {
                       fontSize="16px"
                       textAlign={matchDownSM ? "center" : "inherit"}
                     >
-                      {t("authentication.createnewpassword")}
+                      {currentUser.isAdmin
+                        ? t("authentication.createnewpasswordforanyuser")
+                        : t("authentication.createnewpassword")}
                     </Typography>
                   </Stack>
                 </Grid>

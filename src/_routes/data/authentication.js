@@ -10,7 +10,10 @@ const AuthenticationRoutes = [
     path: navigateLocation.CLIENTAPP.ASSET_PATH,
     title: "SignIn 🤠",
     element: (
-      <RequireAuth redirectTo={navigateLocation.DASHBOARD.DEFAULT} isAuthentication={true}>
+      <RequireAuth
+        redirectTo={navigateLocation.DASHBOARD.DEFAULT}
+        isAuthentication={true}
+      >
         <SignIn title="SignIn 🤠" />,
       </RequireAuth>
     ),
@@ -19,7 +22,10 @@ const AuthenticationRoutes = [
     path: navigateLocation.AUTH.SIGNIN,
     title: "SignIn 🤠",
     element: (
-      <RequireAuth redirectTo={navigateLocation.DASHBOARD.DEFAULT} isAuthentication={true}>
+      <RequireAuth
+        redirectTo={navigateLocation.DASHBOARD.DEFAULT}
+        isAuthentication={true}
+      >
         <SignIn title="SignIn 🤠" />,
       </RequireAuth>
     ),
@@ -46,24 +52,3 @@ const AuthenticationRoutes = [
 ];
 
 export default AuthenticationRoutes;
-
-// export default [
-//   {
-//     path: navigateLocation.AUTH.SIGNIN,
-//     public: true,
-//     title: "SignIn 🤠",
-//     element: <SignIn />,
-//   },
-//   {
-//     path: navigateLocation.AUTH.SIGNUP,
-//     public: true,
-//     title: "SignUp 🤠",
-//     element: <SignUp />,
-//   },
-//   {
-//     path: navigateLocation.AUTH.FORGOT_PASSWORD,
-//     public: true,
-//     title: "Forgot Password 🤠",
-//     element: <ForgotPassword />,
-//   },
-// ];

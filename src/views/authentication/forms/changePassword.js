@@ -60,6 +60,7 @@ const FormChangePassword = () => {
           formik.resetForm();
         })
         .catch((error) => {
+          console.log('error', error);
           dispatch(HIDE_PROGRESSBAR());
           // variant could be success, error, warning, info, or default
           enqueueSnackbar(t("connection.error"), {
@@ -135,6 +136,7 @@ const FormChangePassword = () => {
                 <InputField
                   margin="normal"
                   fullWidth
+                  disabled={item.disabled}
                   key={index}
                   id={item.id}
                   type={item.type}

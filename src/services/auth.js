@@ -37,10 +37,20 @@ export default {
   },
   changePassword: (params) => {
     return new Promise((resolve, reject) => {
-      params.username = encryptHelper.rsa.encrypt(params.username);
-      params.currentPassword = encryptHelper.rsa.encrypt(params.currentPassword);
+      // encrypt data
+      params.currentUsername = encryptHelper.rsa.encrypt(
+        params.currentUsername
+      );
+      params.currentPassword = encryptHelper.rsa.encrypt(
+        params.currentPassword
+      );
+      params.usernameResetPassword = encryptHelper.rsa.encrypt(
+        params.usernameResetPassword
+      );
       params.newPassword = encryptHelper.rsa.encrypt(params.newPassword);
-      params.confirmPassword = encryptHelper.rsa.encrypt(params.confirmPassword);
+      params.confirmPassword = encryptHelper.rsa.encrypt(
+        params.confirmPassword
+      );
 
       axios
         .put(`auth/changepassword/`, params)

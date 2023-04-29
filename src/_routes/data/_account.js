@@ -9,7 +9,6 @@ import DashboardLayout from "@dashboard/_layout";
 import AccountProfile from "@dashboard/account/profile";
 import AccountInfo from "@dashboard/account/info";
 import ChangePassword from "@dashboard/account/changePassword";
-import ResetPassword from "@dashboard/account/resetPassword";
 import CreateNew from "@dashboard/account/createNew";
 
 // dashboard routing
@@ -37,14 +36,6 @@ export const AccountRoutes = [
     element: (
       <RequireAuth redirectTo={navigateLocation.AUTH.SIGNIN}>
         <ChangePassword title="Change password 🤠" />
-      </RequireAuth>
-    ),
-  },
-  {
-    path: navigateLocation.ACCOUNT.RESET_PASSWORD,
-    element: (
-      <RequireAuth redirectTo={navigateLocation.AUTH.SIGNIN}>
-        <ResetPassword title="Reset password 🤠" />
       </RequireAuth>
     ),
   },

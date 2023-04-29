@@ -47,14 +47,6 @@ const authentication = {
           breadcrumbs: false,
         },
         {
-          id: "resetpassword",
-          title: <Trans i18nKey={"authentication.resetpassword"}></Trans>,
-          type: "item",
-          url: navigateLocation.ACCOUNT.RESET_PASSWORD,
-          target: false,
-          breadcrumbs: false,
-        },
-        {
           id: "register",
           title: <Trans i18nKey={"authentication.createnew"}></Trans>,
           type: "item",

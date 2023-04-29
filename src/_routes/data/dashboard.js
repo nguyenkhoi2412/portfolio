@@ -94,15 +94,3 @@ const DashboardRoutes = {
 };
 
 export default DashboardRoutes;
-
-// import { MODULES } from "@routes/_modules";
-// import DashboardLayout from "@dashboard/_layout";
-
-// export default [
-//   {
-//     path: MODULES.DASHBOARD,
-//     public: true,
-//     title: "Dashboard | cxStudio",
-//     element: <DashboardLayout />,
-//   },
-// ];

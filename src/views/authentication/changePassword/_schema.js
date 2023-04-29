@@ -8,8 +8,9 @@ export default {
     const currentUser = useSelector(currentUserState);
 
     return {
-      username: currentUser.username,
+      currentUsername: currentUser.username,
       currentPassword: "",
+      usernameResetPassword: currentUser.username,
       newPassword: "",
       confirmPassword: "",
     };
@@ -20,6 +21,9 @@ export default {
       currentPassword: yup
         .string()
         .required(t("authentication.entercurrentpassword")),
+      usernameResetPassword: yup
+        .string()
+        .required(t("authentication.enterusernametoresetpassword")),
       newPassword: yup
         .string()
         .required(t("authentication.enternewpassword"))
@@ -35,6 +39,7 @@ export default {
   },
   dataForm: () => {
     const { t } = useTranslation();
+    const currentUser = useSelector(currentUserState);
 
     // render password
     const currentPassword = {
@@ -46,8 +51,19 @@ export default {
       helperText: t("authentication.enternewpassword"),
     };
 
-    const newPassword = {
+    // render usernameResetPassword
+    const usernameResetPassword = {
       tabIndex: 2,
+      id: "usernameResetPassword",
+      field: "usernameResetPassword",
+      type: "text",
+      label: t("authentication.accountresetpassword"),
+      helperText: t("authentication.enterusernametoresetpassword"),
+      disabled: currentUser.isUser || currentUser.isVisitor,
+    };
+
+    const newPassword = {
+      tabIndex: 3,
       id: "newPassword",
       field: "newPassword",
       type: "password",
@@ -56,7 +72,7 @@ export default {
     };
 
     const confirmPassword = {
-      tabIndex: 3,
+      tabIndex: 4,
       id: "confirmPassword",
       field: "confirmPassword",
       type: "password",
@@ -67,6 +83,7 @@ export default {
     // push all to array
     let inputForms = [];
     inputForms.push(currentPassword);
+    inputForms.push(usernameResetPassword);
     inputForms.push(newPassword);
     inputForms.push(confirmPassword);
 
