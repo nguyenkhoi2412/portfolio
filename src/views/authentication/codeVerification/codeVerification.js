@@ -29,7 +29,6 @@ import {
 
 const CodeVerification = (props) => {
   const theme = useTheme();
-  const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
   hooksInstance.useDocumentTitle(props.title);
   const matchDownSM = useMediaQuery(theme.breakpoints.down("md"));

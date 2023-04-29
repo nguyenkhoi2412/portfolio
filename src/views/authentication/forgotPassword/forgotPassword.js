@@ -1,6 +1,6 @@
 import "../_auth.scss";
 import * as React from "react";
-import { useTranslation, Trans } from "react-i18next";
+import { useTranslation } from "react-i18next";
 import _schema from "./_schema";
 //#region mui-ui
 import Link from "@mui/material/Link";

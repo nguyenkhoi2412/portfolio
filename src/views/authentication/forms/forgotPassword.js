@@ -7,6 +7,7 @@ import { useSnackbar } from "notistack";
 import InputField from "@components/forms/inputField";
 import _schema from "../forgotPassword/_schema";
 import { navigateLocation } from "@routes/navigateLocation";
+import { HTTP_STATUS } from "@constants/httpStatus.js";
 //#region mui-ui
 import FormControl from "@mui/material/FormControl";
 import Alert from "@mui/material/Alert";
@@ -57,9 +58,13 @@ const FormForgotPassword = () => {
             );
           } else {
             setStatusMessage(severity.error);
-            setMessageContentAlert(
-              t("authentication.makesuretypedcorrectyouremailaddress")
-            );
+            if (result.code === HTTP_STATUS.LOCKED) {
+              setMessageContentAlert(t("authentication.accounthasbeenlocked"));
+            } else {
+              setMessageContentAlert(
+                t("authentication.makesuretypedcorrectyouremailaddress")
+              );
+            }
           }
 
           formik.resetForm();

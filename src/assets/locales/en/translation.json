@@ -82,7 +82,8 @@
     "usernotfound": "User not found",
     "signinwithyournewpassword": "To sign in with your new password",
     "makesuretypedcorrectyouremailaddress": "We don't recognize this user, make sure you typed correct your email address, it usually looks like someone@example.com",
-    "yourpasswordhasbeenreset": "Your password has been reset, please check in your email"
+    "yourpasswordhasbeenreset": "Your password has been reset, please check in your email",
+    "accounthasbeenlocked": "Recovery password fail. Account has been locked"
   },
   "user": {
     "firstname": "First name",
