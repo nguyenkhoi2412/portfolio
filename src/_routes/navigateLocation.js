@@ -5,6 +5,7 @@ const ASSET_PATH = vars.ASSET_PATH;
 const DASHBOARD = ASSET_PATH + MODULES.DASHBOARD;
 const AUTH = DASHBOARD + "/auth";
 const ACCOUNT = DASHBOARD + "/account";
+const UTILITIES = DASHBOARD + "/utilities";
 
 export const navigateLocation = {
   DASHBOARD: {
@@ -23,6 +24,12 @@ export const navigateLocation = {
     CHANGE_PASSOWRD: ACCOUNT + "/changepassword",
     CREATE_NEW: ACCOUNT + "/createnew",
     RESET_PASSWORD: ACCOUNT + "/resetpassword",
+  },
+  UTILITIES: {
+    TYPOGRAPHY: UTILITIES + "/typography",
+    COLOR: UTILITIES + "/color",
+    SHADOW: UTILITIES + "/shadow",
+    TABLERICONS: UTILITIES + "/tablericons",
   },
   CLIENTAPP: {
     ASSET_PATH: ASSET_PATH,

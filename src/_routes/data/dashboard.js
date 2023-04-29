@@ -4,9 +4,8 @@ import { RequireLoggedIn, RequireAuth } from "@utils/requireAuth";
 
 // project imports
 import DashboardLayout from "@dashboard/_layout";
-
-// account routing
-import { AccountRoutes } from "./_account";
+import AccountRoutes from "./_account";
+import UtilitiesRoutes from "./_utilities";
 
 // dashboard routing
 import DashboardDefault from "@dashboard/default";
@@ -41,6 +40,7 @@ const DashboardRoutes = {
       ),
     },
     ...AccountRoutes,
+    ...UtilitiesRoutes,
     // {
     //   path: "utils",
     //   children: [

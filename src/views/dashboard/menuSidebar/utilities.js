@@ -5,6 +5,7 @@ import {
   IconShadow,
   IconWindmill,
 } from "@tabler/icons-react";
+import { navigateLocation } from "@routes/navigateLocation";
 
 // constant
 const icons = {
@@ -25,24 +26,27 @@ const utilities = {
       id: "util-typography",
       title: "Typography",
       type: "item",
-      url: "/utils/util-typography",
+      url: navigateLocation.UTILITIES.TYPOGRAPHY,
       icon: icons.IconTypography,
+      target: false,
       breadcrumbs: false,
     },
     {
       id: "util-color",
       title: "Color",
       type: "item",
-      url: "/utils/util-color",
+      url: navigateLocation.UTILITIES.COLOR,
       icon: icons.IconPalette,
+      target: false,
       breadcrumbs: false,
     },
     {
       id: "util-shadow",
       title: "Shadow",
       type: "item",
-      url: "/utils/util-shadow",
+      url: navigateLocation.UTILITIES.SHADOW,
       icon: icons.IconShadow,
+      target: false,
       breadcrumbs: false,
     },
     {
@@ -55,14 +59,8 @@ const utilities = {
           id: "tabler-icons",
           title: "Tabler Icons",
           type: "item",
-          url: "/icons/tabler-icons",
-          breadcrumbs: false,
-        },
-        {
-          id: "material-icons",
-          title: "Material Icons",
-          type: "item",
-          url: "/icons/material-icons",
+          url: navigateLocation.UTILITIES.TABLERICONS,
+          target: false,
           breadcrumbs: false,
         },
       ],

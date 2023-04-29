@@ -14,7 +14,7 @@ import CreateNew from "@dashboard/account/createNew";
 // dashboard routing
 import DashboardDefault from "@dashboard/default";
 
-export const AccountRoutes = [
+const AccountRoutes = [
   {
     path: navigateLocation.ACCOUNT.PROFILE,
     element: (
@@ -48,3 +48,5 @@ export const AccountRoutes = [
     ),
   },
 ];
+
+export default AccountRoutes;
