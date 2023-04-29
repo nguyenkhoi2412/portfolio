@@ -72,9 +72,6 @@ const ForgotPassword = (props) => {
             <Grid item xs={12}>
               <FormForgotPassword />
             </Grid>
-            <Grid item xs={12}>
-              <Divider />
-            </Grid>
 
             <Grid item xs={12}>
               <Divider

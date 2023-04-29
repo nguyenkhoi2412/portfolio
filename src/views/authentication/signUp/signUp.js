@@ -3,6 +3,7 @@ import * as React from "react";
 import { useTranslation } from "react-i18next";
 //#region utils support
 import { hooksInstance } from "@utils/hooksInstance";
+import { isAuth } from "@utils/requireAuth";
 //#endregion
 //#region mui-ui
 import { useTheme } from "@mui/material/styles";
@@ -79,27 +80,33 @@ const SignUp = (props) => {
             <Grid item xs={12}>
               <FormSignUp />
             </Grid>
-            <Grid item xs={12}>
-              <Divider />
-            </Grid>
-            <Grid item xs={12}>
-              <Grid
-                item
-                container
-                direction="column"
-                alignItems="center"
-                xs={12}
-              >
-                <Link
-                  href={navigateLocation.AUTH.SIGNIN}
-                  underline="none"
-                  variant="subtitle1"
-                  color={theme.palette.grey[900]}
-                >
-                  {t("authentication.alreadyhaveanaccount")}
-                </Link>
-              </Grid>
-            </Grid>
+            {isAuth() ? (
+              <></>
+            ) : (
+              <>
+                <Grid item xs={12}>
+                  <Divider />
+                </Grid>
+                <Grid item xs={12}>
+                  <Grid
+                    item
+                    container
+                    direction="column"
+                    alignItems="center"
+                    xs={12}
+                  >
+                    <Link
+                      href={navigateLocation.AUTH.SIGNIN}
+                      underline="none"
+                      variant="subtitle1"
+                      color={theme.palette.grey[900]}
+                    >
+                      {t("authentication.alreadyhaveanaccount")}
+                    </Link>
+                  </Grid>
+                </Grid>
+              </>
+            )}
           </Grid>
         </AuthCardWrapper>
       </Grid>

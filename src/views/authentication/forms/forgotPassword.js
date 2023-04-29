@@ -17,7 +17,9 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import severity from "@constants/severity";
 import Button from "@mui/material/Button";
+import Stack from "@mui/material/Stack";
 import Link from "@mui/material/Link";
+import Typography from "@mui/material/Typography";
 //#endregion
 //#region redux providers
 import {
@@ -38,6 +40,7 @@ const FormForgotPassword = () => {
   const [statusMessage, setStatusMessage] = React.useState(severity.success);
 
   const forgotPassword = (values) => {
+    const { username } = values;
     helpersExtension.simulateNetworkRequest(100).then(async () => {
       await dispatch(RECOVERY_PASSWORD(values))
         .unwrap()
@@ -49,8 +52,14 @@ const FormForgotPassword = () => {
 
           if (result.ok) {
             setStatusMessage(severity.success);
+            setMessageContentAlert(
+              t("authentication.yourpasswordhasbeenreset") + " " + username
+            );
           } else {
             setStatusMessage(severity.error);
+            setMessageContentAlert(
+              t("authentication.makesuretypedcorrectyouremailaddress")
+            );
           }
 
           formik.resetForm();
@@ -167,18 +176,31 @@ const FormForgotPassword = () => {
                   sx={{ mb: 2 }}
                   severity={statusMessage}
                 >
-                  {messageContentAlert + " "}
-                  {statusMessage === severity.success ? (
-                    <Link
-                      href={navigateLocation.AUTH.SIGNIN}
-                      underline="none"
-                      variant="subtitle1"
+                  <Stack spacing={1}>
+                    <Typography
+                      // color={theme.palette.secondary.main}
+                      gutterBottom
                     >
-                      {t("authentication.signin")}
-                    </Link>
-                  ) : (
-                    <></>
-                  )}
+                      {messageContentAlert}
+                    </Typography>
+                    {statusMessage === severity.success ? (
+                      <Typography
+                        // color={theme.palette.secondary.main}
+                        gutterBottom
+                      >
+                        {t("authentication.signinwithyournewpassword")}
+                        <Link
+                          href={navigateLocation.AUTH.SIGNIN}
+                          underline="none"
+                          variant="subtitle1"
+                        >
+                          {" " + t("common.clickhere")}
+                        </Link>
+                      </Typography>
+                    ) : (
+                      <></>
+                    )}
+                  </Stack>
                 </Alert>
               </Collapse>
             </FormControl>

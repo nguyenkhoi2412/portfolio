@@ -78,7 +78,7 @@ const ChangePassword = (props) => {
             <Grid item xs={12}>
               <FormChangePassword />
             </Grid>
-            <Grid item xs={12}>
+            {/* <Grid item xs={12}>
               <Divider />
             </Grid>
 
@@ -94,7 +94,7 @@ const ChangePassword = (props) => {
                 alignItems="center"
                 xs={12}
               >
-                {/* <Stack alignItems="center" justifyContent="center" spacing={1}>
+                <Stack alignItems="center" justifyContent="center" spacing={1}>
                   <Link
                     href={navigateLocation.AUTH.SIGNIN}
                     underline="none"
@@ -111,9 +111,9 @@ const ChangePassword = (props) => {
                   >
                     {t("authentication.donthaveanaccount")}
                   </Link>
-                </Stack> */}
+                </Stack>
               </Grid>
-            </Grid>
+            </Grid> */}
           </Grid>
         </AuthCardWrapper>
       </Grid>

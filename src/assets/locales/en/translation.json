@@ -79,7 +79,10 @@
     "continue": "Continue",
     "didnotreceivecodeverify": "Did not receive the email? Check your spam filter, or",
     "resendcode": "Resend code.",
-    "usernotfound": "User not found"
+    "usernotfound": "User not found",
+    "signinwithyournewpassword": "To sign in with your new password",
+    "makesuretypedcorrectyouremailaddress": "We don't recognize this user, make sure you typed correct your email address, it usually looks like someone@example.com",
+    "yourpasswordhasbeenreset": "Your password has been reset, please check in your email"
   },
   "user": {
     "firstname": "First name",
@@ -111,7 +114,8 @@
     "next": "Next",
     "complete": "Complete",
     "search": "Search",
-    "filter": "Filter"
+    "filter": "Filter",
+    "clickhere": "Click here"
   },
   "site": {
     "structure_site": "Structure site",
