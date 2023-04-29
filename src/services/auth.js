@@ -58,6 +58,18 @@ export default {
         .catch((error) => reject(error));
     });
   },
+  recoveryPassword: (params) => {
+    return new Promise((resolve, reject) => {
+      params.username = encryptHelper.rsa.encrypt(params.username);
+
+      axios
+        .get(
+          objectExtension.parseToQueryString(`auth/recoverypassword/`, params)
+        )
+        .then((response) => resolve(response))
+        .catch((error) => reject(error));
+    });
+  },
   verified_2fa: (params) => {
     return new Promise((resolve, reject) => {
       axios

@@ -1,6 +1,5 @@
 import * as React from "react";
-import { useNavigate } from "react-router-dom";
-import { useTranslation, Trans } from "react-i18next";
+import { useTranslation } from "react-i18next";
 import { useFormik } from "formik";
 import { helpersExtension, objectExtension } from "@utils/helpersExtension";
 import { getYupSchemaFromMetaData } from "@utils/yupSchemaCreator.js";
@@ -17,9 +16,8 @@ import CloseIcon from "@mui/icons-material/Close";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import severity from "@constants/severity";
-import {
-  Button,
-} from "@mui/material";
+import Button from "@mui/material/Button";
+import Link from "@mui/material/Link";
 //#endregion
 //#region redux providers
 import {
@@ -27,18 +25,47 @@ import {
   HIDE_PROGRESSBAR,
 } from "@components/mui-ui/progressBar/progressBar.reducer";
 import { useDispatch } from "react-redux";
-import { VALIDATE_USER } from "@reduxproviders/auth.reducer";
+import { RECOVERY_PASSWORD } from "@reduxproviders/auth.reducer";
 //#endregion
 import AnimateButton from "@components/mui-ui/extended/animateButton";
 
 const FormForgotPassword = () => {
-  const navigate = useNavigate();
-
   const { t } = useTranslation();
   const { enqueueSnackbar } = useSnackbar();
   const dispatch = useDispatch();
   const [showMessageAlert, setShowMessageAlert] = React.useState(false);
   const [messageContentAlert, setMessageContentAlert] = React.useState();
+  const [statusMessage, setStatusMessage] = React.useState(severity.success);
+
+  const forgotPassword = (values) => {
+    helpersExtension.simulateNetworkRequest(100).then(async () => {
+      await dispatch(RECOVERY_PASSWORD(values))
+        .unwrap()
+        .then((result) => {
+          setSubmitting(false);
+          dispatch(HIDE_PROGRESSBAR());
+          setShowMessageAlert(true);
+          setMessageContentAlert(result.message);
+
+          if (result.ok) {
+            setStatusMessage(severity.success);
+          } else {
+            setStatusMessage(severity.error);
+          }
+
+          formik.resetForm();
+        })
+        .catch((error) => {
+          setSubmitting(false);
+          dispatch(HIDE_PROGRESSBAR());
+          // variant could be success, error, warning, info, or default
+          enqueueSnackbar(t("connection.error"), {
+            variant: severity.error,
+          });
+          formik.resetForm();
+        });
+    });
+  };
 
   //#region useFormik
   const initialValues = _schema.initialValues();
@@ -55,30 +82,8 @@ const FormForgotPassword = () => {
     onSubmit: (values) => {
       setSubmitting(true);
       dispatch(SHOW_PROGRESSBAR());
-      helpersExtension.simulateNetworkRequest(100).then(async () => {
-        await dispatch(VALIDATE_USER(values))
-          .unwrap()
-          .then((result) => {
-            setSubmitting(false);
-            dispatch(HIDE_PROGRESSBAR());
-            if (result.ok) {
-              navigate(navigateLocation.DASHBOARD.DEFAULT);
-            } else {
-              setShowMessageAlert(true);
-              setMessageContentAlert(result.message);
-            }
 
-            formik.resetForm();
-          })
-          .catch((error) => {
-            dispatch(HIDE_PROGRESSBAR());
-            // variant could be success, error, warning, info, or default
-            enqueueSnackbar(t("connection.error"), {
-              variant: severity.error,
-            });
-            formik.resetForm();
-          });
-      });
+      forgotPassword(values);
     },
   });
   //#endregion
@@ -160,9 +165,20 @@ const FormForgotPassword = () => {
                     </IconButton>
                   }
                   sx={{ mb: 2 }}
-                  severity="error"
+                  severity={statusMessage}
                 >
-                  {messageContentAlert}
+                  {messageContentAlert + " "}
+                  {statusMessage === severity.success ? (
+                    <Link
+                      href={navigateLocation.AUTH.SIGNIN}
+                      underline="none"
+                      variant="subtitle1"
+                    >
+                      {t("authentication.signin")}
+                    </Link>
+                  ) : (
+                    <></>
+                  )}
                 </Alert>
               </Collapse>
             </FormControl>

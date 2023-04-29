@@ -27,6 +27,13 @@ export const REGISTER_USER = createAsyncThunk(
   }
 );
 
+export const RECOVERY_PASSWORD = createAsyncThunk(
+  "auth/recoverypassword",
+  async (params, thunkAPI) => {
+    return await authServices.recoveryPassword(params);
+  }
+);
+
 export const CHANGE_PASSWORD = createAsyncThunk(
   "auth/changepassword",
   async (params, thunkAPI) => {

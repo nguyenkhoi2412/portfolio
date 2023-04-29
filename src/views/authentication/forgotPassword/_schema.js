@@ -29,6 +29,10 @@ export default {
       autoFocus: true,
       helperText: t("authentication.enteryouremailaddress"),
     };
+    username.validations = yup
+      .string()
+      .email(t("authentication.mustbeavalidemail"))
+      .required(t("authentication.enteryouremailaddress"));
 
     // push all to array
     let inputForms = [];
