@@ -62,7 +62,7 @@ const FormSignIn = () => {
         .then((response) => {
           setSubmitting(false);
           dispatch(HIDE_PROGRESSBAR());
-          console.log('adsfsfsdf', response);
+
           if (response.ok) {
             if (response.rs.verified_token) {
               navigate(navigateLocation.DASHBOARD.DEFAULT);
@@ -85,7 +85,7 @@ const FormSignIn = () => {
           formik.resetForm();
         })
         .catch((error) => {
-          console.log('sdfsfsdf', error);
+          console.log("sdfsfsdf", error);
           setSubmitting(false);
           dispatch(HIDE_PROGRESSBAR());
           // variant could be success, error, warning, info, or default
