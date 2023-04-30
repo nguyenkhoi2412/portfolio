@@ -26,6 +26,7 @@ export const navigateLocation = {
     RESET_PASSWORD: ACCOUNT + "/resetpassword",
   },
   UTILITIES: {
+    GENERATE_KEY: UTILITIES + "/generatekey",
     TYPOGRAPHY: UTILITIES + "/typography",
     COLOR: UTILITIES + "/color",
     SHADOW: UTILITIES + "/shadow",

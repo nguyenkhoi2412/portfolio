@@ -1,6 +1,13 @@
 export default function componentStyleOverrides(theme) {
   const bgColor = theme.colors?.grey50;
   return {
+    MuiTypography: {
+      styleOverrides: {
+        root: {
+          wordBreak: "break-all",
+        },
+      },
+    },
     MuiButton: {
       styleOverrides: {
         root: {

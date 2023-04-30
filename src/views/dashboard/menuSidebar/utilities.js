@@ -23,6 +23,15 @@ const utilities = {
   type: "group",
   children: [
     {
+      id: "util-generatekey",
+      title: "Generate key",
+      type: "item",
+      url: navigateLocation.UTILITIES.GENERATE_KEY,
+      icon: icons.IconTypography,
+      target: false,
+      breadcrumbs: false,
+    },
+    {
       id: "util-typography",
       title: "Typography",
       type: "item",

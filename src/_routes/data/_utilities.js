@@ -1,10 +1,15 @@
-import UtilsTypography from "@views/utilities/Typography";
-import Color from "@views/utilities/Color";
-import UtilsShadow from "@views/utilities/Shadow";
-import UtilsTablerIcons from "@views/utilities/TablerIcons";
+import UtilsTypography from "@views/utilities/typography";
+import Color from "@views/utilities/color";
+import UtilsShadow from "@views/utilities/shadow";
+import UtilsTablerIcons from "@views/utilities/tablerIcons";
+import GenerateKey from "@views/utilities/generateKey";
 import { navigateLocation } from "@routes/navigateLocation";
 
 const UtilitiesRoutes = [
+  {
+    path: navigateLocation.UTILITIES.GENERATE_KEY,
+    element: <GenerateKey title="Generate key 🤠" />,
+  },
   {
     path: navigateLocation.UTILITIES.TYPOGRAPHY,
     element: <UtilsTypography title="Typography 🤠" />,
