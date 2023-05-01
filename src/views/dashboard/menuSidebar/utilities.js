@@ -1,5 +1,6 @@
 // assets
 import {
+  IconRadioactive,
   IconTypography,
   IconPalette,
   IconShadow,
@@ -9,6 +10,7 @@ import { navigateLocation } from "@routes/navigateLocation";
 
 // constant
 const icons = {
+  IconRadioactive,
   IconTypography,
   IconPalette,
   IconShadow,
@@ -27,7 +29,7 @@ const utilities = {
       title: "Generate key",
       type: "item",
       url: navigateLocation.UTILITIES.GENERATE_KEY,
-      icon: icons.IconTypography,
+      icon: icons.IconRadioactive,
       target: false,
       breadcrumbs: false,
     },
