@@ -1,18 +1,11 @@
-import { Navigate } from "react-router-dom";
 import { navigateLocation } from "../navigateLocation";
-import { RequireLoggedIn, RequireAuth } from "@utils/requireAuth";
-
-// project imports
-import DashboardLayout from "@dashboard/_layout";
+import { RequireAuth } from "@utils/requireAuth";
 
 // account routing
 import AccountProfile from "@dashboard/account/profile";
-import AccountInfo from "@dashboard/account/info";
+import AccountDetails from "@dashboard/account/details";
 import ChangePassword from "@dashboard/account/changePassword";
 import CreateNew from "@dashboard/account/createNew";
-
-// dashboard routing
-import DashboardDefault from "@dashboard/default";
 
 const AccountRoutes = [
   {
@@ -25,17 +18,17 @@ const AccountRoutes = [
     ),
   },
   {
-    path: navigateLocation.ACCOUNT.INFO,
-    title: "Account info 🤠",
+    path: navigateLocation.ACCOUNT.DETAILS,
+    title: "Account details 🤠",
     element: (
       <RequireAuth redirectTo={navigateLocation.AUTH.SIGNIN}>
-        <AccountInfo />
+        <AccountDetails />
       </RequireAuth>
     ),
   },
   {
     path: navigateLocation.ACCOUNT.CHANGE_PASSOWRD,
-    title:"Change password 🤠",
+    title: "Change password 🤠",
     element: (
       <RequireAuth redirectTo={navigateLocation.AUTH.SIGNIN}>
         <ChangePassword />
@@ -44,7 +37,7 @@ const AccountRoutes = [
   },
   {
     path: navigateLocation.ACCOUNT.CREATE_NEW,
-    title:"Create new 🤠",
+    title: "Create new 🤠",
     element: (
       <RequireAuth redirectTo={navigateLocation.AUTH.SIGNIN}>
         <CreateNew />

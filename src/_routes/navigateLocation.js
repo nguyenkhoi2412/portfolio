@@ -20,7 +20,7 @@ export const navigateLocation = {
   },
   ACCOUNT: {
     PROFILE: ACCOUNT + "/profile",
-    INFO: ACCOUNT + "/info",
+    DETAILS: ACCOUNT + "/details",
     CHANGE_PASSOWRD: ACCOUNT + "/changepassword",
     CREATE_NEW: ACCOUNT + "/createnew",
     RESET_PASSWORD: ACCOUNT + "/resetpassword",
