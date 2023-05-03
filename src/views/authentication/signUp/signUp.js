@@ -2,7 +2,7 @@ import "../_auth.scss";
 import * as React from "react";
 import { useTranslation } from "react-i18next";
 //#region utils support
-import { hooksInstance } from "@utils/hooksInstance";
+import { hookInstance } from "@utils/hookInstance";
 import { isAuth } from "@utils/requireAuth";
 //#endregion
 //#region mui-ui
@@ -23,7 +23,7 @@ import { navigateLocation } from "@routes/navigateLocation";
 
 const SignUp = (props) => {
   const theme = useTheme();
-  hooksInstance.useDocumentTitle(props.title);
+  hookInstance.useDocumentTitle(props.title);
   const matchDownSM = useMediaQuery(theme.breakpoints.down("md"));
   const { t } = useTranslation();
 

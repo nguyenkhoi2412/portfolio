@@ -8,7 +8,7 @@ import _schema from "./_schema";
 import Link from "@mui/material/Link";
 import { useSnackbar } from "notistack";
 import { stringExtension } from "@utils/helpersExtension";
-import { hooksInstance } from "@utils/hooksInstance";
+import { hookInstance } from "@utils/hookInstance";
 import { useTheme } from "@mui/material/styles";
 import { Divider, Grid, Stack, Typography, useMediaQuery } from "@mui/material";
 //#endregion
@@ -30,7 +30,7 @@ import {
 const CodeVerification = (props) => {
   const theme = useTheme();
   const { enqueueSnackbar } = useSnackbar();
-  hooksInstance.useDocumentTitle(props.title);
+  hookInstance.useDocumentTitle(props.title);
   const matchDownSM = useMediaQuery(theme.breakpoints.down("md"));
   const { t } = useTranslation();
 

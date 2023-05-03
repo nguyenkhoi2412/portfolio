@@ -3,7 +3,7 @@ import * as React from "react";
 //#region utils support
 import { useTranslation } from "react-i18next";
 import { gridSpacing } from "@constants";
-import { hooksInstance } from "@utils/hooksInstance";
+import { hookInstance } from "@utils/hookInstance";
 //#endregion
 
 // material-ui
@@ -41,11 +41,11 @@ ShadowBox.propTypes = {
 
 const AccountInfo = (props) => {
   const { t } = useTranslation();
-  hooksInstance.useDocumentTitle(props.title);
+  hookInstance.useDocumentTitle(props.title);
 
   return (
     <DashboardMainContentCardWrapper
-      title={t("authentication.accountinfo")}
+      title={t("authentication.accountdetailsinfo")}
       // secondary={
       //   <SecondaryAction link="https://next.material-ui.com/system/shadows/" />
       // }

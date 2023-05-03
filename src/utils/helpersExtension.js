@@ -713,7 +713,7 @@ export class storedExtension {
 //#endregion
 
 // //#region useHooks instance
-// export class hooksInstance {
+// export class hookInstance {
 //   static useDocumentTitle = (title) => {
 //     useEffect(() => {
 //       document.title = title;

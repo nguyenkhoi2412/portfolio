@@ -1,7 +1,7 @@
 import * as React from "react";
 //#region utils support
 import { useTranslation } from "react-i18next";
-import { hooksInstance } from "@utils/hooksInstance";
+import { hookInstance } from "@utils/hookInstance";
 //#endregion
 
 // material-ui
@@ -13,7 +13,7 @@ import AuthChangePassword from "@authentication/changepassword";
 
 const ChangePassword = (props) => {
   const { t } = useTranslation();
-  hooksInstance.useDocumentTitle(props.title);
+  hookInstance.useDocumentTitle(props.title);
 
   return <AuthChangePassword />;
 };

@@ -31,8 +31,8 @@ const authentication = {
           breadcrumbs: false,
         },
         {
-          id: "accountinfo",
-          title: <Trans i18nKey={"authentication.accountinfo"}></Trans>,
+          id: "accountdetailsinfo",
+          title: <Trans i18nKey={"authentication.accountdetailsinfo"}></Trans>,
           type: "item",
           url: navigateLocation.ACCOUNT.INFO,
           target: false,

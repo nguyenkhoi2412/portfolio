@@ -15,7 +15,7 @@ import {
 } from "react-router-dom";
 import queryString from "query-string";
 
-export class hooksInstance {
+export class hookInstance {
   static useDocumentTitle = (title) => {
     React.useEffect(() => {
       document.title = title;
@@ -228,7 +228,6 @@ export class hooksInstance {
     const params = useParams();
     const location = useLocation();
     const history = useNavigate();
-    const match = useMatch();
     // Return our custom router object
     // Memoize so that a new object is only returned if something changes
     return useMemo(() => {
@@ -246,11 +245,10 @@ export class hooksInstance {
         },
         // Include match, location, history objects so we have
         // access to extra React Router functionality if needed.
-        match,
         location,
         history,
       };
-    }, [params, match, location, history]);
+    }, [params, location, history]);
   };
 
   /*

@@ -20,13 +20,6 @@ import IncProgressBar from "@components/mui-ui/progressBar";
 //#endregion
 import { useDispatch, useSelector } from "react-redux";
 import Grid from "@mui/material/Grid";
-// import {
-//   SITE_GET_BY_NAME,
-//   siteState,
-//   localeState,
-// } from "@providers/site.reducer";
-// import { TYPE_GET_BY_SITE } from "@providers/type.reducer";
-// import { UPDATE_ENVIROMENT_INFOS } from "@providers/utils/shared.reducer";
 import { helpersExtension } from "@utils/helpersExtension";
 
 const App = (props) => {
@@ -53,39 +46,7 @@ const App = (props) => {
   React.useEffect(() => {
     i18n.changeLanguage("en-US");
     handleResize();
-    // dispatch(SITE_GET_BY_NAME());
   }, []);
-
-  // // React.useEffect(() => {
-  // //   if (performance.navigation.type === 1) {
-  // //     console.log("This page is reloaded");
-  // //   } else {
-  // //     console.log("This page is not reloaded");
-  // //   }
-  // //   window.onbeforeunload = null;
-  // //   window.onbeforeunload = function () {
-  // //     return true;
-  // //   };
-
-  // //   return () => {
-  // //     window.onbeforeunload = null;
-  // //   };
-  // // });
-
-  // //* GET TYPE BY SITE
-  // React.useEffect(() => {
-  //   if (helpersExtension.checkIsNotNull(site.d)) {
-  //     dispatch(TYPE_GET_BY_SITE(site.d._id));
-
-  //     // set language for i18n
-  //     i18n.changeLanguage(locale.lang);
-  //     setRenderRoutes(routes.buildRoutes(site.d, locale));
-  //   }
-  // }, [site.d]);
-
-  // React.useEffect(() => {
-  //   dispatch(UPDATE_ENVIROMENT_INFOS(deviceInfos));
-  // }, [deviceInfos]);
   //#endregion
 
   //* window resize
@@ -138,7 +99,4 @@ const dynamicFavicons = () => {
     document.getElementsByTagName("head")[0].appendChild(link);
   }
   link.href = defaultFavicon;
-  // if (CURRENT_MODULES() !== "") {
-  //   document.body.classList.add(CURRENT_MODULES());
-  // } else document.body.classList.add("home");
 };

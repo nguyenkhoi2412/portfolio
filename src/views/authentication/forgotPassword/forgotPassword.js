@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import _schema from "./_schema";
 //#region mui-ui
 import Link from "@mui/material/Link";
-import { hooksInstance } from "@utils/hooksInstance";
+import { hookInstance } from "@utils/hookInstance";
 import { navigateLocation } from "@routes/navigateLocation";
 import { useTheme } from "@mui/material/styles";
 import { Divider, Grid, Stack, Typography, useMediaQuery } from "@mui/material";
@@ -19,7 +19,7 @@ import Logo from "@components/ui/logo";
 
 const ForgotPassword = (props) => {
   const theme = useTheme();
-  hooksInstance.useDocumentTitle(props.title);
+  hookInstance.useDocumentTitle(props.title);
   const matchDownSM = useMediaQuery(theme.breakpoints.down("md"));
   const { t } = useTranslation();
 

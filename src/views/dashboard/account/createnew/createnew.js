@@ -1,8 +1,8 @@
-import { hooksInstance } from "@utils/hooksInstance";
+import { hookInstance } from "@utils/hookInstance";
 import SignUp from "@authentication/signUp";
 
 const CreateNew = (props) => {
-  hooksInstance.useDocumentTitle(props.title);
+  hookInstance.useDocumentTitle(props.title);
   return (
     <>
       <SignUp />

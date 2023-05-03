@@ -3,7 +3,7 @@ import * as React from "react";
 import { useTranslation } from "react-i18next";
 //#region mui-ui
 import Link from "@mui/material/Link";
-import { hooksInstance } from "@utils/hooksInstance";
+import { hookInstance } from "@utils/hookInstance";
 import { navigateLocation } from "@routes/navigateLocation";
 import { useTheme } from "@mui/material/styles";
 import { Divider, Grid, Stack, Typography, useMediaQuery } from "@mui/material";
@@ -22,7 +22,7 @@ import { currentUserState } from "@reduxproviders/auth.reducer";
 
 const ChangePassword = (props) => {
   const theme = useTheme();
-  hooksInstance.useDocumentTitle(props.title);
+  hookInstance.useDocumentTitle(props.title);
   const matchDownSM = useMediaQuery(theme.breakpoints.down("md"));
   const { t } = useTranslation();
   const currentUser = useSelector(currentUserState);

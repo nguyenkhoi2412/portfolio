@@ -3,7 +3,7 @@ import * as React from "react";
 //#region utils support
 import { useTranslation } from "react-i18next";
 import { gridSpacing } from "@constants";
-import { hooksInstance } from "@utils/hooksInstance";
+import { hookInstance } from "@utils/hookInstance";
 //#endregion
 
 // material-ui
@@ -41,7 +41,7 @@ ShadowBox.propTypes = {
 
 const AccountProfile = (props) => {
   const { t } = useTranslation();
-  hooksInstance.useDocumentTitle(props.title);
+  hookInstance.useDocumentTitle(props.title);
 
   return (
     <DashboardMainContentCardWrapper
