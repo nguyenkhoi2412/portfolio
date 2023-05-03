@@ -30,7 +30,6 @@ import {
 const CodeVerification = (props) => {
   const theme = useTheme();
   const { enqueueSnackbar } = useSnackbar();
-  hookInstance.useDocumentTitle(props.title);
   const matchDownSM = useMediaQuery(theme.breakpoints.down("md"));
   const { t } = useTranslation();
 

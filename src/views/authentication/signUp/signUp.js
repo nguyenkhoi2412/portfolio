@@ -23,7 +23,6 @@ import { navigateLocation } from "@routes/navigateLocation";
 
 const SignUp = (props) => {
   const theme = useTheme();
-  hookInstance.useDocumentTitle(props.title);
   const matchDownSM = useMediaQuery(theme.breakpoints.down("md"));
   const { t } = useTranslation();
 

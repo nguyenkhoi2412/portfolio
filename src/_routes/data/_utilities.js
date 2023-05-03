@@ -8,15 +8,18 @@ import { navigateLocation } from "@routes/navigateLocation";
 const UtilitiesRoutes = [
   {
     path: navigateLocation.UTILITIES.GENERATE_KEY,
-    element: <GenerateKey title="Generate key 🤠" />,
+    title: "Generate key 🤠",
+    element: <GenerateKey />,
   },
   {
     path: navigateLocation.UTILITIES.TYPOGRAPHY,
-    element: <UtilsTypography title="Typography 🤠" />,
+    title: "Typography 🤠",
+    element: <UtilsTypography />,
   },
   {
     path: navigateLocation.UTILITIES.COLOR,
-    element: <Color title="Color 🤠" />,
+    title: "Color 🤠",
+    element: <Color />,
   },
   {
     path: navigateLocation.UTILITIES.SHADOW,
@@ -24,7 +27,8 @@ const UtilitiesRoutes = [
   },
   {
     path: navigateLocation.UTILITIES.TABLERICONS,
-    element: <UtilsTablerIcons title="Tabler icons react 🤠" />,
+    title: "Tabler icons react 🤠",
+    element: <UtilsTablerIcons />,
   },
 ];
 

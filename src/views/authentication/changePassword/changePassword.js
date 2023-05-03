@@ -22,7 +22,6 @@ import { currentUserState } from "@reduxproviders/auth.reducer";
 
 const ChangePassword = (props) => {
   const theme = useTheme();
-  hookInstance.useDocumentTitle(props.title);
   const matchDownSM = useMediaQuery(theme.breakpoints.down("md"));
   const { t } = useTranslation();
   const currentUser = useSelector(currentUserState);

@@ -41,7 +41,6 @@ ShadowBox.propTypes = {
 
 const AccountProfile = (props) => {
   const { t } = useTranslation();
-  hookInstance.useDocumentTitle(props.title);
 
   return (
     <DashboardMainContentCardWrapper

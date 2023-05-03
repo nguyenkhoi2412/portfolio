@@ -40,8 +40,6 @@ ShadowBox.propTypes = {
 // ============================|| UTILITIES SHADOW ||============================ //
 
 const ResetPassword = (props) => {
-  const { t } = useTranslation();
-  hookInstance.useDocumentTitle(props.title);
 
   return (
     <DashboardMainContentCardWrapper

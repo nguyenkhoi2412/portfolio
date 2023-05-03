@@ -13,7 +13,6 @@ import AuthChangePassword from "@authentication/changepassword";
 
 const ChangePassword = (props) => {
   const { t } = useTranslation();
-  hookInstance.useDocumentTitle(props.title);
 
   return <AuthChangePassword />;
 };

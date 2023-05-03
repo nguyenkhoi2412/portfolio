@@ -1,9 +1,7 @@
 import axios from "axios";
 import stored from "@constants/storageHandler";
-import routes from "@routes";
 // import authServices from "@services/auth";
 import { storedExtension } from "./helpersExtension";
-const { CURRENT_MODULES } = routes;
 // You can use your own logic to set your local or production domain
 const baseDomain = process.env.API_HOSTNAME;
 const baseURL = `${baseDomain}/api`;
@@ -107,7 +105,6 @@ const removeLocalToken = () => {
   // localStorage.removeItem(stored.DASHBOARD.CURRENT_USER);
   // storedExtension.removeCookie(stored.DASHBOARD.ACCESS_TOKEN);
   // storedExtension.removeCookie(stored.DASHBOARD.REFRESH_TOKEN);
-
   // window.location.href = "/" + module + "/login";
 };
 

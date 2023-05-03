@@ -19,7 +19,6 @@ import Logo from "@components/ui/logo";
 
 const SignIn = (props) => {
   const theme = useTheme();
-  hookInstance.useDocumentTitle(props.title);
   const matchDownSM = useMediaQuery(theme.breakpoints.down("md"));
   const { t } = useTranslation();
 

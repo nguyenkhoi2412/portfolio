@@ -17,33 +17,37 @@ import DashboardDefault from "@dashboard/default";
 const AccountRoutes = [
   {
     path: navigateLocation.ACCOUNT.PROFILE,
+    title: "Account profiles 🤠",
     element: (
       <RequireAuth redirectTo={navigateLocation.AUTH.SIGNIN}>
-        <AccountProfile title="Account profile 🤠" />
+        <AccountProfile />
       </RequireAuth>
     ),
   },
   {
     path: navigateLocation.ACCOUNT.INFO,
+    title: "Account info 🤠",
     element: (
       <RequireAuth redirectTo={navigateLocation.AUTH.SIGNIN}>
-        <AccountInfo title="Account info 🤠" />
+        <AccountInfo />
       </RequireAuth>
     ),
   },
   {
     path: navigateLocation.ACCOUNT.CHANGE_PASSOWRD,
+    title:"Change password 🤠",
     element: (
       <RequireAuth redirectTo={navigateLocation.AUTH.SIGNIN}>
-        <ChangePassword title="Change password 🤠" />
+        <ChangePassword />
       </RequireAuth>
     ),
   },
   {
     path: navigateLocation.ACCOUNT.CREATE_NEW,
+    title:"Create new 🤠",
     element: (
       <RequireAuth redirectTo={navigateLocation.AUTH.SIGNIN}>
-        <CreateNew title="Create new 🤠" />
+        <CreateNew />
       </RequireAuth>
     ),
   },
