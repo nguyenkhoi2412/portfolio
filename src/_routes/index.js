@@ -9,7 +9,7 @@ import ClientAppRoutes from "./data/clientapp";
 // import AuthenticationRoutes from './AuthenticationRoutes';
 
 // ==============================|| ROUTING RENDER ||============================== //
-export const Routes = () => {
+export const BuildRoutes = () => {
   buildTitle();
 
   return useRoutes(RouteMaps());

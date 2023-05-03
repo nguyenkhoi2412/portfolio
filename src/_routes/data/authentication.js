@@ -14,7 +14,7 @@ const AuthenticationRoutes = [
         redirectTo={navigateLocation.DASHBOARD.DEFAULT}
         isAuthentication={true}
       >
-        <SignIn title="SignIn 🤠" />,
+        <SignIn />,
       </RequireAuth>
     ),
   },
@@ -26,26 +26,29 @@ const AuthenticationRoutes = [
         redirectTo={navigateLocation.DASHBOARD.DEFAULT}
         isAuthentication={true}
       >
-        <SignIn title="SignIn 🤠" />,
+        <SignIn />,
       </RequireAuth>
     ),
   },
   {
     path: navigateLocation.AUTH.SIGNUP,
-    element: <SignUp title="SignUp 🤠" />,
+    title: "SignUp 🤠",
+    element: <SignUp />,
   },
   {
     path: navigateLocation.AUTH.FORGOT_PASSWORD,
-    element: <ForgotPassword title="Forgot Password 🤠" />,
+    title: "Forgot Password 🤠",
+    element: <ForgotPassword />,
   },
   {
     path: navigateLocation.AUTH.CODE_VERIFICATION,
+    title: "Code verification 🤠",
     element: (
       <RequireLoggedIn
         redirectTo={navigateLocation.AUTH.SIGNIN}
         navigateTo={navigateLocation.DASHBOARD.DEFAULT}
       >
-        <CodeVerification title="Code verification 🤠" />,
+        <CodeVerification />,
       </RequireLoggedIn>
     ),
   },

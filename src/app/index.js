@@ -3,7 +3,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import defaultFavicon from "@assets/favicons/default/favicon.ico";
 import { SnackbarProvider } from "notistack";
-import { Routes } from "@routes";
+import { BuildRoutes } from "@routes";
 import NavigationScroll from "@utils/_layout/navigationScroll";
 import { ThemeProvider } from "@mui/system";
 import { CssBaseline, StyledEngineProvider } from "@mui/material";
@@ -74,7 +74,7 @@ const App = (props) => {
             >
               {/* <BuildPagesRoute dataSource={renderRoutes} /> */}
               <NavigationScroll>
-                <Routes />
+                <BuildRoutes />
               </NavigationScroll>
             </Grid>
           </SnackbarProvider>
