@@ -485,11 +485,11 @@ const SelectField = (props) => {
   //#region handle events
   const selectOnChange = (e, value) => {
     props.onChange(e);
-    let val = value;
+    let val = value || "";
 
-    // process value with autoComplete
+    // process value with MuiAutoComplete
     if (props.autoComplete) {
-      if (value.length) {
+      if (value?.length) {
         val = value?.map((x) => {
           if (typeof x === "object" && x !== null) {
             return x._id;
@@ -611,7 +611,7 @@ const SelectField = (props) => {
   const renderAutoComplete = () => {
     return (
       <Autocomplete
-      key={props._id + "select"}
+        key={props._id + "select"}
         multiple={multiple}
         id={props._id}
         options={lsItems}
@@ -650,7 +650,7 @@ const SelectField = (props) => {
             label={props.label}
             inputProps={{
               ...params.inputProps,
-              autoComplete: "new-password", // disable autocomplete and autofill
+              // autoComplete: "new-password", // disable autocomplete and autofill
             }}
           />
         )}

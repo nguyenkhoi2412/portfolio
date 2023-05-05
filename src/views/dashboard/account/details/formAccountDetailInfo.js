@@ -1,49 +1,45 @@
 import * as React from "react";
-import { useTranslation, Trans } from "react-i18next";
+import { useTranslation } from "react-i18next";
 import { useFormik } from "formik";
 import { helpersExtension, objectExtension } from "@utils/helpersExtension";
-import { strengthColor, strengthIndicator } from "@utils/passwordStrength";
 import { useSnackbar } from "notistack";
 import InputField from "@components/forms/inputField";
 import SelectField from "@components/forms/selectField";
 import _schema from "./_schema";
-import Google from "@assets/images/icons/social-google.svg";
 import { useTheme } from "@mui/material/styles";
 //#region mui-ui
 import FormControl from "@mui/material/FormControl";
 import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import Switch from "@mui/material/Switch";
 import Alert from "@mui/material/Alert";
 import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
-import Link from "@mui/material/Link";
 import CloseIcon from "@mui/icons-material/Close";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import severity from "@constants/severity";
-import { Stack, Typography, Button, useMediaQuery } from "@mui/material";
+import { Button, useMediaQuery } from "@mui/material";
 //#endregion
 //#region redux providers
 import {
   SHOW_PROGRESSBAR,
   HIDE_PROGRESSBAR,
 } from "@components/mui-ui/progressBar/progressBar.reducer";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { GET_COUNTRIES } from "@reduxproviders/country.reducer";
-import { ROLE_GET_ALL, roleState } from "@reduxproviders/role.reducer";
-import { currentUserState } from "@reduxproviders/auth.reducer";
+import { ROLE_GET_ALL } from "@reduxproviders/role.reducer";
+import { USER_UPDATE_INFO } from "@reduxproviders/auth.reducer";
 //#endregion
 import AnimateButton from "@components/mui-ui/extended/animateButton";
 
-const FormAccountDetailInfo = () => {
+const FormAccountDetailInfo = (props) => {
   const theme = useTheme();
   const matchDownSM = useMediaQuery(theme.breakpoints.down("md"));
   const { t } = useTranslation();
 
   const dispatch = useDispatch();
   const { enqueueSnackbar } = useSnackbar();
-  const currentUser = useSelector(currentUserState);
+  const [currentUser, setCurrentUser] = React.useState();
   const [showMessageAlert, setShowMessageAlert] = React.useState(false);
   const [messageContentAlert, setMessageContentAlert] = React.useState();
   const [alertBoxSeverity, setAlertBoxSeverity] = React.useState(
@@ -55,9 +51,10 @@ const FormAccountDetailInfo = () => {
 
   //#region usEffect
   React.useEffect(() => {
-    setTwoFactorChecked(currentUser.oneTimePassword);
-  }, [currentUser]);
-  //#endregion
+    setCurrentUser(props.currentUser);
+    setTwoFactorChecked(props.currentUser.oneTimePassword);
+  }, []);
+  // #endregion
 
   //#region getData
   const getRoles = () => {
@@ -97,32 +94,35 @@ const FormAccountDetailInfo = () => {
 
   //#region POST DATA
   const editUser = async (values) => {
-    // await dispatch(REGISTER_USER(values))
-    //   .unwrap()
-    //   .then((result) => {
-    //     setSubmitting(false);
-    //     dispatch(HIDE_PROGRESSBAR());
-    //     if (result.ok) {
-    //       setAlertBoxSeverity(severity.success);
-    //       setShowMessageAlert(true);
-    //       setMessageContentAlert(t("authentication.registersuccess"));
-    //     } else {
-    //       setAlertBoxSeverity(severity.error);
-    //       setShowMessageAlert(true);
-    //       setMessageContentAlert(
-    //         t("authentication.registerfail") + ". " + result.message
-    //       );
-    //     }
-    //     formik.resetForm();
-    //   })
-    //   .catch((error) => {
-    //     setSubmitting(false);
-    //     dispatch(HIDE_PROGRESSBAR());
-    //     // variant could be success, error, warning, info, or default
-    //     enqueueSnackbar(error, {
-    //       variant: severity.error,
-    //     });
-    //   });
+    //! update 2fa values
+    values.oneTimePassword = twoFactorChecked;
+    // compare 2 object get diff for update
+    values = objectExtension.getDiff(values, currentUser);
+    values._id = currentUser._id;
+    await dispatch(USER_UPDATE_INFO(values))
+      .unwrap()
+      .then((result) => {
+        setSubmitting(false);
+        dispatch(HIDE_PROGRESSBAR());
+        if (result.ok) {
+          setAlertBoxSeverity(severity.success);
+          setShowMessageAlert(true);
+          setMessageContentAlert(t("user.updatesuccess"));
+        } else {
+          setAlertBoxSeverity(severity.error);
+          setShowMessageAlert(true);
+          setMessageContentAlert(t("user.updatefail") + ". " + result.message);
+        }
+        formik.resetForm();
+      })
+      .catch((error) => {
+        setSubmitting(false);
+        dispatch(HIDE_PROGRESSBAR());
+        // variant could be success, error, warning, info, or default
+        enqueueSnackbar(error, {
+          variant: severity.error,
+        });
+      });
   };
   //#endregion
 
@@ -146,12 +146,11 @@ const FormAccountDetailInfo = () => {
     validateOnChange: enableValidation,
     validateOnBlur: enableValidation,
     onSubmit: (values) => {
-      console.log(values);
-      // setSubmitting(true);
-      // dispatch(SHOW_PROGRESSBAR());
-      // helpersExtension.simulateNetworkRequest(100).then(async () => {
-      //   editUser(values);
-      // });
+      setSubmitting(true);
+      dispatch(SHOW_PROGRESSBAR());
+      helpersExtension.simulateNetworkRequest(100).then(async () => {
+        editUser(values);
+      });
     },
   });
   //#endregion
@@ -193,7 +192,7 @@ const FormAccountDetailInfo = () => {
   //#endregion
 
   return (
-    <>
+    <React.Fragment>
       <Grid item xs={12} container alignItems="center" justifyContent="center">
         <Box
           className="form account-detail-infos"
@@ -325,7 +324,7 @@ const FormAccountDetailInfo = () => {
           </Grid>
         </Box>
       </Grid>
-    </>
+    </React.Fragment>
   );
 };
 

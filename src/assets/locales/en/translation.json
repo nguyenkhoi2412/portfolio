@@ -99,7 +99,9 @@
     "birthday": "Birthday",
     "country": "Country",
     "uploadnewimage": "Upload new image",
-    "changedetail": "Change details"
+    "changedetail": "Change details",
+    "updatesuccess": "Update account info successful",
+    "updatefail": "Update account info fail"
   },
   "common": {
     "addmore": "Add more",

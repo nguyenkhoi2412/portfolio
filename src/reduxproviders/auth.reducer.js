@@ -1,8 +1,9 @@
 import { ROLE } from "@constants/enumRoles";
 import { createSlice, current, createAsyncThunk } from "@reduxjs/toolkit";
+import commonServices from "@services/common.api";
 import authServices from "@services/auth";
 import { storedExtension } from "@utils/helpersExtension";
-import storageHandler from "@constants//storageHandler";
+import storageHandler from "@constants/storageHandler";
 
 // ==============================|| ACTIONS ||============================== //
 //#region ACTIONS
@@ -52,6 +53,13 @@ export const SECURE_2FA_GENERATE_TOKEN = createAsyncThunk(
   "auth/secure_2fa/gettoken",
   async (params, thunkAPI) => {
     return await authServices.getToken_2fa(params);
+  }
+);
+
+export const USER_UPDATE_INFO = createAsyncThunk(
+  "user/updateinfo",
+  async (params, thunkAPI) => {
+    return await commonServices.update("user/update/", params);
   }
 );
 //#endregion
@@ -152,6 +160,59 @@ export const auth = createSlice({
       }
 
       return newState;
+    },
+    //#endregion
+    //#region USER_UPDATE_INFO
+    [USER_UPDATE_INFO.pending]: (state) => {
+      return {
+        ...state,
+        isFetching: true,
+      };
+    },
+    [USER_UPDATE_INFO.rejected]: (state) => {
+      return {
+        ...state,
+        isFetching: false,
+      };
+    },
+    [USER_UPDATE_INFO.fulfilled]: (state, action) => {
+      // const response = action.payload;
+      // const results = response.rs;
+      
+      // const newState = {
+      //   ...state,
+      //   isFetching: false,
+      //   ok: response.ok,
+      //   message: response.message,
+      //   currentUser: {
+      //     ...results.currentUser,
+      //     isAdmin: results?.currentUser?.role === ROLE.ADMIN.name,
+      //     isSupervisor: results?.currentUser?.role === ROLE.SUPERVISOR.name,
+      //     isUser: results?.currentUser?.role === ROLE.USER.name,
+      //     isVisitor: results?.currentUser?.role === ROLE.VISITOR.name,
+      //   },
+      // };
+
+      // if (response.ok) {
+      //   // save localStore USER INFOS
+      //   localStorage.setItem(
+      //     storageHandler.DASHBOARD.CURRENT_USER,
+      //     JSON.stringify(newState.currentUser)
+      //   );
+
+      //   // save token to cookie
+      //   storedExtension.setCookie(
+      //     storageHandler.DASHBOARD.VERIFIED_2FA,
+      //     results.verified_token + ""
+      //   );
+
+      //   storedExtension.setCookie(
+      //     storageHandler.DASHBOARD.ACCESS_TOKEN,
+      //     results.access_token
+      //   );
+      // }
+
+      // return newState;
     },
     //#endregion
     //#region VALIDATE_SECURE_2FA

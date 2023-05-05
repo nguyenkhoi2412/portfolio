@@ -42,69 +42,74 @@ const AccountInfo = (props) => {
   //#region render content
   const renderAvatarDefault = () => {
     return helpersExtension.checkIsNotNull(
-      currentUser.detailInfos.avatarPath
+      currentUser?.detailInfos?.avatarPath
     ) ? (
       <></>
     ) : (
       <PersonPinOutlinedIcon />
     );
   };
-  //#endregion
 
+  //#endregion
+  console.log("sdfsdfsd");
   return (
-    <Grid container spacing={gridSpacing}>
-      <Grid item xs={12} md={4}>
-        <SubCard
-          title={t("authentication.profilepicture")}
-          contentClass={
-            helpersExtension.checkIsNotNull(currentUser.detailInfos.avatarPath)
-              ? "avatar-container"
-              : "avatar-container svg"
-          }
-        >
-          <Grid container spacing={gridSpacing} justifyContent={`center`}>
-            <Grid item>
-              <Stack spacing={2} alignItems={`center`}>
-                <Avatar
-                  alt={
-                    currentUser.detailInfos.firstName +
-                    " " +
-                    currentUser.detailInfos.lastName
-                  }
-                  src={currentUser.detailInfos.avatarPath}
-                  sx={{
-                    width: 100,
-                    height: 100,
-                  }}
-                >
-                  {renderAvatarDefault()}
-                </Avatar>
-                <AnimateButton>
-                  <Button
-                    disableElevation
-                    disabled={submitting}
-                    fullWidth
-                    size="large"
-                    type="submit"
-                    variant="contained"
-                    onClick={handleUploadNewImage}
+    <React.Fragment>
+      <Grid container spacing={gridSpacing}>
+        <Grid item xs={12} md={4}>
+          <SubCard
+            title={t("authentication.profilepicture")}
+            contentClass={
+              helpersExtension.checkIsNotNull(
+                currentUser?.detailInfos?.avatarPath
+              )
+                ? "avatar-container"
+                : "avatar-container svg"
+            }
+          >
+            <Grid container spacing={gridSpacing} justifyContent={`center`}>
+              <Grid item>
+                <Stack spacing={2} alignItems={`center`}>
+                  <Avatar
+                    alt={
+                      currentUser?.detailInfos?.firstName +
+                      " " +
+                      currentUser?.detailInfos?.lastName
+                    }
+                    src={currentUser?.detailInfos?.avatarPath}
+                    sx={{
+                      width: 100,
+                      height: 100,
+                    }}
                   >
-                    {t("user.uploadnewimage")}
-                  </Button>
-                </AnimateButton>
-              </Stack>
+                    {renderAvatarDefault()}
+                  </Avatar>
+                  <AnimateButton>
+                    <Button
+                      disableElevation
+                      disabled={submitting}
+                      fullWidth
+                      size="large"
+                      type="submit"
+                      variant="contained"
+                      onClick={handleUploadNewImage}
+                    >
+                      {t("user.uploadnewimage")}
+                    </Button>
+                  </AnimateButton>
+                </Stack>
+              </Grid>
             </Grid>
-          </Grid>
-        </SubCard>
+          </SubCard>
+        </Grid>
+        <Grid item xs={12} md={8}>
+          <SubCard title={t("authentication.accountdetails")}>
+            <Grid container spacing={gridSpacing}>
+              <FormAccountDetailInfo currentUser={currentUser} />
+            </Grid>
+          </SubCard>
+        </Grid>
       </Grid>
-      <Grid item xs={12} md={8}>
-        <SubCard title={t("authentication.accountdetails")}>
-          <Grid container spacing={gridSpacing}>
-            <FormAccountDetailInfo />
-          </Grid>
-        </SubCard>
-      </Grid>
-    </Grid>
+    </React.Fragment>
   );
 };
 

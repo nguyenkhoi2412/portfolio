@@ -122,13 +122,7 @@ const InputField = (props) => {
   const md = props.md || sm;
 
   return (
-    <Grid
-      item
-      xs={xs}
-      sm={sm}
-      md={md}
-      className="field-container"
-    >
+    <Grid item xs={xs} sm={sm} md={md} className="field-container">
       {/* <InputLabel htmlFor='my-input'>Email address</InputLabel> */}
       <TextField
         margin="normal"
@@ -156,7 +150,7 @@ const InputField = (props) => {
 };
 
 export default React.memo(InputField, (props, nextProps) => {
-  if (props === nextProps) {
+  if (props.value === nextProps.value && props.id === nextProps.id) {
     // return true if you don't need re-render
     return true;
   }
