@@ -678,9 +678,17 @@ export default React.memo(SelectField, (props, nextProps) => {
   if (
     props.value === nextProps.value &&
     props.id === nextProps.id &&
-    JSON.stringify(props.listItems) === JSON.stringify(nextProps.listItems)
+    compareArrays(props.listItems, nextProps.listItems)
   ) {
     // return true if you don't need re-render
     return true;
   }
 });
+
+const compareArrays = (a, b) =>
+  a.length === b.length &&
+  a.every(
+    (element, index) =>
+      element === b[index] ||
+      JSON.stringify(element) === JSON.stringify(b[index])
+  );

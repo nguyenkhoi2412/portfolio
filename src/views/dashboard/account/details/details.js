@@ -51,7 +51,7 @@ const AccountInfo = (props) => {
   };
 
   //#endregion
-  console.log("sdfsdfsd");
+
   return (
     <React.Fragment>
       <Grid container spacing={gridSpacing}>
