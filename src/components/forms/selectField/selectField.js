@@ -574,15 +574,15 @@ const SelectField = (props) => {
 
   const renderSelect = () => {
     return (
-      <React.Fragment key={props._id + "select"}>
-        <InputLabel id={props._id + "-label"}>{props.label}</InputLabel>
+      <React.Fragment key={props.id + "select"}>
+        <InputLabel id={props.id + "-label"}>{props.label}</InputLabel>
         <Select
           key={helpersExtension.uuidv4()}
           fullWidth
           multiple={multiple}
           tabIndex={props.tabIndex}
-          labelId={props._id + "-label"}
-          id={props._id}
+          labelId={props.id + "-label"}
+          id={props.id}
           value={multiple ? dataValueMultiple : dataValue}
           // input={<OutlinedInput label="Tag" />}
           // renderValue={(selected) => renderValue(selected)}
@@ -611,9 +611,9 @@ const SelectField = (props) => {
   const renderAutoComplete = () => {
     return (
       <Autocomplete
-        key={props._id + "select"}
+        key={props.id + "-select"}
         multiple={multiple}
-        id={props._id}
+        id={props.id}
         options={lsItems}
         className="form-control"
         onChange={(e, optionSelected) => selectOnChange(e, optionSelected)}
@@ -660,7 +660,7 @@ const SelectField = (props) => {
 
   return (
     <Grid
-      key={props._id + "select"}
+      key={props.id + "select"}
       item
       xs={props.xs || 12}
       sm={props.sm || 12}
@@ -677,7 +677,8 @@ const SelectField = (props) => {
 export default React.memo(SelectField, (props, nextProps) => {
   if (
     props.value === nextProps.value &&
-    props.listItems === nextProps.listItems
+    props.id === nextProps.id &&
+    JSON.stringify(props.listItems) === JSON.stringify(nextProps.listItems)
   ) {
     // return true if you don't need re-render
     return true;

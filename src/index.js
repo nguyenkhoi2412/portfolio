@@ -11,12 +11,12 @@ const rootElement = document.getElementById("root");
 const root = createRoot(rootElement);
 
 const app = (
-  <>
+  <React.Fragment>
     {/* Redux store */}
     <Provider store={storeProvider}>
       <App />
     </Provider>
-  </>
+  </React.Fragment>
 );
 
 root.render(app);
