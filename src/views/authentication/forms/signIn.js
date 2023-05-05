@@ -278,7 +278,6 @@ const FormSignIn = () => {
                     checked={checked}
                     onChange={(event) => setChecked(event.target.checked)}
                     name="checked"
-                    color="primary"
                   />
                 }
                 label="Remember me"
@@ -287,7 +286,6 @@ const FormSignIn = () => {
                 href={navigateLocation.AUTH.FORGOT_PASSWORD}
                 variant="body2"
                 underline="none"
-                color="secondary"
               >
                 {t("authentication.forgotpassword")}
               </Link>
@@ -300,7 +298,6 @@ const FormSignIn = () => {
                 size="large"
                 type="submit"
                 variant="contained"
-                color="secondary"
               >
                 {t("authentication.signin")}
               </Button>

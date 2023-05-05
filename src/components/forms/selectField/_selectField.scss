@@ -1,5 +1,22 @@
 .MuiMenu-root {
-    .MuiMenu-paper {
-        z-index: 1000;
+  .MuiMenu-paper {
+    z-index: 1000;
+    .MuiMenu-list {
+      .MuiMenuItem-root {
+        .MuiBox-root {
+          > img.icon-select {
+            width: 16px;
+          }
+        }
+      }
     }
+  }
+}
+
+.MuiSelect-select {
+  .MuiBox-root {
+    > img.icon-select {
+      width: 16px;
+    }
+  }
 }

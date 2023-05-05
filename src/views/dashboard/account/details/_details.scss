@@ -1,0 +1,23 @@
+.avatar-container {
+  &.svg {
+    .MuiAvatar-circular {
+      background-color: transparent;
+    }
+  }
+  img {
+    width: 100px;
+    height: 100px;
+  }
+
+  svg {
+    font-size: 90px;
+  }
+}
+
+.form {
+  &.account-detail-infos {
+    .btn-actions {
+      margin-top: 16px;
+    }
+  }
+}

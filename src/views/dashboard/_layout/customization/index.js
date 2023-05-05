@@ -100,7 +100,6 @@ const Customization = () => {
           onClick={handleToggle}
           size="medium"
           variant="circular"
-          color="secondary"
           sx={{
             borderRadius: 0,
             borderTopLeftRadius: "50%",
@@ -114,7 +113,7 @@ const Customization = () => {
           }}
         >
           <AnimateButton type="rotate">
-            <IconButton color="inherit" size="large" disableRipple>
+            <IconButton color="primary" size="large" disableRipple>
               <IconSettings />
             </IconButton>
           </AnimateButton>
@@ -192,7 +191,7 @@ const Customization = () => {
                   sx={{ mt: 2.5 }}
                 >
                   <Grid item>
-                    <Typography variant="h6" color="secondary">
+                    <Typography variant="h6">
                       4px
                     </Typography>
                   </Grid>
@@ -208,7 +207,6 @@ const Customization = () => {
                       step={2}
                       min={4}
                       max={24}
-                      color="secondary"
                       sx={{
                         "& .MuiSlider-valueLabel": {
                           color: "secondary.light",
@@ -217,7 +215,7 @@ const Customization = () => {
                     />
                   </Grid>
                   <Grid item>
-                    <Typography variant="h6" color="secondary">
+                    <Typography variant="h6">
                       24px
                     </Typography>
                   </Grid>

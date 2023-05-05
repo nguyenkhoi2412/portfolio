@@ -1,20 +1,26 @@
 import { useTranslation } from "react-i18next";
-import { ROLE } from "@constants/enumRoles";
-import { useDispatch, useSelector } from "react-redux";
 import * as yup from "yup";
-import { isUserState, isVisitorState } from "@reduxproviders/auth.reducer";
+import { useSelector } from "react-redux";
+import {
+  currentUserState,
+  isUserState,
+  isVisitorState,
+} from "@reduxproviders/auth.reducer";
 
 export default {
   initialValues: () => {
+    const currentUser = useSelector(currentUserState);
     return {
       detailInfos: {
-        firstName: "",
-        lastName: "",
-        avatarPath: "",
+        firstName: currentUser.detailInfos.firstName,
+        lastName: currentUser.detailInfos.lastName,
+        avatarPath: currentUser.detailInfos.avatarPath,
+        country: currentUser.detailInfos.country,
       },
-      role: ROLE.USER.name,
-      username: "",
-      password: "",
+      username: currentUser.username,
+      phone: currentUser.phone,
+      role: currentUser.role,
+      oneTimePassword: currentUser.oneTimePassword,
     };
   },
   validation: () => {
@@ -27,18 +33,14 @@ export default {
       username: yup
         .string()
         .email(t("authentication.mustbeavalidemail"))
-        .max(255)
-        .required(t("authentication.enterusername")),
-      password: yup
-        .string()
-        .required(t("authentication.enterpassword"))
-        .min(8, t("authentication.passwordmusgreater8")),
+        .required(t("authentication.enteryouremailaddress")),
     });
   },
-  dataForm: (lsRoles) => {
+  dataForm: (lsRoles, getCountries) => {
     const { t } = useTranslation();
     const isVisitor = useSelector(isVisitorState);
     const isUser = useSelector(isUserState);
+
     // render firstname
     const firstname = {
       tabIndex: 0,
@@ -66,9 +68,20 @@ export default {
       sm: 6,
     };
 
+    // render username
+    const username = {
+      tabIndex: 2,
+      id: "username",
+      field: "username",
+      type: "email",
+      label: t("authentication.emailaddress"),
+      autoFocus: true,
+      helperText: t("authentication.enteryouremailaddress"),
+    };
+
     // render role
     const role = {
-      tabIndex: 2,
+      tabIndex: 3,
       id: "role",
       field: "role",
       type: "select",
@@ -84,33 +97,57 @@ export default {
       helperText: t("authentication.selectrole"),
     };
 
-    // render username
-    const username = {
-      tabIndex: 3,
-      id: "username",
-      field: "username",
-      type: "text",
-      label: t("authentication.username"),
-      helperText: t("authentication.enterusername"),
+    // render phone
+    const phone = {
+      tabIndex: 4,
+      id: "phone",
+      field: "phone",
+      type: "number",
+      label: t("user.phone"),
+      preventXSS: true,
+      xs: 12,
+      sm: 6,
     };
 
-    // render password
-    const password = {
-      tabIndex: 4,
-      id: "password",
-      field: "password",
-      type: "password",
-      label: t("authentication.password"),
-      helperText: t("authentication.enterpassword"),
+    // render country
+    const country = {
+      tabIndex: 5,
+      id: "detailInfos.country",
+      field: "detailInfos.country",
+      type: "select",
+      label: t("user.country"),
+      listItems: getCountries.map((x) => {
+        return {
+          _id: x.name.common,
+          name: x.name.common,
+          icon: x.flags.svg,
+          alt: x.flags.alt,
+        };
+      }),
+      autoComplete: true,
+      xs: 12,
+      sm: 6,
+    };
+
+    // render oneTimePassword
+    const oneTimePassword = {
+      tabIndex: 6,
+      id: "oneTimePassword",
+      field: "oneTimePassword",
+      type: "button",
+      label: t("authentication.securewithtotp2fa"),
+      xs: 12,
     };
 
     // push all to array
     let inputForms = [];
+    inputForms.push(username);
     inputForms.push(firstname);
     inputForms.push(lastname);
+    inputForms.push(phone);
     inputForms.push(role);
-    inputForms.push(username);
-    inputForms.push(password);
+    inputForms.push(country);
+    inputForms.push(oneTimePassword);
 
     //sort fields by index
     inputForms.sort((a, b) => (a.tabIndex > b.tabIndex ? 1 : -1));

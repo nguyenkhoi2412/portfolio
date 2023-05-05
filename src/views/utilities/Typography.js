@@ -114,7 +114,6 @@ const Typography = () => (
             <Grid item>
               <MuiTypography
                 variant="body2"
-                color="primary"
                 component={Link}
                 href="https://berrydashboard.io"
                 target="_blank"

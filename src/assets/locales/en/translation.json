@@ -14,6 +14,7 @@
     "hiwelcomeback": "Hi, Welcome Back",
     "enteryourcredentialstocontinue": "Enter your credentials to continue",
     "or": "or",
+    "profilepicture": "Profile Picture",
     "firstname": "First name",
     "lastname": "Last name",
     "rolename": "Role",
@@ -37,7 +38,7 @@
     "forgotpassword": "Forgot password?",
     "resend_code": "Resend code",
     "accountprofile": "Account profile",
-    "accountdetailsinfo": "Account details info",
+    "accountdetails": "Account details",
     "register": "Register",
     "registernow": "Register now?",
     "createnew": "Create new",
@@ -83,14 +84,22 @@
     "signinwithyournewpassword": "To sign in with your new password",
     "makesuretypedcorrectyouremailaddress": "We don't recognize this user, make sure you typed correct your email address, it usually looks like someone@example.com",
     "yourpasswordhasbeenreset": "Your password has been reset, please check in your email",
-    "accounthasbeenlocked": "Recovery password fail. Account has been locked"
+    "accounthasbeenlocked": "Recovery password fail. Account has been locked",
+    "2fa": "Authentication with (2FA)",
+    "securewithtotp2fa": "Two-Factor Authentication (2FA) can be used to help protect your account from unauthrized access by requiring you to enter a security code when you signin.",
+    "enable2fa": "Enable 2FA",
+    "disable2fa": "Disabled 2FA"
   },
   "user": {
     "firstname": "First name",
     "lastname": "Last name",
     "fullname": "Full name",
+    "phone": "Phone",
     "email": "Email",
-    "birthday": "Birthday"
+    "birthday": "Birthday",
+    "country": "Country",
+    "uploadnewimage": "Upload new image",
+    "changedetail": "Change details"
   },
   "common": {
     "addmore": "Add more",

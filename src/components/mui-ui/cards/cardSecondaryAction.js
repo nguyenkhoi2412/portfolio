@@ -20,7 +20,6 @@ const CardSecondaryAction = ({ title, link, icon }) => {
             target="_blank"
             alt="MUI Logo"
             size="badge"
-            color="primary"
             outline
           >
             <svg
@@ -67,7 +66,6 @@ const CardSecondaryAction = ({ title, link, icon }) => {
             href={link}
             target="_blank"
             size="badge"
-            color="primary"
             outline
           >
             {icon}

@@ -183,14 +183,14 @@ const FormForgotPassword = () => {
                 >
                   <Stack spacing={1}>
                     <Typography
-                      // color={theme.palette.secondary.main}
+                      // color={theme.palette.primary.main}
                       gutterBottom
                     >
                       {messageContentAlert}
                     </Typography>
                     {statusMessage === severity.success ? (
                       <Typography
-                        // color={theme.palette.secondary.main}
+                        // color={theme.palette.primary.main}
                         gutterBottom
                       >
                         {t("authentication.signinwithyournewpassword")}
@@ -217,7 +217,6 @@ const FormForgotPassword = () => {
                 size="large"
                 type="submit"
                 variant="contained"
-                color="secondary"
               >
                 {t("authentication.sendmail")}
               </Button>

@@ -19,8 +19,8 @@ export const configBaseTheme = (customization) => {
     darkTextPrimary: color.grey700,
     darkTextSecondary: color.grey500,
     textDark: color.grey900,
-    menuSelected: color.secondaryDark,
-    menuSelectedBack: color.secondaryLight,
+    menuSelected: color.primaryDark,
+    menuSelectedBack: color.primaryLight,
     divider: color.grey200,
     customization,
   };
@@ -40,10 +40,10 @@ export const configBaseTheme = (customization) => {
     typography: themeTypography(themeOption),
     // palette: {
     //   primary: {
-    //     main: palette.secondaryMain,
+    //     main: themePalette.primary.main,
     //   },
     //   secondary: {
-    //     main: palette.primaryMain,
+    //     main: themePalette.secondary.main,
     //   },
     //   breakpoints: {
     //     values: {

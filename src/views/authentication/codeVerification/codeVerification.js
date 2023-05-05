@@ -91,7 +91,7 @@ const CodeVerification = (props) => {
                     spacing={1}
                   >
                     <Typography
-                      color={theme.palette.secondary.main}
+                      color={theme.palette.primary.main}
                       gutterBottom
                       variant={matchDownSM ? "h3" : "h2"}
                     >

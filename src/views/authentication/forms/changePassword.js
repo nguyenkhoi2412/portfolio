@@ -182,7 +182,6 @@ const FormChangePassword = () => {
                 size="large"
                 type="submit"
                 variant="contained"
-                color="secondary"
               >
                 {t("authentication.changepassword")}
               </Button>

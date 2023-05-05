@@ -187,7 +187,6 @@ const FormCodeVerification = () => {
                 size="large"
                 type="submit"
                 variant="contained"
-                color="secondary"
               >
                 {t("authentication.continue")}
               </Button>

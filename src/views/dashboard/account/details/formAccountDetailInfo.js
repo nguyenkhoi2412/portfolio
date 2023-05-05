@@ -1,21 +1,19 @@
 import * as React from "react";
 import { useTranslation, Trans } from "react-i18next";
 import { useFormik } from "formik";
-import {
-  helpersExtension,
-  objectExtension,
-} from "@utils/helpersExtension";
+import { helpersExtension, objectExtension } from "@utils/helpersExtension";
 import { strengthColor, strengthIndicator } from "@utils/passwordStrength";
 import { useSnackbar } from "notistack";
 import InputField from "@components/forms/inputField";
 import SelectField from "@components/forms/selectField";
-import _schema from "./../signUp/_schema";
+import _schema from "./_schema";
 import Google from "@assets/images/icons/social-google.svg";
 import { useTheme } from "@mui/material/styles";
 //#region mui-ui
 import FormControl from "@mui/material/FormControl";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
+import Switch from "@mui/material/Switch";
 import Alert from "@mui/material/Alert";
 import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
@@ -24,12 +22,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import severity from "@constants/severity";
-import {
-  Divider,
-  Typography,
-  Button,
-  useMediaQuery,
-} from "@mui/material";
+import { Stack, Typography, Button, useMediaQuery } from "@mui/material";
 //#endregion
 //#region redux providers
 import {
@@ -37,27 +30,34 @@ import {
   HIDE_PROGRESSBAR,
 } from "@components/mui-ui/progressBar/progressBar.reducer";
 import { useDispatch, useSelector } from "react-redux";
-import { REGISTER_USER, authState } from "@reduxproviders/auth.reducer";
+import { GET_COUNTRIES } from "@reduxproviders/country.reducer";
 import { ROLE_GET_ALL, roleState } from "@reduxproviders/role.reducer";
+import { currentUserState } from "@reduxproviders/auth.reducer";
 //#endregion
 import AnimateButton from "@components/mui-ui/extended/animateButton";
 
-const FormSignUp = () => {
+const FormAccountDetailInfo = () => {
   const theme = useTheme();
   const matchDownSM = useMediaQuery(theme.breakpoints.down("md"));
   const { t } = useTranslation();
 
   const dispatch = useDispatch();
   const { enqueueSnackbar } = useSnackbar();
+  const currentUser = useSelector(currentUserState);
   const [showMessageAlert, setShowMessageAlert] = React.useState(false);
   const [messageContentAlert, setMessageContentAlert] = React.useState();
   const [alertBoxSeverity, setAlertBoxSeverity] = React.useState(
     severity.error
   );
   const [lsRoles, setLsRoles] = React.useState([]);
-  const [checked, setChecked] = React.useState(true);
-  const [strength, setStrength] = React.useState(0);
-  const [level, setLevel] = React.useState();
+  const [lsCountry, setLsCountry] = React.useState([]);
+  const [twoFactorChecked, setTwoFactorChecked] = React.useState(true);
+
+  //#region usEffect
+  React.useEffect(() => {
+    setTwoFactorChecked(currentUser.oneTimePassword);
+  }, [currentUser]);
+  //#endregion
 
   //#region getData
   const getRoles = () => {
@@ -77,49 +77,66 @@ const FormSignUp = () => {
         });
     });
   };
+
+  const getCountries = () => {
+    helpersExtension.simulateNetworkRequest(100).then(async () => {
+      await dispatch(GET_COUNTRIES())
+        .unwrap()
+        .then((result) => {
+          setLsCountry(result);
+        })
+        .catch((error) => {
+          // variant could be success, error, warning, info, or default
+          enqueueSnackbar(t("connection.error"), {
+            variant: severity.error,
+          });
+        });
+    });
+  };
   //#endregion
 
   //#region POST DATA
-  const registerUser = async (values) => {
-    await dispatch(REGISTER_USER(values))
-      .unwrap()
-      .then((result) => {
-        setSubmitting(false);
-        dispatch(HIDE_PROGRESSBAR());
-        if (result.ok) {
-          setAlertBoxSeverity(severity.success);
-          setShowMessageAlert(true);
-          setMessageContentAlert(t("authentication.registersuccess"));
-        } else {
-          setAlertBoxSeverity(severity.error);
-          setShowMessageAlert(true);
-          setMessageContentAlert(
-            t("authentication.registerfail") + ". " + result.message
-          );
-        }
-        formik.resetForm();
-      })
-      .catch((error) => {
-        setSubmitting(false);
-        dispatch(HIDE_PROGRESSBAR());
-        // variant could be success, error, warning, info, or default
-        enqueueSnackbar(error, {
-          variant: severity.error,
-        });
-      });
+  const editUser = async (values) => {
+    // await dispatch(REGISTER_USER(values))
+    //   .unwrap()
+    //   .then((result) => {
+    //     setSubmitting(false);
+    //     dispatch(HIDE_PROGRESSBAR());
+    //     if (result.ok) {
+    //       setAlertBoxSeverity(severity.success);
+    //       setShowMessageAlert(true);
+    //       setMessageContentAlert(t("authentication.registersuccess"));
+    //     } else {
+    //       setAlertBoxSeverity(severity.error);
+    //       setShowMessageAlert(true);
+    //       setMessageContentAlert(
+    //         t("authentication.registerfail") + ". " + result.message
+    //       );
+    //     }
+    //     formik.resetForm();
+    //   })
+    //   .catch((error) => {
+    //     setSubmitting(false);
+    //     dispatch(HIDE_PROGRESSBAR());
+    //     // variant could be success, error, warning, info, or default
+    //     enqueueSnackbar(error, {
+    //       variant: severity.error,
+    //     });
+    //   });
   };
   //#endregion
 
   // #region useEffect
   React.useEffect(() => {
     getRoles();
+    getCountries();
   }, []);
   //#endregion
 
   //#region useFormik
   const initialValues = _schema.initialValues();
   const validationSchema = _schema.validation();
-  const dataForm = _schema.dataForm(lsRoles);
+  const dataForm = _schema.dataForm(lsRoles, lsCountry);
   const [enableValidation, setEnableValidation] = React.useState(false);
   const [submitting, setSubmitting] = React.useState(false);
   const formik = useFormik({
@@ -129,11 +146,12 @@ const FormSignUp = () => {
     validateOnChange: enableValidation,
     validateOnBlur: enableValidation,
     onSubmit: (values) => {
-      setSubmitting(true);
-      dispatch(SHOW_PROGRESSBAR());
-      helpersExtension.simulateNetworkRequest(100).then(async () => {
-        registerUser(values);
-      });
+      console.log(values);
+      // setSubmitting(true);
+      // dispatch(SHOW_PROGRESSBAR());
+      // helpersExtension.simulateNetworkRequest(100).then(async () => {
+      //   editUser(values);
+      // });
     },
   });
   //#endregion
@@ -147,90 +165,45 @@ const FormSignUp = () => {
     formik.handleSubmit();
   };
 
-  const handleInputOnChange = (e, type) => {
-    if (type === "password") {
-      const temp = strengthIndicator(e.target.value);
-      setStrength(temp);
-      setLevel(strengthColor(temp));
-    }
+  const handleChangeOneTimePassword = (e) => {
+    setTwoFactorChecked(e.target.checked);
+  };
+  //#endregion
+
+  //#region render content
+  const renderOneTimePasswordField = (item) => {
+    return (
+      <Grid item xs={12} className="field-container">
+        <FormControl margin="normal" fullWidth>
+          <FormControlLabel
+            value="start"
+            control={
+              <Switch
+                defaultChecked={item.isOneTimePassword}
+                onChange={handleChangeOneTimePassword}
+              />
+            }
+            label={item.label}
+            labelPlacement="start"
+          />
+        </FormControl>
+      </Grid>
+    );
   };
   //#endregion
 
   return (
     <>
-      <Grid container direction="column" justifyContent="center" spacing={2}>
-        <Grid item xs={12}>
-          <AnimateButton>
-            <Button
-              variant="outlined"
-              fullWidth
-              onClick={() => console.log("googleHandler")}
-              size="large"
-              sx={{
-                color: "grey.700",
-                backgroundColor: theme.palette.grey[50],
-                borderColor: theme.palette.grey[100],
-              }}
-            >
-              <Box sx={{ mr: { xs: 1, sm: 2, width: 20 } }}>
-                <img
-                  src={Google}
-                  alt="google"
-                  width={16}
-                  height={16}
-                  style={{ marginRight: matchDownSM ? 8 : 16 }}
-                />
-              </Box>
-              {t("authentication.signupwithgoogle")}
-            </Button>
-          </AnimateButton>
-        </Grid>
-        <Grid item xs={12}>
-          <Box sx={{ alignItems: "center", display: "flex" }}>
-            <Divider sx={{ flexGrow: 1 }} orientation="horizontal" />
-            <Button
-              variant="outlined"
-              sx={{
-                cursor: "unset",
-                m: 2,
-                py: 0.5,
-                px: 7,
-                borderColor: `${theme.palette.grey[100]} !important`,
-                color: `${theme.palette.grey[900]}!important`,
-                fontWeight: 500,
-              }}
-              disableRipple
-              disabled
-            >
-              {t("authentication.or")}
-            </Button>
-            <Divider sx={{ flexGrow: 1 }} orientation="horizontal" />
-          </Box>
-        </Grid>
-        <Grid
-          item
-          xs={12}
-          container
-          alignItems="center"
-          justifyContent="center"
-        >
-          <Box sx={{ mb: 2 }}>
-            <Typography variant="subtitle1">
-              {t("authentication.signupwithemailaddress")}
-            </Typography>
-          </Box>
-        </Grid>
-      </Grid>
       <Grid item xs={12} container alignItems="center" justifyContent="center">
         <Box
-          className="form"
+          className="form account-detail-infos"
           component="form"
           autoComplete="off"
           noValidate
           onSubmit={handleSubmit}
           sx={{ mt: 1 }}
         >
-          <Grid container spacing={matchDownSM ? 0 : 2}>
+          <Grid container spacing={2}>
             {dataForm.map((item, index) => {
               let keyField = item.id + "_" + index;
               let errorText = objectExtension.getValue(
@@ -243,7 +216,7 @@ const FormSignUp = () => {
                 ) && errorText;
               switch (item.type) {
                 case "text":
-                case "password":
+                case "number":
                   return (
                     <InputField
                       margin="normal"
@@ -262,7 +235,6 @@ const FormSignUp = () => {
                       setValue={formik.setFieldValue}
                       onChange={(e) => {
                         formik.handleChange;
-                        handleInputOnChange(e, item.type);
                       }}
                       error={hasError}
                       helperText={hasError ? errorText : ""}
@@ -282,6 +254,7 @@ const FormSignUp = () => {
                       label={item.label}
                       name={item.field}
                       disabled={item.disabled}
+                      autoComplete={item.autoComplete}
                       value={objectExtension.getValue(
                         formik,
                         "values." + item.field
@@ -295,55 +268,20 @@ const FormSignUp = () => {
                       sm={item.sm}
                     />
                   );
+
+                default:
+                  switch (item.field) {
+                    case "oneTimePassword":
+                      return (
+                        <React.Fragment key={keyField}>
+                          {renderOneTimePasswordField(item)}
+                        </React.Fragment>
+                      );
+                  }
               }
             })}
           </Grid>
-          <Grid item xs={12}>
-            {strength !== 0 && (
-              <FormControl fullWidth>
-                <Box sx={{ mb: 2 }}>
-                  <Grid container spacing={2} alignItems="center">
-                    <Grid item>
-                      <Box
-                        style={{ backgroundColor: level?.color }}
-                        sx={{ width: 85, height: 8, borderRadius: "7px" }}
-                      />
-                    </Grid>
-                    <Grid item>
-                      <Typography variant="subtitle1" fontSize="0.75rem">
-                        {level?.label}
-                      </Typography>
-                    </Grid>
-                  </Grid>
-                </Box>
-              </FormControl>
-            )}
-          </Grid>
           <Grid container alignItems="center" justifyContent="space-between">
-            <Grid item>
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={checked}
-                    onChange={(event) => setChecked(event.target.checked)}
-                    name="checked"
-                  />
-                }
-                label={
-                  <Typography variant="subtitle1">
-                    {t("authentication.agreewith")}
-                    <Typography
-                      variant="subtitle1"
-                      component={Link}
-                      underline="none"
-                      to="#"
-                    >
-                      {t("authentication.termsandcondition")}
-                    </Typography>
-                  </Typography>
-                }
-              />
-            </Grid>
             <Grid item xs={12} className={!showMessageAlert ? "none" : ""}>
               <FormControl fullWidth>
                 <Collapse in={showMessageAlert}>
@@ -368,8 +306,8 @@ const FormSignUp = () => {
                 </Collapse>
               </FormControl>
             </Grid>
-            <Grid item xs={12}>
-              <Box sx={{ mt: 2 }}>
+            <Grid item>
+              <Box className="btn-actions">
                 <AnimateButton>
                   <Button
                     disableElevation
@@ -379,7 +317,7 @@ const FormSignUp = () => {
                     type="submit"
                     variant="contained"
                   >
-                    {t("authentication.signup")}
+                    {t("user.changedetail")}
                   </Button>
                 </AnimateButton>
               </Box>
@@ -391,4 +329,4 @@ const FormSignUp = () => {
   );
 };
 
-export default FormSignUp;
+export default FormAccountDetailInfo;

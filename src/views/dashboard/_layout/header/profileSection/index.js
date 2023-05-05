@@ -145,7 +145,6 @@ const ProfileSection = () => {
         aria-controls={open ? "menu-list-grow" : undefined}
         aria-haspopup="true"
         onClick={handleToggle}
-        color="primary"
       />
       <Popper
         placement="bottom-end"
@@ -244,7 +243,6 @@ const ProfileSection = () => {
                                 </Grid>
                                 <Grid item>
                                   <Switch
-                                    color="primary"
                                     checked={sdm}
                                     onChange={(e) => setSdm(e.target.checked)}
                                     name="sdm"

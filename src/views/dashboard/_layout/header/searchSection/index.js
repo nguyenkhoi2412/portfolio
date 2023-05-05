@@ -64,11 +64,11 @@ const HeaderAvatarStyle = styled(Avatar, { shouldForwardProp })(
   ({ theme }) => ({
     ...theme.typography.commonAvatar,
     ...theme.typography.mediumAvatar,
-    background: theme.palette.secondary.light,
-    color: theme.palette.secondary.dark,
+    background: theme.palette.primary.light,
+    color: theme.palette.primary.dark,
     "&:hover": {
-      background: theme.palette.secondary.dark,
-      color: theme.palette.secondary.light,
+      background: theme.palette.primary.dark,
+      color: theme.palette.primary.light,
     },
   })
 );

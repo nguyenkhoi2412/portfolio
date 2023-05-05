@@ -31,10 +31,10 @@ const authentication = {
           breadcrumbs: false,
         },
         {
-          id: "accountdetailsinfo",
-          title: <Trans i18nKey={"authentication.accountdetailsinfo"}></Trans>,
+          id: "accountdetails",
+          title: <Trans i18nKey={"authentication.accountdetails"}></Trans>,
           type: "item",
-          url: navigateLocation.ACCOUNT.INFO,
+          url: navigateLocation.ACCOUNT.DETAILS,
           target: false,
           breadcrumbs: false,
         },

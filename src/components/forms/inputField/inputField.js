@@ -42,7 +42,7 @@ const InputField = (props) => {
   }, [props.value]);
 
   React.useEffect(() => {
-    setShowClearText(dataValue.length > 0 && !props.disabled);
+    setShowClearText(dataValue?.length > 0 && !props.disabled);
   }, [dataValue]);
   //#endregion
 
@@ -117,11 +117,16 @@ const InputField = (props) => {
   };
   //#endregion
 
+  const xs = props.xs || 12;
+  const sm = props.sm || xs;
+  const md = props.md || sm;
+
   return (
     <Grid
       item
-      xs={props.xs || 12}
-      sm={props.sm || 12}
+      xs={xs}
+      sm={sm}
+      md={md}
       className="field-container"
     >
       {/* <InputLabel htmlFor='my-input'>Email address</InputLabel> */}
