@@ -178,7 +178,6 @@ export const auth = createSlice({
     [USER_UPDATE_INFO.fulfilled]: (state, action) => {
       // const response = action.payload;
       // const results = response.rs;
-      
       // const newState = {
       //   ...state,
       //   isFetching: false,
@@ -192,26 +191,22 @@ export const auth = createSlice({
       //     isVisitor: results?.currentUser?.role === ROLE.VISITOR.name,
       //   },
       // };
-
       // if (response.ok) {
       //   // save localStore USER INFOS
       //   localStorage.setItem(
       //     storageHandler.DASHBOARD.CURRENT_USER,
       //     JSON.stringify(newState.currentUser)
       //   );
-
       //   // save token to cookie
       //   storedExtension.setCookie(
       //     storageHandler.DASHBOARD.VERIFIED_2FA,
       //     results.verified_token + ""
       //   );
-
       //   storedExtension.setCookie(
       //     storageHandler.DASHBOARD.ACCESS_TOKEN,
       //     results.access_token
       //   );
       // }
-
       // return newState;
     },
     //#endregion

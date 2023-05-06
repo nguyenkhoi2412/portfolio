@@ -2,10 +2,12 @@ import "./_details.scss";
 import PersonPinOutlinedIcon from "@mui/icons-material/PersonPinOutlined";
 import * as React from "react";
 //#region utils support
-import { helpersExtension } from "@utils/helpersExtension";
+import { useSnackbar } from "notistack";
+import { helpersExtension, stringExtension } from "@utils/helpersExtension";
 import { useTranslation } from "react-i18next";
 import { gridSpacing } from "@constants";
 import FormAccountDetailInfo from "./formAccountDetailInfo";
+import severity from "@constants/severity";
 //#endregion
 
 // material-ui
@@ -26,16 +28,31 @@ import { currentUserState } from "@reduxproviders/auth.reducer";
 
 const AccountInfo = (props) => {
   const { t } = useTranslation();
+  const { enqueueSnackbar } = useSnackbar();
   const currentUser = useSelector(currentUserState);
+  const [file, setFile] = React.useState();
   const [submitting, setSubmitting] = React.useState(false);
 
   //#region useEffect
-  React.useEffect(() => {}, []);
+  React.useEffect(() => {
+    setFile(currentUser?.detailInfos?.avatarPath);
+  }, []);
   //#endregion
 
   //#region handle events
-  const handleUploadNewImage = () => {
-    alert("Implement soon");
+  const handleOnChangeUploadFile = (event) => {
+    var file = event.target.files[0];
+    var fileBase64 = stringExtension.getBase64(file);
+    fileBase64.then((response) => {
+      if (response.ok) {
+        setFile(response.d);
+      } else {
+        // variant could be success, error, warning, info, or default
+        enqueueSnackbar(response.message, {
+          variant: severity.error,
+        });
+      }
+    });
   };
   //#endregion
 
@@ -75,7 +92,7 @@ const AccountInfo = (props) => {
                       " " +
                       currentUser?.detailInfos?.lastName
                     }
-                    src={currentUser?.detailInfos?.avatarPath}
+                    src={file}
                     sx={{
                       width: 100,
                       height: 100,
@@ -86,13 +103,19 @@ const AccountInfo = (props) => {
                   <AnimateButton>
                     <Button
                       disableElevation
-                      disabled={submitting}
                       fullWidth
                       size="large"
-                      type="submit"
+                      // type="submit"
                       variant="contained"
-                      onClick={handleUploadNewImage}
+                      component="label"
                     >
+                      <input
+                        hidden
+                        accept="image/*"
+                        multiple
+                        type="file"
+                        onChange={handleOnChangeUploadFile}
+                      />
                       {t("user.uploadnewimage")}
                     </Button>
                   </AnimateButton>

@@ -3,7 +3,8 @@ import { combineReducers } from "redux";
 // import gSharedReducer from "./utils/shared.reducer";
 import { componentReducer } from "@components/_reducer";
 import customizationReducer from "./berry/customizationReducer";
-import countryReducer from "./country.reducer.js";
+import countryReducer from "./country.reducer";
+import fileReducer from "./file.reducer";
 
 // //* dashboard
 import authReducer from "./auth.reducer";
@@ -23,6 +24,7 @@ const rootReducer = combineReducers({
   customization: customizationReducer,
   //   gShared: gSharedReducer,
   country: countryReducer,
+  file: fileReducer,
   //   //? dashboard
   auth: authReducer,
   role: roleReducer,
