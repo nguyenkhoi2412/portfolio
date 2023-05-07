@@ -20,8 +20,9 @@ import SubCard from "@components/mui-ui/cards/subCard";
 //#endregion
 
 //#region redux provider
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { currentUserState } from "@reduxproviders/auth.reducer";
+import { FILE_UPLOAD } from "@reduxproviders/file.reducer";
 //#endregion
 
 // ============================|| ACCOUNT DETAIL INFO ||============================ //
@@ -29,6 +30,7 @@ import { currentUserState } from "@reduxproviders/auth.reducer";
 const AccountInfo = (props) => {
   const { t } = useTranslation();
   const { enqueueSnackbar } = useSnackbar();
+  const dispatch = useDispatch();
   const currentUser = useSelector(currentUserState);
   const [file, setFile] = React.useState();
   const [submitting, setSubmitting] = React.useState(false);
@@ -42,17 +44,20 @@ const AccountInfo = (props) => {
   //#region handle events
   const handleOnChangeUploadFile = (event) => {
     var file = event.target.files[0];
-    var fileBase64 = stringExtension.getBase64(file);
-    fileBase64.then((response) => {
-      if (response.ok) {
-        setFile(response.d);
-      } else {
-        // variant could be success, error, warning, info, or default
-        enqueueSnackbar(response.message, {
-          variant: severity.error,
-        });
-      }
-    });
+    const formData = new FormData();
+    formData.append("avatar", file);
+    dispatch(FILE_UPLOAD(formData));
+    // var fileBase64 = stringExtension.getBase64(file);
+    // fileBase64.then((response) => {
+    //   if (response.ok) {
+    //     setFile(response.d);
+    //   } else {
+    //     // variant could be success, error, warning, info, or default
+    //     enqueueSnackbar(response.message, {
+    //       variant: severity.error,
+    //     });
+    //   }
+    // });
   };
   //#endregion
 
@@ -111,9 +116,10 @@ const AccountInfo = (props) => {
                     >
                       <input
                         hidden
-                        accept="image/*"
-                        multiple
+                        // accept="image/*"
+                        // multiple
                         type="file"
+                        name="avatar"
                         onChange={handleOnChangeUploadFile}
                       />
                       {t("user.uploadnewimage")}

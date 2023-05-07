@@ -36,7 +36,7 @@ axiosInstance.interceptors.request.use(
 
     if (accessToken !== null) {
       request.headers["Authorization"] = "Bearer " + accessToken;
-      request.headers["X-Access-Token"] = "Bearer " + accessToken;
+      // request.headers["X-Access-Token"] = "Bearer " + accessToken;
     }
 
     return request;
