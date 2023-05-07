@@ -45,7 +45,7 @@ const AccountInfo = (props) => {
   const handleOnChangeUploadFile = (event) => {
     var file = event.target.files[0];
     const formData = new FormData();
-    formData.append("avatar", file);
+    formData.append("single", file);
     dispatch(FILE_UPLOAD(formData));
     // var fileBase64 = stringExtension.getBase64(file);
     // fileBase64.then((response) => {
@@ -119,7 +119,7 @@ const AccountInfo = (props) => {
                         // accept="image/*"
                         // multiple
                         type="file"
-                        name="avatar"
+                        name="single"
                         onChange={handleOnChangeUploadFile}
                       />
                       {t("user.uploadnewimage")}
