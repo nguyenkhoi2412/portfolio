@@ -46,7 +46,14 @@ const AccountInfo = (props) => {
     var file = event.target.files[0];
     const formData = new FormData();
     formData.append("single", file);
-    dispatch(FILE_UPLOAD(formData));
+    // for upload multiple files
+    // for (let i = 0; i < file.length; i++) {
+    //   formData.append("multiple", file[i]);
+    // }
+    dispatch(FILE_UPLOAD({
+      formData: formData,
+      type: 'single'
+    }));
     // var fileBase64 = stringExtension.getBase64(file);
     // fileBase64.then((response) => {
     //   if (response.ok) {
@@ -116,7 +123,6 @@ const AccountInfo = (props) => {
                     >
                       <input
                         hidden
-                        // accept="image/*"
                         // multiple
                         type="file"
                         name="single"
