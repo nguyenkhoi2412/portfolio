@@ -1,4 +1,5 @@
 import Resizer from "react-image-file-resizer";
+import { stringExtension } from "@utils/helpersExtension";
 
 export class fileExtension {
   // static uploadfile = (file, cb) => {
