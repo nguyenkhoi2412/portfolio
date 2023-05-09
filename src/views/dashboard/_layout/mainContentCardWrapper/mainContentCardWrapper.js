@@ -1,14 +1,10 @@
 import "./_mainContentCardWrapper.scss";
 // assets
-import { IconChevronRight } from "@tabler/icons-react";
-import navigation from "@dashboard/menuSidebar";
 
 // material-ui
-import { Box, Card, Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 // project import
 import MainCard from "@components/mui-ui/cards";
-import Breadcrumbs from "@components/mui-ui/extended/breadcrumbs";
-import SecondaryAction from "@components/mui-ui/cards/cardSecondaryAction";
 import { gridSpacing } from "@constants";
 
 // ==============================|| DASHBOARD MAIN CONTENT CARD WRAPPER ||============================== //
