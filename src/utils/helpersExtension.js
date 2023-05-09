@@ -556,10 +556,6 @@ export class stringExtension {
     return text;
   };
 
-  static getExtension = (filename) => {
-    return filename.substring(filename.lastIndexOf(".") + 1);
-  };
-
   static mungeEmailAddress = (text) => {
     var i = text.indexOf("@");
     var startIndex = (i * 0.2) | 0;
@@ -569,43 +565,6 @@ export class stringExtension {
       text.slice(startIndex, endIndex).replace(/./g, "*") +
       text.slice(endIndex)
     );
-  };
-
-  static getImageBase64 = (file) => {
-    const maxSize = 2 * 1024 * 1024; // 2Mb
-    var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
-    return new Promise(function (resolve, reject) {
-      if (!allowedExtensions.exec(file.name)) {
-        resolve({
-          code: 200,
-          message:
-            "File upload only supports the following filetypes - jpg, jpeg, png",
-          ok: false,
-        });
-      }
-
-      // check file size
-      if (file.size > maxSize) {
-        resolve({
-          code: 200,
-          message:
-            "File too large - max size is " +
-            stringExtension.formatBytes(maxSize),
-          ok: false,
-        });
-      }
-      const reader = new FileReader();
-      reader.onload = function () {
-        resolve({
-          code: 200,
-          message: "",
-          ok: true,
-          d: reader.result,
-        });
-      };
-      reader.onerror = reject;
-      reader.readAsDataURL(file);
-    });
   };
 
   //#region convert currency
@@ -662,22 +621,6 @@ export class stringExtension {
   }
   //#endregion
 }
-//#endregion
-
-//#region files
-export class fileExtension {
-  static uploadfile = (file, cb) => {
-    let reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = function () {
-      cb(reader.result);
-    };
-    reader.onerror = function (error) {
-      console.log("Error: ", error);
-    };
-  };
-}
-//#endregion
 
 //#region datetime
 export class dateExtension {

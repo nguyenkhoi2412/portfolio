@@ -4,6 +4,7 @@ import * as React from "react";
 //#region utils support
 import { useSnackbar } from "notistack";
 import { helpersExtension, objectExtension } from "@utils/helpersExtension";
+import { fileExtension } from "@utils/fileExtension";
 import { useTranslation } from "react-i18next";
 import { gridSpacing } from "@constants";
 import FormAccountDetailInfo from "./formAccountDetailInfo";
@@ -95,17 +96,6 @@ const AccountInfo = (props) => {
           });
         });
     });
-    // var fileBase64 = stringExtension.getImageBase64(file);
-    // fileBase64.then((response) => {
-    //   if (response.ok) {
-    //     setFile(response.d);
-    //   } else {
-    //     // variant could be success, error, warning, info, or default
-    //     enqueueSnackbar(response.message, {
-    //       variant: severity.error,
-    //     });
-    //   }
-    // });
   };
 
   const updateCurrentUserInfo = (filename) => {
