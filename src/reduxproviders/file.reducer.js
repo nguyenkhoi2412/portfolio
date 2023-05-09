@@ -1,9 +1,7 @@
 import { createSlice, current, createAsyncThunk } from "@reduxjs/toolkit";
 import fileServices from "@services/file";
-import { storedExtension } from "@utils/helpersExtension";
-import storageHandler from "@constants//storageHandler";
 
-export const FILE_UPLOAD = createAsyncThunk(
+export const CHANGE_PROFILE_IMAGE = createAsyncThunk(
   "fileUpload",
   async (params, thunkAPI) => {
     return await fileServices.fileUpload(params);

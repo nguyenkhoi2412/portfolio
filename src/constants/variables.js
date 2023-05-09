@@ -1,9 +1,10 @@
 export default {
-  ASSET_PATH: process.env.ASSET_PATH || '/',
+  ASSET_PATH: process.env.ASSET_PATH || "/",
   //* use for dashboard page
   stripedHtml: /(<([^>]+)>)/gi,
   specialCharacters: /[!@#$%^&*(),.?":{}|<>]/gi,
-  passwordRegex: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/,
+  passwordRegex:
+    /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/,
   regexXSS: /[^\w\s]/gi,
   regexEditor: /<p><br><\/p>|<div><br><\/div>/g,
   //* use for frontend site
@@ -14,7 +15,7 @@ export default {
     language_name: "English",
     date_format: "MM-DD-YYYY",
     time_format: "HH:mm",
-    currency: "$"
+    currency: "$",
   },
   viewType: {
     LIST: "list",

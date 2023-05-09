@@ -93,7 +93,7 @@ const FormAccountDetailInfo = (props) => {
   //#endregion
 
   //#region POST DATA
-  const editUser = async (values) => {
+  const updateUser = async (values) => {
     //! update 2fa values
     values.oneTimePassword = twoFactorChecked;
     // compare 2 object get diff for update
@@ -149,7 +149,7 @@ const FormAccountDetailInfo = (props) => {
       setSubmitting(true);
       dispatch(SHOW_PROGRESSBAR());
       helpersExtension.simulateNetworkRequest(100).then(async () => {
-        editUser(values);
+        updateUser(values);
       });
     },
   });

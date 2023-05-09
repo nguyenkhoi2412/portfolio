@@ -3,7 +3,7 @@ import PersonPinOutlinedIcon from "@mui/icons-material/PersonPinOutlined";
 import * as React from "react";
 //#region utils support
 import { useSnackbar } from "notistack";
-import { helpersExtension, stringExtension } from "@utils/helpersExtension";
+import { helpersExtension, objectExtension } from "@utils/helpersExtension";
 import { useTranslation } from "react-i18next";
 import { gridSpacing } from "@constants";
 import FormAccountDetailInfo from "./formAccountDetailInfo";
@@ -21,8 +21,15 @@ import SubCard from "@components/mui-ui/cards/subCard";
 
 //#region redux provider
 import { useDispatch, useSelector } from "react-redux";
-import { currentUserState } from "@reduxproviders/auth.reducer";
-import { FILE_UPLOAD } from "@reduxproviders/file.reducer";
+import {
+  USER_UPDATE_INFO,
+  currentUserState,
+} from "@reduxproviders/auth.reducer";
+import { CHANGE_PROFILE_IMAGE } from "@reduxproviders/file.reducer";
+import {
+  SHOW_PROGRESSBAR,
+  HIDE_PROGRESSBAR,
+} from "@components/mui-ui/progressBar/progressBar.reducer";
 //#endregion
 
 // ============================|| ACCOUNT DETAIL INFO ||============================ //
@@ -37,12 +44,20 @@ const AccountInfo = (props) => {
 
   //#region useEffect
   React.useEffect(() => {
-    setFile(currentUser?.detailInfos?.avatarPath);
+    setFile(
+      process.env.API_HOSTNAME + "/" + currentUser?.detailInfos?.avatarPath
+    );
   }, []);
   //#endregion
 
   //#region handle events
   const handleOnChangeUploadFile = (event) => {
+    if (submitting) return;
+
+    // show pending progressbar
+    setSubmitting(true);
+    dispatch(SHOW_PROGRESSBAR());
+
     var file = event.target.files[0];
     const formData = new FormData();
     formData.append("single", file);
@@ -50,11 +65,37 @@ const AccountInfo = (props) => {
     // for (let i = 0; i < file.length; i++) {
     //   formData.append("multiple", file[i]);
     // }
-    dispatch(FILE_UPLOAD({
-      formData: formData,
-      type: 'single'
-    }));
-    // var fileBase64 = stringExtension.getBase64(file);
+    helpersExtension.simulateNetworkRequest(100).then(async () => {
+      await dispatch(
+        CHANGE_PROFILE_IMAGE({
+          formData: formData,
+          type: "single",
+        })
+      )
+        .unwrap()
+        .then((res) => {
+          if (res.ok) {
+            // change image profile
+            const filename = res.rs.filenames[0];
+            setFile(process.env.API_HOSTNAME + "/" + filename);
+
+            // update state current user avatar
+            updateCurrentUserInfo(filename);
+          } else {
+            enqueueSnackbar(t("user.uploadProfileFail"), {
+              variant: severity.error,
+            });
+          }
+        })
+        .catch((error) => {
+          dispatch(HIDE_PROGRESSBAR());
+          // variant could be success, error, warning, info, or default
+          enqueueSnackbar(error, {
+            variant: severity.error,
+          });
+        });
+    });
+    // var fileBase64 = stringExtension.getImageBase64(file);
     // fileBase64.then((response) => {
     //   if (response.ok) {
     //     setFile(response.d);
@@ -65,6 +106,51 @@ const AccountInfo = (props) => {
     //     });
     //   }
     // });
+  };
+
+  const updateCurrentUserInfo = (filename) => {
+    const _currentUser = { ...currentUser };
+
+    // update currentUser avatar
+    helpersExtension.simulateNetworkRequest(100).then(async () => {
+      const newValues = {
+        ...currentUser,
+        detailInfos: {
+          ...currentUser.detailInfos,
+          avatarPath: filename,
+        },
+      };
+
+      // compare 2 object get diff for update
+      let values = objectExtension.getDiff(newValues, _currentUser);
+      values._id = currentUser._id;
+      await dispatch(USER_UPDATE_INFO(values))
+        .unwrap()
+        .then((result) => {
+          setSubmitting(false);
+          dispatch(HIDE_PROGRESSBAR());
+
+          if (result.ok) {
+            // variant could be success, error, warning, info, or default
+            enqueueSnackbar(t("user.updatesuccess"), {
+              variant: severity.success,
+            });
+          } else {
+            // variant could be success, error, warning, info, or default
+            enqueueSnackbar(t("user.updatefail") + ". " + result.message, {
+              variant: severity.success,
+            });
+          }
+        })
+        .catch((error) => {
+          setSubmitting(false);
+          dispatch(HIDE_PROGRESSBAR());
+          // variant could be success, error, warning, info, or default
+          enqueueSnackbar(error, {
+            variant: severity.error,
+          });
+        });
+    });
   };
   //#endregion
 
@@ -117,7 +203,7 @@ const AccountInfo = (props) => {
                       disableElevation
                       fullWidth
                       size="large"
-                      // type="submit"
+                      disabled={submitting}
                       variant="contained"
                       component="label"
                     >

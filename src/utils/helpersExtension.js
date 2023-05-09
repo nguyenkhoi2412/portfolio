@@ -571,7 +571,7 @@ export class stringExtension {
     );
   };
 
-  static getBase64 = (file) => {
+  static getImageBase64 = (file) => {
     const maxSize = 2 * 1024 * 1024; // 2Mb
     var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
     return new Promise(function (resolve, reject) {

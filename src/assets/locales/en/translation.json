@@ -101,7 +101,9 @@
     "uploadnewimage": "Upload new image",
     "changedetail": "Change details",
     "updatesuccess": "Update account info successful",
-    "updatefail": "Update account info fail"
+    "updatefail": "Update account info fail",
+    "uploadProfileSuccess": "Change your image profile successful",
+    "uploadProfileFail": "File upload only supports the following filetypes - \"jpeg, jpg, png\". And max size is 1Mb."
   },
   "common": {
     "addmore": "Add more",

@@ -176,38 +176,41 @@ export const auth = createSlice({
       };
     },
     [USER_UPDATE_INFO.fulfilled]: (state, action) => {
-      // const response = action.payload;
-      // const results = response.rs;
-      // const newState = {
-      //   ...state,
-      //   isFetching: false,
-      //   ok: response.ok,
-      //   message: response.message,
-      //   currentUser: {
-      //     ...results.currentUser,
-      //     isAdmin: results?.currentUser?.role === ROLE.ADMIN.name,
-      //     isSupervisor: results?.currentUser?.role === ROLE.SUPERVISOR.name,
-      //     isUser: results?.currentUser?.role === ROLE.USER.name,
-      //     isVisitor: results?.currentUser?.role === ROLE.VISITOR.name,
-      //   },
-      // };
-      // if (response.ok) {
-      //   // save localStore USER INFOS
-      //   localStorage.setItem(
-      //     storageHandler.DASHBOARD.CURRENT_USER,
-      //     JSON.stringify(newState.currentUser)
-      //   );
-      //   // save token to cookie
-      //   storedExtension.setCookie(
-      //     storageHandler.DASHBOARD.VERIFIED_2FA,
-      //     results.verified_token + ""
-      //   );
-      //   storedExtension.setCookie(
-      //     storageHandler.DASHBOARD.ACCESS_TOKEN,
-      //     results.access_token
-      //   );
-      // }
-      // return newState;
+      const response = action.payload;
+      const results = response.rs;
+
+      const newState = {
+        ...state,
+        isFetching: false,
+        ok: response.ok,
+        message: response.message,
+        currentUser: {
+          ...results[0],
+          isAdmin: results[0]?.role === ROLE.ADMIN.name,
+          isSupervisor: results[0]?.role === ROLE.SUPERVISOR.name,
+          isUser: results[0]?.role === ROLE.USER.name,
+          isVisitor: results[0]?.role === ROLE.VISITOR.name,
+        },
+      };
+      if (response.ok) {
+        localStorage.removeItem(storageHandler.DASHBOARD.CURRENT_USER);
+        // save localStore USER INFOS
+        localStorage.setItem(
+          storageHandler.DASHBOARD.CURRENT_USER,
+          JSON.stringify(newState.currentUser)
+        );
+
+        // // save token to cookie
+        // storedExtension.setCookie(
+        //   storageHandler.DASHBOARD.VERIFIED_2FA,
+        //   results.verified_token + ""
+        // );
+        // storedExtension.setCookie(
+        //   storageHandler.DASHBOARD.ACCESS_TOKEN,
+        //   results.access_token
+        // );
+      }
+      return newState;
     },
     //#endregion
     //#region VALIDATE_SECURE_2FA

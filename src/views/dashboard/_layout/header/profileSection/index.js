@@ -35,7 +35,6 @@ import PerfectScrollbar from "react-perfect-scrollbar";
 import MainCard from "@components/mui-ui/cards";
 import Transitions from "@components/mui-ui/extended/transitions";
 import UpgradePlanCard from "./upgradePlanCard";
-import User1 from "@assets/images/users/user-round.svg";
 
 // assets
 import {
@@ -45,12 +44,14 @@ import {
   IconUser,
 } from "@tabler/icons-react";
 import { SIGN_OUT } from "@reduxproviders/auth.reducer";
+import { currentUserState } from "@reduxproviders/auth.reducer";
 
 // ==============================|| PROFILE MENU ||============================== //
 
 const ProfileSection = () => {
   const theme = useTheme();
   const customization = useSelector((state) => state.customization);
+  const currentUser = useSelector(currentUserState);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -66,7 +67,7 @@ const ProfileSection = () => {
   const handleLogout = async () => {
     dispatch(SIGN_OUT());
 
-    navigate(navigateLocation.AUTH.SIGNIN)
+    navigate(navigateLocation.AUTH.SIGNIN);
   };
 
   const handleClose = (event) => {
@@ -121,7 +122,11 @@ const ProfileSection = () => {
         }}
         icon={
           <Avatar
-            src={`https://lh3.googleusercontent.com/a/AGNmyxZRx_tvq-AaEgbSjUAcL_ONNRtDdoJyPPYn3B75Ew=s96-c-rg-br100`}
+            src={
+              process.env.API_HOSTNAME +
+              "/" +
+              currentUser?.detailInfos?.avatarPath
+            }
             sx={{
               ...theme.typography.mediumAvatar,
               margin: "8px 0 8px 8px !important",
