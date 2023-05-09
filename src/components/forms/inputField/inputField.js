@@ -150,7 +150,7 @@ const InputField = (props) => {
 };
 
 export default React.memo(InputField, (props, nextProps) => {
-  if (props.value === nextProps.value && props.id === nextProps.id) {
+  if (props.value === nextProps.value && props.id === nextProps.id && props.error === nextProps.error) {
     // return true if you don't need re-render
     return true;
   }

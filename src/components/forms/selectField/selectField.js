@@ -678,6 +678,7 @@ export default React.memo(SelectField, (props, nextProps) => {
   if (
     props.value === nextProps.value &&
     props.id === nextProps.id &&
+    props.error === nextProps.error &&
     compareArrays(props.listItems, nextProps.listItems)
   ) {
     // return true if you don't need re-render
