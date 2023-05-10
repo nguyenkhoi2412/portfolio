@@ -66,7 +66,7 @@ module.exports = (env, argv) => {
               loader: "css-loader",
               options: {
                 sourceMap: true,
-                url: true
+                url: true,
               },
             },
             // {
@@ -168,7 +168,7 @@ module.exports = (env, argv) => {
         "@authentication": APP_DIR + "/views/authentication",
         "@components": APP_DIR + "/components",
         "@reduxproviders": APP_DIR + "/reduxproviders",
-        "@services": APP_DIR + "/services"
+        "@services": APP_DIR + "/services",
       },
       fallback: {
         crypto: false,
@@ -179,7 +179,7 @@ module.exports = (env, argv) => {
     },
     devServer: {
       static: {
-        directory: BUILD_DIR
+        directory: BUILD_DIR,
       },
       compress: true,
       hot: true,
@@ -195,6 +195,13 @@ module.exports = (env, argv) => {
             from: APP_DIR + "/assets",
             to: BUILD_DIR + "/assets",
             toType: "dir",
+          },
+          {
+            from: path.join(
+              path.dirname(require.resolve("pdfjs-dist/package.json")),
+              "cmaps"
+            ),
+            to: "cmaps/",
           },
         ],
       }),

@@ -10,7 +10,7 @@ import CreateNew from "@dashboard/account/createNew";
 const AccountRoutes = [
   {
     path: navigateLocation.ACCOUNT.PROFILE,
-    title: "Account profiles 🤠",
+    title: "My profiles 🤠",
     element: (
       <RequireAuth redirectTo={navigateLocation.AUTH.SIGNIN}>
         <AccountProfile />

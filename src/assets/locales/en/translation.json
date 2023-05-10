@@ -131,6 +131,11 @@
     "filter": "Filter",
     "clickhere": "Click here"
   },
+  "document": {
+    "page_of": "Page {{page}} of {{total}}",
+    "no_pdf_file_specified": "No PDF file specified",
+    "fail_to_load_page": "Failed to load the page"
+  },
   "site": {
     "structure_site": "Structure site",
     "currentcy_unit": "USD",
