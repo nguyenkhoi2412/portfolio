@@ -52,9 +52,9 @@ const DocumentPdf = (props) => {
 
   return (
     <>
-      <Grid item className="react-pdf_NavigateButton" spacing={1}>
+      <Grid item className="react-pdf_NavigateButton">
         <Stack spacing={2} direction="column">
-          <Typography variant="h5">{renderTextPageOfTotal}</Typography>
+          <Typography>{renderTextPageOfTotal}</Typography>
           <Stack spacing={2} direction="row" justifyContent={`center`}>
             <AnimateButton>
               <Button
@@ -66,7 +66,7 @@ const DocumentPdf = (props) => {
                 variant="contained"
                 onClick={previousPage}
               >
-                Previous
+                {t("common.previous")}
               </Button>
             </AnimateButton>
             <AnimateButton>
@@ -80,7 +80,7 @@ const DocumentPdf = (props) => {
                 onClick={nextPage}
                 color="primary"
               >
-                Next
+                {t("common.next")}
               </Button>
             </AnimateButton>
           </Stack>

@@ -98,7 +98,8 @@
     "email": "Email",
     "birthday": "Birthday",
     "country": "Country",
-    "uploadnewimage": "Upload new image",
+    "uploadavatar": "Upload avatar",
+    "uploadyourprofileimage": "Upload/Change Your Profile Image",
     "changedetail": "Change details",
     "updatesuccess": "Update account info successful",
     "updatefail": "Update account info fail",
@@ -129,7 +130,8 @@
     "complete": "Complete",
     "search": "Search",
     "filter": "Filter",
-    "clickhere": "Click here"
+    "clickhere": "Click here",
+    "previous": "Previous"
   },
   "document": {
     "page_of": "Page {{page}} of {{total}}",

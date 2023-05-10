@@ -100,7 +100,14 @@ const LayoutDashboard = () => {
           drawerToggle={handleLeftDrawerToggle}
         />
         {/* main content */}
-        <Main theme={theme} open={leftDrawerOpened}>
+        <Main
+          className="wrapper-content"
+          theme={theme}
+          open={leftDrawerOpened}
+          sx={{
+            height: "100%",
+          }}
+        >
           {/* breadcrumb */}
           <Breadcrumbs
             separator={IconChevronRight}

@@ -15,7 +15,6 @@ export const navigateLocation = {
     SIGNIN: AUTH + "/signin",
     SIGNUP: AUTH + "/signup",
     FORGOT_PASSWORD: AUTH + "/forgotpassword",
-    RESET_PASSWORD: AUTH + "/resetpassword",
     CODE_VERIFICATION: AUTH + "/codeverification",
   },
   ACCOUNT: {
@@ -23,7 +22,6 @@ export const navigateLocation = {
     DETAILS: ACCOUNT + "/details",
     CHANGE_PASSOWRD: ACCOUNT + "/changepassword",
     CREATE_NEW: ACCOUNT + "/createnew",
-    RESET_PASSWORD: ACCOUNT + "/resetpassword",
   },
   UTILITIES: {
     GENERATE_KEY: UTILITIES + "/generatekey",

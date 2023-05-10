@@ -13,7 +13,7 @@ import severity from "@constants/severity";
 
 // material-ui
 import AnimateButton from "@components/mui-ui/extended/animateButton";
-import { Stack, Grid, Button } from "@mui/material";
+import { Stack, Grid, Button, Typography } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 
 //#region components
@@ -188,6 +188,9 @@ const AccountInfo = (props) => {
                   >
                     {renderAvatarDefault()}
                   </Avatar>
+                  <Typography variant="caption" display="block" gutterBottom>
+                    {t("user.uploadyourprofileimage")}
+                  </Typography>
                   <AnimateButton>
                     <Button
                       disableElevation
@@ -204,7 +207,7 @@ const AccountInfo = (props) => {
                         name="single"
                         onChange={handleOnChangeUploadFile}
                       />
-                      {t("user.uploadnewimage")}
+                      {t("user.uploadavatar")}
                     </Button>
                   </AnimateButton>
                 </Stack>

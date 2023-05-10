@@ -1,3 +1,4 @@
+import "./_profile.scss";
 import * as React from "react";
 //#region utils support
 import { useTranslation } from "react-i18next";
@@ -6,32 +7,39 @@ import DocumentPdf from "@components/mui-ui/extended/documentPdf";
 //#endregion
 
 // material-ui
-import { Grid, Typography } from "@mui/material";
+import { Grid } from "@mui/material";
 
 //#region components
 import SubCard from "@components/mui-ui/cards/subCard";
+import MainCard from "@components/mui-ui/cards";
+import { t } from "i18next";
 //#endregion
 
 // ============================|| ACCOUNT SHADOW ||============================ //
 
 const AccountProfile = (props) => {
+  const { t } = useTranslation();
   return (
     <React.Fragment>
-      <Grid
-        container
-        spacing={gridSpacing}
-        alignItems="center"
-        justifyContent="center"
+      <MainCard
+        title={t("authentication.accountprofile")}
+        // secondary={
+        //   <SecondaryAction link="https://next.material-ui.com/system/typography/" />
+        // }
       >
-        <Grid item xs={12}>
-          <SubCard
-            title={<Typography variant="h2">Nguyen Le Minh Khoi</Typography>}
-            contentClass={`pdf-reviewer`}
-          >
+        <Grid
+          container
+          spacing={gridSpacing}
+          alignItems="center"
+          justifyContent="center"
+        >
+          <Grid item xs={12}>
+            {/* <SubCard contentClass={`pdf-reviewer`}> */}
             <DocumentPdf />
-          </SubCard>
+            {/* </SubCard> */}
+          </Grid>
         </Grid>
-      </Grid>
+      </MainCard>
     </React.Fragment>
   );
 };
