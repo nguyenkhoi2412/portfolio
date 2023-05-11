@@ -22,6 +22,7 @@ export const navigateLocation = {
     DETAILS: ACCOUNT + "/details",
     CHANGE_PASSOWRD: ACCOUNT + "/changepassword",
     CREATE_NEW: ACCOUNT + "/createnew",
+    USER_LIST: ACCOUNT + "/userlist",
   },
   UTILITIES: {
     GENERATE_KEY: UTILITIES + "/generatekey",

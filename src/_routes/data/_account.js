@@ -6,6 +6,7 @@ import AccountProfile from "@dashboard/account/profile";
 import AccountDetails from "@dashboard/account/details";
 import ChangePassword from "@dashboard/account/changePassword";
 import CreateNew from "@dashboard/account/createNew";
+import UserList from "@dashboard/account/userlist";
 
 const AccountRoutes = [
   {
@@ -41,6 +42,15 @@ const AccountRoutes = [
     element: (
       <RequireAuth redirectTo={navigateLocation.AUTH.SIGNIN}>
         <CreateNew />
+      </RequireAuth>
+    ),
+  },
+  {
+    path: navigateLocation.ACCOUNT.USER_LIST,
+    title: "Userlist 🤠",
+    element: (
+      <RequireAuth redirectTo={navigateLocation.AUTH.SIGNIN}>
+        <UserList />
       </RequireAuth>
     ),
   },

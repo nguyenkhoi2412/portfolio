@@ -1,4 +1,4 @@
-import "./_profile.scss";
+import "./_userlist.scss";
 import * as React from "react";
 //#region utils support
 import { useTranslation } from "react-i18next";
@@ -17,7 +17,7 @@ import { t } from "i18next";
 
 // ============================|| ACCOUNT SHADOW ||============================ //
 
-const AccountProfile = (props) => {
+const UserList = (props) => {
   const { t } = useTranslation();
   return (
     <React.Fragment>
@@ -44,4 +44,4 @@ const AccountProfile = (props) => {
   );
 };
 
-export default AccountProfile;
+export default UserList;

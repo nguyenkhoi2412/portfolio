@@ -103,7 +103,8 @@
     "createnewpasswordforanyuser": "Create a new password for your/any account",
     "profilepicture": "Profile Picture",
     "registersuccess": "Register successful",
-    "registerfail": "Register fail"
+    "registerfail": "Register fail",
+    "userlist": "User list"
   },
   "common": {
     "addmore": "Add more",
