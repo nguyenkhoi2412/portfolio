@@ -22,7 +22,7 @@ const UserList = (props) => {
   return (
     <React.Fragment>
       <MainCard
-        title={t("user.accountprofile")}
+        title={t("user.userlist")}
         // secondary={
         //   <SecondaryAction link="https://next.material-ui.com/system/typography/" />
         // }
@@ -34,9 +34,7 @@ const UserList = (props) => {
           justifyContent="center"
         >
           <Grid item xs={12}>
-            {/* <SubCard contentClass={`pdf-reviewer`}> */}
-            <DocumentPdf />
-            {/* </SubCard> */}
+            User list
           </Grid>
         </Grid>
       </MainCard>

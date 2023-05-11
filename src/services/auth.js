@@ -48,9 +48,6 @@ export default {
         params.usernameResetPassword
       );
       params.newPassword = encryptHelper.rsa.encrypt(params.newPassword);
-      params.confirmPassword = encryptHelper.rsa.encrypt(
-        params.confirmPassword
-      );
 
       axios
         .put(`auth/changepassword/`, params)

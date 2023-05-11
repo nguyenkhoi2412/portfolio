@@ -47,6 +47,7 @@ const FormChangePassword = () => {
         .then((result) => {
           setSubmitting(false);
           dispatch(HIDE_PROGRESSBAR());
+
           if (result.ok) {
             setStatusMessage(severity.success);
             setShowMessageAlert(true);
@@ -60,7 +61,6 @@ const FormChangePassword = () => {
           formik.resetForm();
         })
         .catch((error) => {
-          console.log("error", error);
           dispatch(HIDE_PROGRESSBAR());
           // variant could be success, error, warning, info, or default
           enqueueSnackbar(t("connection.error"), {
