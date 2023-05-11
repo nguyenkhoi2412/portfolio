@@ -59,7 +59,7 @@ const ChangePassword = (props) => {
                       gutterBottom
                       variant={matchDownSM ? "h3" : "h2"}
                     >
-                      {t("authentication.changepassword")}
+                      {t("user.changepassword")}
                     </Typography>
                     <Typography
                       variant="caption"
@@ -67,8 +67,8 @@ const ChangePassword = (props) => {
                       textAlign={matchDownSM ? "center" : "inherit"}
                     >
                       {currentUser.isAdmin
-                        ? t("authentication.createnewpasswordforanyuser")
-                        : t("authentication.createnewpassword")}
+                        ? t("user.createnewpasswordforanyuser")
+                        : t("user.createnewpassword")}
                     </Typography>
                   </Stack>
                 </Grid>

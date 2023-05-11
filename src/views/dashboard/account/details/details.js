@@ -162,7 +162,7 @@ const AccountInfo = (props) => {
       <Grid container spacing={gridSpacing}>
         <Grid item xs={12} md={4}>
           <SubCard
-            title={t("authentication.profilepicture")}
+            title={t("user.profilepicture")}
             contentClass={
               helpersExtension.checkIsNotNull(
                 currentUser?.detailInfos?.avatarPath
@@ -216,7 +216,7 @@ const AccountInfo = (props) => {
           </SubCard>
         </Grid>
         <Grid item xs={12} md={8}>
-          <SubCard title={t("authentication.accountdetails")}>
+          <SubCard title={t("user.accountdetails")}>
             <Grid container spacing={gridSpacing}>
               <FormAccountDetailInfo currentUser={currentUser} />
             </Grid>

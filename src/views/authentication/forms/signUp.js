@@ -89,12 +89,12 @@ const FormSignUp = () => {
         if (result.ok) {
           setAlertBoxSeverity(severity.success);
           setShowMessageAlert(true);
-          setMessageContentAlert(t("authentication.registersuccess"));
+          setMessageContentAlert(t("user.registersuccess"));
         } else {
           setAlertBoxSeverity(severity.error);
           setShowMessageAlert(true);
           setMessageContentAlert(
-            t("authentication.registerfail") + ". " + result.message
+            t("user.registerfail") + ". " + result.message
           );
         }
         formik.resetForm();

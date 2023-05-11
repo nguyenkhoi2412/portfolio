@@ -50,7 +50,7 @@ const FormChangePassword = () => {
           if (result.ok) {
             setStatusMessage(severity.success);
             setShowMessageAlert(true);
-            setMessageContentAlert(t("authentication.changepasswordsuccess"));
+            setMessageContentAlert(t("user.changepasswordsuccess"));
           } else {
             setStatusMessage(severity.error);
             setShowMessageAlert(true);
@@ -183,7 +183,7 @@ const FormChangePassword = () => {
                 type="submit"
                 variant="contained"
               >
-                {t("authentication.changepassword")}
+                {t("user.changepassword")}
               </Button>
             </AnimateButton>
           </Box>
