@@ -48,12 +48,12 @@ const FormForgotPassword = () => {
         .then((result) => {
           setSubmitting(false);
           dispatch(HIDE_PROGRESSBAR());
+
           setShowMessageAlert(true);
           setMessageContentAlert(result.message);
 
           if (result.code === HTTP_STATUS.OK) {
             if (result.ok) {
-              setStatusMessage(severity.success);
               setMessageContentAlert(
                 t("authentication.yourpasswordhasbeenreset") + " " + username
               );
@@ -70,6 +70,7 @@ const FormForgotPassword = () => {
               }
             }
           } else {
+            setStatusMessage(severity.error);
             enqueueSnackbar(result.message, {
               variant: severity.error,
             });
