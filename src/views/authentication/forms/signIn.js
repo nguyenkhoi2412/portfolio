@@ -5,6 +5,7 @@ import { useFormik } from "formik";
 import { helpersExtension, objectExtension } from "@utils/helpersExtension";
 import { getYupSchemaFromMetaData } from "@utils/yupSchemaCreator.js";
 import { useSnackbar } from "notistack";
+import { HTTP_STATUS } from "@constants/httpStatus";
 import InputField from "@components/forms/inputField";
 import _schema from "./../signIn/_schema";
 import Google from "@assets/images/icons/social-google.svg";
@@ -63,24 +64,30 @@ const FormSignIn = () => {
           setSubmitting(false);
           dispatch(HIDE_PROGRESSBAR());
 
-          if (response.ok) {
-            if (response.rs.verified_token) {
-              // navigate(navigateLocation.DASHBOARD.DEFAULT);
-              navigate(navigateLocation.ACCOUNT.PROFILE);
+          if (response.code === HTTP_STATUS.OK) {
+            if (response.ok) {
+              if (response.rs.verified_token) {
+                // navigate(navigateLocation.DASHBOARD.DEFAULT);
+                navigate(navigateLocation.ACCOUNT.PROFILE);
+              } else {
+                //* send code verify to email
+                dispatch(
+                  SECURE_2FA_GENERATE_TOKEN({
+                    id: response.rs.currentUser._id,
+                  })
+                );
+                //* verify 2FA
+                navigate(navigateLocation.AUTH.CODE_VERIFICATION);
+              }
             } else {
-              //* send code verify to email
-              dispatch(
-                SECURE_2FA_GENERATE_TOKEN({
-                  id: response.rs.currentUser._id,
-                })
-              );
-              //* verify 2FA
-              navigate(navigateLocation.AUTH.CODE_VERIFICATION);
+              //* show message
+              setShowMessageAlert(true);
+              setMessageContentAlert(t("authentication.wrong_credential"));
             }
           } else {
-            //* show message
-            setShowMessageAlert(true);
-            setMessageContentAlert(response.message);
+            enqueueSnackbar(result.message, {
+              variant: severity.error,
+            });
           }
 
           formik.resetForm();

@@ -1,10 +1,7 @@
 import * as React from "react";
 import { useTranslation, Trans } from "react-i18next";
 import { useFormik } from "formik";
-import {
-  helpersExtension,
-  objectExtension,
-} from "@utils/helpersExtension";
+import { helpersExtension, objectExtension } from "@utils/helpersExtension";
 import { strengthColor, strengthIndicator } from "@utils/passwordStrength";
 import { useSnackbar } from "notistack";
 import InputField from "@components/forms/inputField";
@@ -12,6 +9,7 @@ import SelectField from "@components/forms/selectField";
 import _schema from "./../signUp/_schema";
 import Google from "@assets/images/icons/social-google.svg";
 import { useTheme } from "@mui/material/styles";
+import { HTTP_STATUS } from "@constants/httpStatus.js";
 //#region mui-ui
 import FormControl from "@mui/material/FormControl";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -24,12 +22,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import severity from "@constants/severity";
-import {
-  Divider,
-  Typography,
-  Button,
-  useMediaQuery,
-} from "@mui/material";
+import { Divider, Typography, Button, useMediaQuery } from "@mui/material";
 //#endregion
 //#region redux providers
 import {
@@ -86,17 +79,25 @@ const FormSignUp = () => {
       .then((result) => {
         setSubmitting(false);
         dispatch(HIDE_PROGRESSBAR());
-        if (result.ok) {
-          setAlertBoxSeverity(severity.success);
-          setShowMessageAlert(true);
-          setMessageContentAlert(t("user.registersuccess"));
+
+        if (result.code === HTTP_STATUS.OK) {
+          if (result.ok) {
+            setAlertBoxSeverity(severity.success);
+            setShowMessageAlert(true);
+            setMessageContentAlert(t("user.registersuccess"));
+          } else {
+            setAlertBoxSeverity(severity.error);
+            setShowMessageAlert(true);
+            setMessageContentAlert(
+              t("user.registerfail") + ". " + result.message
+            );
+          }
         } else {
-          setAlertBoxSeverity(severity.error);
-          setShowMessageAlert(true);
-          setMessageContentAlert(
-            t("user.registerfail") + ". " + result.message
-          );
+          enqueueSnackbar(result.message, {
+            variant: severity.error,
+          });
         }
+
         formik.resetForm();
       })
       .catch((error) => {

@@ -5,6 +5,7 @@ import { helpersExtension, objectExtension } from "@utils/helpersExtension";
 import { useSnackbar } from "notistack";
 import InputField from "@components/forms/inputField";
 import SelectField from "@components/forms/selectField";
+import { HTTP_STATUS } from "@constants/httpStatus";
 import _schema from "./_schema";
 import { useTheme } from "@mui/material/styles";
 //#region mui-ui
@@ -105,18 +106,29 @@ const FormAccountDetailInfo = (props) => {
       .then((result) => {
         setSubmitting(false);
         dispatch(HIDE_PROGRESSBAR());
-        if (result.ok) {
-          setAlertBoxSeverity(severity.success);
-          setShowMessageAlert(true);
-          setMessageContentAlert(t("user.updatesuccess"));
+console.log('result', result);
+        if (result.code === HTTP_STATUS.OK) {
+          if (result.ok) {
+            setAlertBoxSeverity(severity.success);
+            setShowMessageAlert(true);
+            setMessageContentAlert(t("user.updatesuccess"));
+          } else {
+            setAlertBoxSeverity(severity.error);
+            setShowMessageAlert(true);
+            setMessageContentAlert(
+              t("user.updatefail") + ". " + result.message
+            );
+          }
         } else {
-          setAlertBoxSeverity(severity.error);
-          setShowMessageAlert(true);
-          setMessageContentAlert(t("user.updatefail") + ". " + result.message);
+          enqueueSnackbar(result.message, {
+            variant: severity.error,
+          });
         }
+
         formik.resetForm();
       })
       .catch((error) => {
+        console.log('error', error);
         setSubmitting(false);
         dispatch(HIDE_PROGRESSBAR());
         // variant could be success, error, warning, info, or default

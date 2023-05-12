@@ -5,6 +5,7 @@ import { useFormik } from "formik";
 import { helpersExtension, objectExtension } from "@utils/helpersExtension";
 import { useSnackbar } from "notistack";
 import InputField from "@components/forms/inputField";
+import { HTTP_STATUS } from "@constants/httpStatus";
 import _schema from "../changePassword/_schema";
 //#endregion
 //#region mui-ui
@@ -48,14 +49,20 @@ const FormChangePassword = () => {
           setSubmitting(false);
           dispatch(HIDE_PROGRESSBAR());
 
-          if (result.ok) {
-            setStatusMessage(severity.success);
-            setShowMessageAlert(true);
-            setMessageContentAlert(t("user.changepasswordsuccess"));
+          if (result.code === HTTP_STATUS.OK) {
+            if (result.ok) {
+              setStatusMessage(severity.success);
+              setShowMessageAlert(true);
+              setMessageContentAlert(t("user.changepasswordsuccess"));
+            } else {
+              setStatusMessage(severity.error);
+              setShowMessageAlert(true);
+              setMessageContentAlert(t("authentication.wrong_credential"));
+            }
           } else {
-            setStatusMessage(severity.error);
-            setShowMessageAlert(true);
-            setMessageContentAlert(t("authentication.usernotfound"));
+            enqueueSnackbar(result.message, {
+              variant: severity.error,
+            });
           }
 
           formik.resetForm();
@@ -63,7 +70,7 @@ const FormChangePassword = () => {
         .catch((error) => {
           dispatch(HIDE_PROGRESSBAR());
           // variant could be success, error, warning, info, or default
-          enqueueSnackbar(t("connection.error"), {
+          enqueueSnackbar(error, {
             variant: severity.error,
           });
           formik.resetForm();

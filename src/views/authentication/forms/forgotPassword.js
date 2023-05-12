@@ -51,20 +51,28 @@ const FormForgotPassword = () => {
           setShowMessageAlert(true);
           setMessageContentAlert(result.message);
 
-          if (result.ok) {
-            setStatusMessage(severity.success);
-            setMessageContentAlert(
-              t("authentication.yourpasswordhasbeenreset") + " " + username
-            );
-          } else {
-            setStatusMessage(severity.error);
-            if (result.code === HTTP_STATUS.LOCKED) {
-              setMessageContentAlert(t("authentication.accounthasbeenlocked"));
-            } else {
+          if (result.code === HTTP_STATUS.OK) {
+            if (result.ok) {
+              setStatusMessage(severity.success);
               setMessageContentAlert(
-                t("authentication.makesuretypedcorrectyouremailaddress")
+                t("authentication.yourpasswordhasbeenreset") + " " + username
               );
+            } else {
+              setStatusMessage(severity.error);
+              if (result.code === HTTP_STATUS.LOCKED) {
+                setMessageContentAlert(
+                  t("authentication.accounthasbeenlocked")
+                );
+              } else {
+                setMessageContentAlert(
+                  t("authentication.makesuretypedcorrectyouremailaddress")
+                );
+              }
             }
+          } else {
+            enqueueSnackbar(result.message, {
+              variant: severity.error,
+            });
           }
 
           formik.resetForm();
@@ -73,7 +81,7 @@ const FormForgotPassword = () => {
           setSubmitting(false);
           dispatch(HIDE_PROGRESSBAR());
           // variant could be success, error, warning, info, or default
-          enqueueSnackbar(t("connection.error"), {
+          enqueueSnackbar(error, {
             variant: severity.error,
           });
           formik.resetForm();

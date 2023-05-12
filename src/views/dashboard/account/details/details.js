@@ -4,7 +4,6 @@ import * as React from "react";
 //#region utils support
 import { useSnackbar } from "notistack";
 import { helpersExtension, objectExtension } from "@utils/helpersExtension";
-import { fileExtension } from "@utils/fileExtension";
 import { useTranslation } from "react-i18next";
 import { gridSpacing } from "@constants";
 import FormAccountDetailInfo from "./formAccountDetailInfo";
@@ -71,6 +70,7 @@ const AccountInfo = (props) => {
         CHANGE_PROFILE_IMAGE({
           formData: formData,
           type: "single",
+          identifyFolder: currentUser.username,
         })
       )
         .unwrap()

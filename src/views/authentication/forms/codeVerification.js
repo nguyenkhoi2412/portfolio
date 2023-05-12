@@ -8,6 +8,7 @@ import { useSnackbar } from "notistack";
 import InputField from "@components/forms/inputField";
 import _schema from "../codeVerification/_schema";
 import { navigateLocation } from "@routes/navigateLocation";
+import { HTTP_STATUS } from "@constants/httpStatus";
 //#region mui-ui
 import FormControl from "@mui/material/FormControl";
 import Alert from "@mui/material/Alert";
@@ -16,9 +17,7 @@ import IconButton from "@mui/material/IconButton";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import severity from "@constants/severity";
-import {
-  Button,
-} from "@mui/material";
+import { Button } from "@mui/material";
 //#endregion
 //#region redux providers
 import {
@@ -56,18 +55,26 @@ const FormCodeVerification = () => {
         .then((result) => {
           setSubmitting(false);
           dispatch(HIDE_PROGRESSBAR());
-          if (result.ok) {
-            navigate(navigateLocation.DASHBOARD.DEFAULT);
+
+          if (result.code === HTTP_STATUS.OK) {
+            if (result.ok) {
+              navigate(navigateLocation.DASHBOARD.DEFAULT);
+            } else {
+              setShowMessageAlert(true);
+              setMessageContentAlert(result.message);
+            }
           } else {
-            setShowMessageAlert(true);
-            setMessageContentAlert(result.message);
+            enqueueSnackbar(result.message, {
+              variant: severity.error,
+            });
           }
+
           formik.resetForm();
         })
         .catch((error) => {
           dispatch(HIDE_PROGRESSBAR());
           // variant could be success, error, warning, info, or default
-          enqueueSnackbar(t("connection.error"), {
+          enqueueSnackbar(error, {
             variant: severity.error,
           });
           formik.resetForm();

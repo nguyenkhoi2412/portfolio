@@ -68,7 +68,7 @@
     "continue": "Continue",
     "didnotreceivecodeverify": "Did not receive the email? Check your spam filter, or",
     "resendcode": "Resend code.",
-    "usernotfound": "User not found",
+    "wrong_credential": "Wrong credential, invalid username or password",
     "signinwithyournewpassword": "To sign in with your new password",
     "makesuretypedcorrectyouremailaddress": "We don't recognize this user, make sure you typed correct your email address, it usually looks like someone@example.com",
     "yourpasswordhasbeenreset": "Your password has been reset, please check in your email",

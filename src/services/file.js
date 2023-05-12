@@ -10,9 +10,9 @@ export default {
           "content-type": "multipart/form-data",
         },
       };
-      const { formData, type } = params;
+      const { formData, type, identifyFolder } = params;
       axios
-        .post(`file/upload/` + type, formData, config)
+        .post(`file/upload/` + type + "/" + identifyFolder, formData, config)
         .then((response) => resolve(response))
         .catch((error) => reject(error));
     });
