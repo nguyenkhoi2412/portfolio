@@ -80,7 +80,9 @@
   },
   "user": {
     "account": "Account",
+    "socialprofile": "Social Profile",
     "accountprofile": "Account profile",
+    "accountsettings": "Account settings",
     "accountdetails": "Account details",
     "firstname": "First name",
     "lastname": "Last name",
@@ -98,7 +100,7 @@
     "uploadProfileFail": "File upload only supports the following filetypes - \"jpeg, jpg, png\". And max size is 1Mb.",
     "changepassword": "Change password",
     "changepasswordsuccess": "Change password successful",
-    "createnew": "Create new",
+    "newuser": "New account",
     "createnewpassword": "Create a new password for your account",
     "createnewpasswordforanyuser": "Create a new password for your/any account",
     "profilepicture": "Profile Picture",
@@ -132,6 +134,11 @@
     "filter": "Filter",
     "clickhere": "Click here",
     "previous": "Previous"
+  },
+  "time": {
+    "goodmorning": "Good morning",
+    "goodafternoon": "Good afternoon",
+    "goodevening": "Good evening"
   },
   "document": {
     "page_of": "Page {{page}} of {{total}}",

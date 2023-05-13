@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 
+import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { navigateLocation } from "@routes/navigateLocation";
@@ -41,10 +42,14 @@ import {
   IconLogout,
   IconSearch,
   IconSettings,
+  IconLockSquareRounded,
+  IconAward,
+  IconUserPlus,
   IconUser,
 } from "@tabler/icons-react";
 import { SIGN_OUT } from "@reduxproviders/auth.reducer";
 import { currentUserState } from "@reduxproviders/auth.reducer";
+import { ConnectWithoutContact } from "@mui/icons-material";
 
 // ==============================|| PROFILE MENU ||============================== //
 
@@ -54,12 +59,26 @@ const ProfileSection = () => {
   const currentUser = useSelector(currentUserState);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const [sdm, setSdm] = useState(true);
   const [value, setValue] = useState("");
   const [notification, setNotification] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const [open, setOpen] = useState(false);
+
+  const sayGreetings = () => {
+    let myDate = new Date();
+    let hours = myDate.getHours();
+    let greet;
+
+    if (hours < 12) greet = t("time.goodmorning");
+    else if (hours >= 12 && hours <= 17) greet = t("time.goodafternoon");
+    else if (hours >= 17 && hours <= 24) greet = t("time.goodevening");
+
+    return <span>{greet},</span>;
+  };
+
   /**
    * anchorRef is used on different componets and specifying one type leads to other components throwing an error
    * */
@@ -183,13 +202,15 @@ const ProfileSection = () => {
                   <Box sx={{ p: 2 }}>
                     <Stack>
                       <Stack direction="row" spacing={0.5} alignItems="center">
-                        <Typography variant="h4">Good Morning,</Typography>
+                        <Typography variant="h4">{sayGreetings()}</Typography>
                         <Typography
                           component="span"
                           variant="h4"
                           sx={{ fontWeight: 400 }}
                         >
-                          Johne Doe
+                          {currentUser.detailInfos.firstName +
+                            " " +
+                            currentUser.detailInfos.lastName}
                         </Typography>
                       </Stack>
                       <Typography variant="subtitle2">Project Admin</Typography>
@@ -224,7 +245,7 @@ const ProfileSection = () => {
                     }}
                   >
                     <Box sx={{ p: 2 }}>
-                      <UpgradePlanCard />
+                      {/* <UpgradePlanCard />
                       <Divider />
                       <Card
                         sx={{
@@ -282,8 +303,8 @@ const ProfileSection = () => {
                             </Grid>
                           </Grid>
                         </CardContent>
-                      </Card>
-                      <Divider />
+                      </Card> */}
+                      {/* <Divider /> */}
                       <List
                         component="nav"
                         sx={{
@@ -309,36 +330,12 @@ const ProfileSection = () => {
                             handleListItemClick(
                               event,
                               0,
-                              "/user/account-profile/profile1"
+                              navigateLocation.ACCOUNT.SOCIAL
                             )
                           }
                         >
                           <ListItemIcon>
-                            <IconSettings stroke={1.5} size="1.3rem" />
-                          </ListItemIcon>
-                          <ListItemText
-                            primary={
-                              <Typography variant="body2">
-                                Account Settings
-                              </Typography>
-                            }
-                          />
-                        </ListItemButton>
-                        <ListItemButton
-                          sx={{
-                            borderRadius: `${customization.borderRadius}px`,
-                          }}
-                          selected={selectedIndex === 1}
-                          onClick={(event) =>
-                            handleListItemClick(
-                              event,
-                              1,
-                              "/user/social-profile/posts"
-                            )
-                          }
-                        >
-                          <ListItemIcon>
-                            <IconUser stroke={1.5} size="1.3rem" />
+                            <ConnectWithoutContact stroke={1.5} size="1.3rem" />
                           </ListItemIcon>
                           <ListItemText
                             primary={
@@ -349,7 +346,7 @@ const ProfileSection = () => {
                               >
                                 <Grid item>
                                   <Typography variant="body2">
-                                    Social Profile
+                                    {t("user.socialprofile")}
                                   </Typography>
                                 </Grid>
                                 <Grid item>
@@ -370,7 +367,104 @@ const ProfileSection = () => {
                           sx={{
                             borderRadius: `${customization.borderRadius}px`,
                           }}
+                          selected={selectedIndex === 1}
+                          onClick={(event) =>
+                            handleListItemClick(
+                              event,
+                              1,
+                              navigateLocation.ACCOUNT.PROFILE
+                            )
+                          }
+                        >
+                          <ListItemIcon>
+                            <IconAward stroke={1.5} size="1.3rem" />
+                          </ListItemIcon>
+                          <ListItemText
+                            primary={
+                              <Typography variant="body2">
+                                {t("user.accountprofile")}
+                              </Typography>
+                            }
+                          />
+                        </ListItemButton>
+                        <ListItemButton
+                          sx={{
+                            borderRadius: `${customization.borderRadius}px`,
+                          }}
+                          selected={selectedIndex === 2}
+                          onClick={(event) =>
+                            handleListItemClick(
+                              event,
+                              2,
+                              navigateLocation.ACCOUNT.SETTING
+                            )
+                          }
+                        >
+                          <ListItemIcon>
+                            <IconSettings stroke={1.5} size="1.3rem" />
+                          </ListItemIcon>
+                          <ListItemText
+                            primary={
+                              <Typography variant="body2">
+                                {t("user.accountsettings")}
+                              </Typography>
+                            }
+                          />
+                        </ListItemButton>
+                        <ListItemButton
+                          sx={{
+                            borderRadius: `${customization.borderRadius}px`,
+                          }}
+                          selected={selectedIndex === 3}
+                          onClick={(event) =>
+                            handleListItemClick(
+                              event,
+                              3,
+                              navigateLocation.ACCOUNT.CHANGE_PASSOWRD
+                            )
+                          }
+                        >
+                          <ListItemIcon>
+                            <IconLockSquareRounded stroke={1.5} size="1.3rem" />
+                          </ListItemIcon>
+                          <ListItemText
+                            primary={
+                              <Typography variant="body2">
+                                {t("user.changepassword")}
+                              </Typography>
+                            }
+                          />
+                        </ListItemButton>
+                        <ListItemButton
+                          sx={{
+                            borderRadius: `${customization.borderRadius}px`,
+                          }}
                           selected={selectedIndex === 4}
+                          onClick={(event) =>
+                            handleListItemClick(
+                              event,
+                              4,
+                              navigateLocation.ACCOUNT.CREATE_NEW
+                            )
+                          }
+                        >
+                          <ListItemIcon>
+                            <IconUserPlus stroke={1.5} size="1.3rem" />
+                          </ListItemIcon>
+                          <ListItemText
+                            primary={
+                              <Typography variant="body2">
+                                {t("user.newuser")}
+                              </Typography>
+                            }
+                          />
+                        </ListItemButton>
+                        <Divider />
+                        <ListItemButton
+                          sx={{
+                            borderRadius: `${customization.borderRadius}px`,
+                          }}
+                          selected={selectedIndex === 5}
                           onClick={handleLogout}
                         >
                           <ListItemIcon>

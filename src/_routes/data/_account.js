@@ -2,6 +2,7 @@ import { navigateLocation } from "../navigateLocation";
 import { RequireAuth } from "@utils/requireAuth";
 
 // account routing
+import AccountSocial from "@dashboard/account/social";
 import AccountProfile from "@dashboard/account/profile";
 import AccountDetails from "@dashboard/account/details";
 import ChangePassword from "@dashboard/account/changePassword";
@@ -9,6 +10,15 @@ import CreateNew from "@dashboard/account/createNew";
 import UserList from "@dashboard/account/userlist";
 
 const AccountRoutes = [
+  {
+    path: navigateLocation.ACCOUNT.SOCIAL,
+    title: "Social 🤠",
+    element: (
+      <RequireAuth redirectTo={navigateLocation.AUTH.SIGNIN}>
+        <AccountSocial />
+      </RequireAuth>
+    ),
+  },
   {
     path: navigateLocation.ACCOUNT.PROFILE,
     title: "My profiles 🤠",
@@ -19,8 +29,8 @@ const AccountRoutes = [
     ),
   },
   {
-    path: navigateLocation.ACCOUNT.DETAILS,
-    title: "Account details 🤠",
+    path: navigateLocation.ACCOUNT.SETTING,
+    title: "Account setting 🤠",
     element: (
       <RequireAuth redirectTo={navigateLocation.AUTH.SIGNIN}>
         <AccountDetails />

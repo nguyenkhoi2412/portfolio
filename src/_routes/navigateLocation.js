@@ -18,8 +18,9 @@ export const navigateLocation = {
     CODE_VERIFICATION: AUTH + "/codeverification",
   },
   ACCOUNT: {
+    SOCIAL: ACCOUNT + "/social",
     PROFILE: ACCOUNT + "/profile",
-    DETAILS: ACCOUNT + "/details",
+    SETTING: ACCOUNT + "/setting",
     CHANGE_PASSOWRD: ACCOUNT + "/changepassword",
     CREATE_NEW: ACCOUNT + "/createnew",
     USER_LIST: ACCOUNT + "/userlist",

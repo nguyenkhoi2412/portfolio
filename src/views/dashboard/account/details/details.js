@@ -8,6 +8,7 @@ import { useTranslation } from "react-i18next";
 import { gridSpacing } from "@constants";
 import FormAccountDetailInfo from "./formAccountDetailInfo";
 import severity from "@constants/severity";
+import { HTTP_STATUS } from "@constants/httpStatus.js";
 //#endregion
 
 // material-ui
@@ -75,15 +76,22 @@ const AccountInfo = (props) => {
       )
         .unwrap()
         .then((res) => {
-          if (res.ok) {
-            // change image profile
-            const filename = res.rs.filenames[0];
-            setFile(process.env.API_HOSTNAME + "/" + filename);
+          if (res.code === HTTP_STATUS.OK) {
+            if (res.ok) {
+              // change image profile
+              const filename = res.rs.filenames[0];
+              setFile(process.env.API_HOSTNAME + "/" + filename);
 
-            // update state current user avatar
-            updateCurrentUserInfo(filename);
-          } else {
-            enqueueSnackbar(t("user.uploadProfileFail"), {
+              // update state current user avatar
+              updateCurrentUserInfo(filename);
+            } else {
+              enqueueSnackbar(t("user.uploadProfileFail"), {
+                variant: severity.error,
+              });
+            }
+          }
+          else {
+            enqueueSnackbar(res.message, {
               variant: severity.error,
             });
           }

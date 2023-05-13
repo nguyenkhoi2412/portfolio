@@ -106,7 +106,7 @@ const FormAccountDetailInfo = (props) => {
       .then((result) => {
         setSubmitting(false);
         dispatch(HIDE_PROGRESSBAR());
-console.log('result', result);
+
         if (result.code === HTTP_STATUS.OK) {
           if (result.ok) {
             setAlertBoxSeverity(severity.success);
@@ -128,7 +128,7 @@ console.log('result', result);
         formik.resetForm();
       })
       .catch((error) => {
-        console.log('error', error);
+        console.log("error", error);
         setSubmitting(false);
         dispatch(HIDE_PROGRESSBAR());
         // variant could be success, error, warning, info, or default
