@@ -146,32 +146,7 @@
     "fail_to_load_page": "Failed to load the page"
   },
   "site": {
-    "structure_site": "Structure site",
-    "currentcy_unit": "USD",
-    "types": "Types",
-    "categories": "Categories",
-    "select_categories": "Select categories",
-    "articles": "Articles",
-    "products": "Products",
-    "surveys": "Surveys",
-    "questionnaire": "Questionaire",
-    "title": "Title",
-    "name": "Site name",
-    "sub_title": "Sub title",
-    "description": "Descriptions",
-    "selecttype": "Select type",
-    "sort_no": "Sort no",
-    "step": "Step",
-    "language": "Language",
-    "inputsearchtext": "Input search text",
-    "icon_name": "Icon name",
-    "path_name": "Path name",
-    "header_table": {
-      "title": "Title",
-      "desc": "Description",
-      "purchase_price": "Purchase price",
-      "sale_price": "Sale price"
-    }
+    "settings": "Site settings"
   },
   "type": {
     "createnewtype": "Create a new type",

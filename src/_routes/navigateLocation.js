@@ -5,6 +5,7 @@ const ASSET_PATH = vars.ASSET_PATH;
 const DASHBOARD = ASSET_PATH + MODULES.DASHBOARD;
 const AUTH = DASHBOARD + "/auth";
 const ACCOUNT = DASHBOARD + "/account";
+const SITE = DASHBOARD + "/site";
 const UTILITIES = DASHBOARD + "/utilities";
 
 export const navigateLocation = {
@@ -24,6 +25,9 @@ export const navigateLocation = {
     CHANGE_PASSOWRD: ACCOUNT + "/changepassword",
     CREATE_NEW: ACCOUNT + "/createnew",
     USER_LIST: ACCOUNT + "/userlist",
+  },
+  SITE: {
+    LIST: SITE + "/list",
   },
   UTILITIES: {
     GENERATE_KEY: UTILITIES + "/generatekey",

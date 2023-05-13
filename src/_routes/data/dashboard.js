@@ -5,6 +5,7 @@ import { RequireLoggedIn, RequireAuth } from "@utils/requireAuth";
 // project imports
 import DashboardLayout from "@dashboard/_layout";
 import AccountRoutes from "./_account";
+import SiteRoutes from "./_site";
 import UtilitiesRoutes from "./_utilities";
 
 // dashboard routing
@@ -40,6 +41,7 @@ const DashboardRoutes = {
       ),
     },
     ...AccountRoutes,
+    ...SiteRoutes,
     ...UtilitiesRoutes,
     // {
     //   path: "utils",
