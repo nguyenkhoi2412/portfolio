@@ -100,13 +100,14 @@
     "uploadProfileFail": "File upload only supports the following filetypes - \"jpeg, jpg, png\". And max size is 1Mb.",
     "changepassword": "Change password",
     "changepasswordsuccess": "Change password successful",
-    "newuser": "New account",
+    "addnew": "Add new",
     "createnewpassword": "Create a new password for your account",
     "createnewpasswordforanyuser": "Create a new password for your/any account",
     "profilepicture": "Profile Picture",
     "registersuccess": "Register successful",
     "registerfail": "Register fail",
-    "userlist": "User list"
+    "list": "List",
+    "accountlist": "Account list"
   },
   "common": {
     "addmore": "Add more",
@@ -133,7 +134,8 @@
     "search": "Search",
     "filter": "Filter",
     "clickhere": "Click here",
-    "previous": "Previous"
+    "previous": "Previous",
+    "settings": "Settings"
   },
   "time": {
     "goodmorning": "Good morning",
@@ -146,7 +148,9 @@
     "fail_to_load_page": "Failed to load the page"
   },
   "site": {
-    "settings": "Site settings"
+    "site": "Site",
+    "list": "List",
+    "sitelist": "Site list"
   },
   "type": {
     "createnewtype": "Create a new type",

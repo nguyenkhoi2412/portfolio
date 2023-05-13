@@ -435,30 +435,6 @@ const ProfileSection = () => {
                             }
                           />
                         </ListItemButton>
-                        <ListItemButton
-                          sx={{
-                            borderRadius: `${customization.borderRadius}px`,
-                          }}
-                          selected={selectedIndex === 4}
-                          onClick={(event) =>
-                            handleListItemClick(
-                              event,
-                              4,
-                              navigateLocation.ACCOUNT.CREATE_NEW
-                            )
-                          }
-                        >
-                          <ListItemIcon>
-                            <IconUserPlus stroke={1.5} size="1.3rem" />
-                          </ListItemIcon>
-                          <ListItemText
-                            primary={
-                              <Typography variant="body2">
-                                {t("user.newuser")}
-                              </Typography>
-                            }
-                          />
-                        </ListItemButton>
                         <Divider />
                         <ListItemButton
                           sx={{

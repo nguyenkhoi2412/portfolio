@@ -14,6 +14,7 @@ import {
 // constant
 const headerSX = {
   "& .MuiCardHeader-action": { mr: 0 },
+  textTransform: "capitalize",
 };
 
 const Cards = forwardRef(

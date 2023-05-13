@@ -22,7 +22,7 @@ const UserList = (props) => {
   return (
     <React.Fragment>
       <MainCard
-        title={t("user.userlist")}
+        title={t("user.accountlist")}
         // secondary={
         //   <SecondaryAction link="https://next.material-ui.com/system/typography/" />
         // }

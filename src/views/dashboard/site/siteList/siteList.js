@@ -22,7 +22,7 @@ const SiteList = (props) => {
   return (
     <React.Fragment>
       <MainCard
-        title={t("site.settings")}
+        title={t("site.sitelist")}
         // secondary={
         //   <SecondaryAction link="https://next.material-ui.com/system/typography/" />
         // }
