@@ -18,14 +18,14 @@ const settings = {
       icon: IconKey,
       type: "collapse",
       children: [
-        {
-          id: "register",
-          title: <Trans i18nKey={"user.addnew"}></Trans>,
-          type: "item",
-          url: navigateLocation.ACCOUNT.CREATE_NEW,
-          target: false,
-          breadcrumbs: false,
-        },
+        // {
+        //   id: "register",
+        //   title: <Trans i18nKey={"user.addnew"}></Trans>,
+        //   type: "item",
+        //   url: navigateLocation.ACCOUNT.CREATE_NEW,
+        //   target: false,
+        //   breadcrumbs: false,
+        // },
         {
           id: "userlist",
           title: <Trans i18nKey={"user.list"}></Trans>,
