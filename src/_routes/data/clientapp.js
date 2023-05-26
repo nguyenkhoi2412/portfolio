@@ -4,7 +4,7 @@ import { RequireLoggedIn, RequireAuth } from "@utils/requireAuth";
 
 // project imports
 // import Layout from "@clientapp/_layout";
-// import SocialProfile from "@clientapp/socialProfile";
+// import Home from "@clientapp/portfolio/Home";
 // ==============================|| MAIN ROUTING ||============================== //
 
 const ClientAppRoutes = {

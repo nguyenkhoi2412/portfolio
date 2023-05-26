@@ -5,6 +5,7 @@ import { hookInstance } from "@utils/hookInstance";
 // routes
 import AuthenticationRoutes from "./data/authentication";
 import DashboardRoutes from "./data/dashboard";
+import PortfolioRoutes from "./data/portfolio";
 import ClientAppRoutes from "./data/clientapp";
 // import AuthenticationRoutes from './AuthenticationRoutes';
 
@@ -16,7 +17,7 @@ export const BuildRoutes = () => {
 };
 
 export const RouteMaps = () => {
-  return [...AuthenticationRoutes, DashboardRoutes, ClientAppRoutes];
+  return [...AuthenticationRoutes, DashboardRoutes, PortfolioRoutes, ClientAppRoutes];
 };
 
 const buildTitle = () => {
@@ -36,7 +37,7 @@ const buildTitle = () => {
       }
     });
 
-    currentTitle = currentRoute?.title || currentTitle.title;
+    currentTitle = currentRoute?.title || currentTitle?.title;
     if (currentTitle) {
       document.title = currentTitle;
     }

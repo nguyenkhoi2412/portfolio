@@ -8,7 +8,7 @@ import { RequireLoggedIn, RequireAuth } from "@utils/requireAuth";
 const AuthenticationRoutes = [
   // {
   //   path: navigateLocation.CLIENT_APP.ASSET_PATH,
-  //   title: "SignIn 🤠",
+  //   title: "SignIn",
   //   element: (
   //     <RequireAuth
   //       redirectTo={navigateLocation.DASHBOARD.DEFAULT}
@@ -20,7 +20,7 @@ const AuthenticationRoutes = [
   // },
   {
     path: navigateLocation.AUTH.SIGNIN,
-    title: "SignIn 🤠",
+    title: "SignIn",
     element: (
       <RequireAuth
         redirectTo={navigateLocation.DASHBOARD.DEFAULT}
@@ -32,17 +32,17 @@ const AuthenticationRoutes = [
   },
   {
     path: navigateLocation.AUTH.SIGNUP,
-    title: "SignUp 🤠",
+    title: "SignUp",
     element: <SignUp />,
   },
   {
     path: navigateLocation.AUTH.FORGOT_PASSWORD,
-    title: "Forgot Password 🤠",
+    title: "Forgot Password",
     element: <ForgotPassword />,
   },
   {
     path: navigateLocation.AUTH.CODE_VERIFICATION,
-    title: "Code verification 🤠",
+    title: "Code verification",
     element: (
       <RequireLoggedIn
         redirectTo={navigateLocation.AUTH.SIGNIN}

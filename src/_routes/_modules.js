@@ -1,4 +1,5 @@
 export const MODULES = {
+  PORTFOLIO: "portfolio",
   DASHBOARD: "dashboard",
 };
 

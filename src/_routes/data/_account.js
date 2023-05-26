@@ -12,7 +12,7 @@ import UserList from "@dashboard/account/userlist";
 const AccountRoutes = [
   {
     path: navigateLocation.ACCOUNT.SOCIAL,
-    title: "Social 🤠",
+    title: "Social",
     element: (
       <RequireAuth redirectTo={navigateLocation.AUTH.SIGNIN}>
         <AccountSocial />
@@ -21,7 +21,7 @@ const AccountRoutes = [
   },
   {
     path: navigateLocation.ACCOUNT.PROFILE,
-    title: "My profiles 🤠",
+    title: "My profiles",
     element: (
       <RequireAuth redirectTo={navigateLocation.AUTH.SIGNIN}>
         <AccountProfile />
@@ -30,7 +30,7 @@ const AccountRoutes = [
   },
   {
     path: navigateLocation.ACCOUNT.SETTING,
-    title: "Account setting 🤠",
+    title: "Account setting",
     element: (
       <RequireAuth redirectTo={navigateLocation.AUTH.SIGNIN}>
         <AccountDetails />
@@ -39,7 +39,7 @@ const AccountRoutes = [
   },
   {
     path: navigateLocation.ACCOUNT.CHANGE_PASSOWRD,
-    title: "Change password 🤠",
+    title: "Change password",
     element: (
       <RequireAuth redirectTo={navigateLocation.AUTH.SIGNIN}>
         <ChangePassword />
@@ -48,7 +48,7 @@ const AccountRoutes = [
   },
   {
     path: navigateLocation.ACCOUNT.CREATE_NEW,
-    title: "Create new 🤠",
+    title: "Create new",
     element: (
       <RequireAuth redirectTo={navigateLocation.AUTH.SIGNIN}>
         <CreateNew />
@@ -57,7 +57,7 @@ const AccountRoutes = [
   },
   {
     path: navigateLocation.ACCOUNT.USER_LIST,
-    title: "Userlist 🤠",
+    title: "Userlist",
     element: (
       <RequireAuth redirectTo={navigateLocation.AUTH.SIGNIN}>
         <UserList />
