@@ -793,3 +793,7 @@ button:focus {
     transform: rotate(360deg);
   }
 }
+
+.react-pdf__Page__textContent {
+    display: none;
+}
