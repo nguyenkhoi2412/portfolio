@@ -7,7 +7,7 @@ import { hookInstance } from "@utils/hookInstance";
 import { ThemeProvider } from "@mui/system";
 import { CssBaseline, StyledEngineProvider } from "@mui/material";
 import { BrowserRouter } from "react-router-dom";
-import { configBaseTheme } from "@assets/themes/_baseTheme";
+import { configBaseTheme } from "@assets/themesMui-ui/_baseTheme";
 //#region useHooks,components, helper
 import IncBackdrop from "@components/mui-ui/backdropSpin";
 import IncProgressBar from "@components/mui-ui/progressBar";
