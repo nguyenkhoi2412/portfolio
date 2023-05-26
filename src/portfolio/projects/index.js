@@ -2,12 +2,11 @@ import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import ProjectCard from "./ProjectCards";
 import Particle from "../Particle";
-import leaf from "@assets/portfolio/Projects/leaf.png";
-import emotion from "@assets/portfolio/Projects/emotion.png";
-import editor from "@assets/portfolio/Projects/codeEditor.png";
-import chatify from "@assets/portfolio/Projects/chatify.png";
-import suicide from "@assets/portfolio/Projects/suicide.png";
-import bitsOfCode from "@assets/portfolio/Projects/blog.png";
+import stepMedia from "@assets/portfolio/Projects/stepmedia.jpg";
+import conexus from "@assets/portfolio/Projects/conexus.jpg";
+import orient from "@assets/portfolio/Projects/orientsoftware.jpg";
+import vns from "@assets/portfolio/Projects/vns.jpg";
+import fpt from "@assets/portfolio/Projects/fpttelecom.jpg";
 
 function Projects() {
   return (
@@ -15,76 +14,91 @@ function Projects() {
       <Particle />
       <Container>
         <h1 className="project-heading">
-          My Recent <strong className="purple">Works </strong>
+          Work <strong className="purple">Places </strong>
         </h1>
         <p style={{ color: "white" }}>
-          Here are a few projects I've worked on recently.
+          Here are a few places I've worked on recently.
         </p>
         <Row style={{ justifyContent: "center", paddingBottom: "10px" }}>
           <Col md={4} className="project-card">
             <ProjectCard
-              imgPath={chatify}
+              imgPath={stepMedia}
               isBlog={false}
-              title="Chatify"
-              description="Personal Chat Room or Workspace to share resources and hangout with friends build with react.js, Material-UI, and Firebase. Have features which allows user for realtime messaging, image sharing as well as supports reactions on messages."
-              ghLink="https://github.com/soumyajit4419/Chatify"
-              demoLink="https://chatify-49.web.app/"
+              title="Stepmedia Software Viet Nam <br />(1 year 5 months)"
+              subTitle="01/2022 - Current"
+              description="<br />- Development website application using MVC, SQL
+              Server on basic platform .NET CORE, C#, MSSQL, Azure.
+              <br />
+              - Front-end is using REACTJS, SASS...
+              <br />
+              - Company product development Deloitte, maintain
+              and develop new features according to customer,
+              reports, improve performance for APIs, troubleshooting
+              to perfect products...
+              <br />
+              - Test and write unit tests.
+              <br />
+              - Tracing error in application insights."
+              // ghLink="https://github.com/soumyajit4419/Chatify"
+              // demoLink="https://chatify-49.web.app/"
             />
           </Col>
 
           <Col md={4} className="project-card">
             <ProjectCard
-              imgPath={bitsOfCode}
+              imgPath={conexus}
               isBlog={false}
-              title="Bits-0f-C0de"
-              description="My personal blog page build with Next.js and Tailwind Css which takes the content from makdown files and renders it using Next.js. Supports dark mode and easy to write blogs using markdown."
-              ghLink="https://github.com/soumyajit4419/Bits-0f-C0de"
-              demoLink="https://blogs.soumya-jit.tech/"
+              title="CONEXUS VIET NAM <br />(2 years 9 months)"
+              subTitle="01/2018 - 09/2020"
+              description="<br />Conexus is a Global Edu Tech company in Norway. I am honor to be a member in the development team to build and develop an Enterprise Edu Tech project for Singapore market:
+              <br />
+              - Project domain: Unified Education and Training System - users can use the system to organize learning courses, plan education and training programs for departments/organizations inside, host and manage e-learning sessions, review/assess/forecast learning courses and training programs."
             />
           </Col>
 
           <Col md={4} className="project-card">
             <ProjectCard
-              imgPath={editor}
+              imgPath={orient}
               isBlog={false}
-              title="Editor.io"
-              description="Online code and markdown editor build with react.js. Online Editor which supports html, css, and js code with instant view of website. Online markdown editor for building README file which supports GFM, Custom Html tags with toolbar and instant preview.Both the editor supports auto save of work using Local Storage"
-              ghLink="https://github.com/soumyajit4419/Editor.io"
-              demoLink="https://editor.soumya-jit.tech/"              
+              title="Orient Software Development Corp. <br />(5 years 3 months)"
+              subTitle="11/2012 - 01/2018"
+              description="<br />- Development website application using MVC, SQL
+              Server on basic platform .NET 4.0, 4.5...
+              <br />
+              - My specialize is develop UI with script, jquery, css
+              responsive...
+              <br />
+              - Project domain: Unified Education and Training System - users can use the system to organize learning courses, plan education and training programs for departments/organizations inside, host and manage e-learning sessions, review/assess/forecast learning courses and training programs."
             />
           </Col>
 
           <Col md={4} className="project-card">
             <ProjectCard
-              imgPath={leaf}
+              imgPath={vns}
               isBlog={false}
-              title="Plant AI"
-              description="Used the plant disease dataset from Kaggle and trained a image classifer model using 'PyTorch' framework using CNN and Transfer Learning with 38 classes of various plant leaves. The model was successfully able to detect diseased and healthy leaves of 14 unique plants. I was able to achieve an accuracy of 98% by using Resnet34 pretrained model."
-              ghLink="https://github.com/soumyajit4419/Plant_AI"
-              demoLink="https://plant49-ai.herokuapp.com/"
+              title="VIEN NAM SOFTWARE <br />(1 year 6 months)"
+              subTitle="06/2011 - 11/2012"
+              description="<br />- Programing projects websites for clients.
+              <br />
+              - Analysis, programming and development website
+              application on the basic platform .NET 2.0, 3.5, 4.0...
+              using ASP.NET, MVC, Entity Framework, Web services,
+              html, jquery, css..."
             />
           </Col>
 
           <Col md={4} className="project-card">
             <ProjectCard
-              imgPath={suicide}
+              imgPath={fpt}
               isBlog={false}
-              title="Ai For Social Good"
-              description="Using 'Natural Launguage Processing' for the detection of suicide-related posts and user's suicide ideation in cyberspace  and thus helping in sucide prevention."
-              ghLink="https://github.com/soumyajit4419/AI_For_Social_Good"
-              // demoLink="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley" <--------Please include a demo link here
-            />
-          </Col>
-
-          <Col md={4} className="project-card">
-            <ProjectCard
-              imgPath={emotion}
-              isBlog={false}
-              title="Face Recognition and Emotion Detection"
-              description="Trained a CNN classifier using 'FER-2013 dataset' with Keras and tensorflow backened. The classifier sucessfully predicted the various types of emotions of human. And the highest accuracy obtained with the model was 60.1%.
-              Then used Open-CV to detect the face in an image and then pass the face to the classifer to predict the emotion of a person."
-              ghLink="https://github.com/soumyajit4419/Face_And_Emotion_Detection"
-              // demoLink="https://blogs.soumya-jit.tech/"      <--------Please include a demo link here 
+              title="FPT TELECOM <br />(2 years 1 month)"
+              subTitle="01/2008 - 01/2010"
+              description="<br />- Support clients about ADSL, LAN, WAN. Check client&s
+              connection on system, check information and all services
+              assigned to clients.<br />
+              - Support all problems that IT need to solve about Web
+              server, mail server, FTP, IP static, NAT and troubleshoot
+              IT&s problems."
             />
           </Col>
         </Row>

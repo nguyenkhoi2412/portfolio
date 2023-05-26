@@ -5,7 +5,7 @@ import {
   AiOutlineTwitter,
   AiFillInstagram,
 } from "react-icons/ai";
-import { FaLinkedinIn } from "react-icons/fa";
+import { FaFacebookSquare, FaLinkedinIn, FaTelegramPlane } from "react-icons/fa";
 
 function Footer() {
   let date = new Date();
@@ -14,36 +14,35 @@ function Footer() {
     <Container fluid className="footer">
       <Row>
         <Col md="4" className="footer-copywright">
-          <h3>Designed and Developed by Soumyajit Behera</h3>
+          {/* <h3>Designed and Developed by Soumyajit Behera</h3> */}
         </Col>
         <Col md="4" className="footer-copywright">
-          <h3>Copyright © {year} SB</h3>
+          <h3>Copyright © {year} Asher</h3>
         </Col>
         <Col md="4" className="footer-body">
           <ul className="footer-icons">
             <li className="social-icons">
               <a
-                href="https://github.com/soumyajit4419"
+                href="https://facebook.com/koala.khoi"
                 style={{ color: "white" }}
                 target="_blank" 
                 rel="noopener noreferrer"
               >
-                <AiFillGithub />
+                <FaFacebookSquare />
               </a>
             </li>
-            <li className="social-icons">
-              <a
-                href="https://twitter.com/Soumyajit4419"
+            <a
+                href="https://t.me/snaichuk_v"
                 style={{ color: "white" }}
-                target="_blank" 
-                rel="noopener noreferrer"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="TelegramPlane"
               >
-                <AiOutlineTwitter />
+                <FaTelegramPlane />
               </a>
-            </li>
             <li className="social-icons">
               <a
-                href="https://www.linkedin.com/in/soumyajit4419/"
+                href="https://www.linkedin.com/in/nguyenkhoi2412/"
                 style={{ color: "white" }}
                 target="_blank" 
                 rel="noopener noreferrer"
@@ -53,7 +52,7 @@ function Footer() {
             </li>
             <li className="social-icons">
               <a
-                href="https://www.instagram.com/soumyajit4419"
+                href="https://www.instagram.com/koalakhoi2412/"
                 style={{ color: "white" }}
                 target="_blank" 
                 rel="noopener noreferrer"

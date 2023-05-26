@@ -45,7 +45,7 @@ export const navigateLocation = {
     HOME: ASSET_PATH,
     PORTFOLIO: PORTFOLIO,
     ABOUT: PORTFOLIO + "/about",
-    PROJECTS: PORTFOLIO + "/procjects",
+    PROJECTS: PORTFOLIO + "/work_history",
     CURRICULUM_VITAE: PORTFOLIO + "/curriculum_vitae",
   },
 };

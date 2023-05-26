@@ -7,7 +7,11 @@ import {
   AiOutlineTwitter,
   AiFillInstagram,
 } from "react-icons/ai";
-import { FaLinkedinIn } from "react-icons/fa";
+import {
+  FaFacebookSquare,
+  FaLinkedinIn,
+  FaTelegramPlane,
+} from "react-icons/fa";
 
 function Home2() {
   return (
@@ -19,19 +23,25 @@ function Home2() {
               LET ME <span className="purple"> INTRODUCE </span> MYSELF
             </h1>
             <p className="home-about-body">
-              I fell in love with programming and I have at least learnt
+              I'm passionate Front-end Web Developer and I have at least learned
               something, I think… 🤷‍♂️
               <br />
-              <br />I am fluent in classics like
+              <br />
+              My skills include proficiency in{" "}
               <i>
-                <b className="purple"> C++, Javascript and Go. </b>
+                <b className="purple">
+                  {" "}
+                  Typescript, Reactjs, Nodejs, CSS Responsive Design,{" "}
+                </b>
               </i>
+              and other relevant technologies. I have experience in integrating
+              various third-party libraries, API integration, push notifications and
+              analytics.
               <br />
               <br />
               My field of Interest's are building new &nbsp;
               <i>
-                <b className="purple">Web Technologies and Products </b> and
-                also in areas related to <b className="purple">Blockchain.</b>
+                <b className="purple">Technologies and Products </b>
               </i>
               <br />
               <br />
@@ -64,12 +74,12 @@ function Home2() {
             <ul className="home-about-social-links">
               <li className="social-icons">
                 <a
-                  href="https://github.com/soumyajit4419"
+                  href="https://facebook.com/koala.khoi"
                   target="_blank"
                   rel="noreferrer"
                   className="icon-colour  home-social-icons"
                 >
-                  <AiFillGithub />
+                  <FaFacebookSquare />
                 </a>
               </li>
               <li className="social-icons">
@@ -79,12 +89,12 @@ function Home2() {
                   rel="noreferrer"
                   className="icon-colour  home-social-icons"
                 >
-                  <AiOutlineTwitter />
+                  <FaTelegramPlane />
                 </a>
               </li>
               <li className="social-icons">
                 <a
-                  href="https://www.linkedin.com/in/soumyajit4419/"
+                  href="https://www.linkedin.com/in/nguyenkhoi2412/"
                   target="_blank"
                   rel="noreferrer"
                   className="icon-colour  home-social-icons"
@@ -94,7 +104,7 @@ function Home2() {
               </li>
               <li className="social-icons">
                 <a
-                  href="https://www.instagram.com/soumyajit4419"
+                  href="https://www.instagram.com/koalakhoi2412/"
                   target="_blank"
                   rel="noreferrer"
                   className="icon-colour home-social-icons"
