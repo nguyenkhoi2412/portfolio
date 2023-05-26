@@ -5,7 +5,11 @@ body {
   font-family: "Raleway", serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: linear-gradient(to left, rgba(27, 20, 41, 1), rgba(20, 15, 35, 1));
+  background-image: linear-gradient(
+    to left,
+    rgba(27, 20, 41, 1),
+    rgba(20, 15, 35, 1)
+  );
 }
 
 // ==============================|| STYLES ||============================== //
@@ -268,8 +272,7 @@ button:focus {
 .home-section {
   position: relative;
   z-index: -1;
-  background-image: var(--image-gradient),
-    url(assets/portfolio/home-bg.jpg);
+  background-image: var(--image-gradient), url(assets/portfolio/home-bg.jpg);
   background-position: top center;
   background-repeat: no-repeat;
   padding-bottom: 30px !important;
@@ -795,5 +798,5 @@ button:focus {
 }
 
 .react-pdf__Page__textContent {
-    display: none;
+  display: none;
 }
