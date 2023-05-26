@@ -1,6 +1,4 @@
-import { Navigate } from "react-router-dom";
 import { navigateLocation } from "../navigateLocation";
-import { RequireLoggedIn, RequireAuth } from "@utils/requireAuth";
 
 // project imports
 import PortfolioLayout from "@portfolio/_layout";

@@ -3,10 +3,8 @@ import { useRoutes } from "react-router-dom";
 import { hookInstance } from "@utils/hookInstance";
 
 // routes
-import AuthenticationRoutes from "./data/authentication";
-import DashboardRoutes from "./data/dashboard";
 import PortfolioRoutes from "./data/portfolio";
-import ClientAppRoutes from "./data/clientapp";
+
 // import AuthenticationRoutes from './AuthenticationRoutes';
 
 // ==============================|| ROUTING RENDER ||============================== //
@@ -17,7 +15,7 @@ export const BuildRoutes = () => {
 };
 
 export const RouteMaps = () => {
-  return [...AuthenticationRoutes, DashboardRoutes, PortfolioRoutes, ClientAppRoutes];
+  return [PortfolioRoutes];
 };
 
 const buildTitle = () => {

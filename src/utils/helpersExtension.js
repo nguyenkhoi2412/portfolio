@@ -1,4 +1,4 @@
-import encrypt from "@utils/encrypt.helper";
+// import encrypt from "@utils/encrypt.helper";
 // import * as _ from "lodash";
 
 export class helpersExtension {
@@ -368,7 +368,7 @@ export class objectExtension {
     Object.keys(params)
       .map((key) => {
         if (key === "query") {
-          const encoded = encrypt.aes.encrypt(params[key]);
+          // const encoded = encrypt.aes.encrypt(params[key]);
           return encoded;
         }
         return JSON.stringify(params[key]);

@@ -2,8 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { createRoot } from "react-dom/client";
 import "@assets/locales/i18n";
-import storeProvider from "@reduxproviders/_storeProvider";
-import { Provider } from "react-redux";
 import App from "@app";
 import * as serviceWorker from "./serviceWorker";
 import reportWebVitals from "./reportWebVitals";
@@ -14,9 +12,7 @@ const root = createRoot(rootElement);
 const app = (
   <React.Fragment>
     {/* Redux store */}
-    <Provider store={storeProvider}>
-      <App />
-    </Provider>
+    <App />
   </React.Fragment>
 );
 
