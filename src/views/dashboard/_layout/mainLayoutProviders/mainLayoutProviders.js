@@ -1,26 +1,22 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import defaultFavicon from "@assets/favicons/default/favicon.ico";
+import defaultFavicon from "@assets/favicons/default/favicon.png";
 
 import { SnackbarProvider } from "notistack";
-import { hookInstance } from "@utils/hookInstance";
 import { ThemeProvider } from "@mui/system";
 import { CssBaseline, StyledEngineProvider } from "@mui/material";
-import { BrowserRouter } from "react-router-dom";
 import { configBaseTheme } from "@assets/themesMui-ui/_baseTheme";
 //#region useHooks,components, helper
 import IncBackdrop from "@components/mui-ui/backdropSpin";
 import IncProgressBar from "@components/mui-ui/progressBar";
 //#endregion
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Grid from "@mui/material/Grid";
-import { helpersExtension } from "@utils/helpersExtension";
 
 const MainLayoutProviders = ({ children, ...other }) => {
   dynamicFavicons();
   const customization = useSelector((state) => state.customization);
-  const currentLocation = hookInstance.useRouter();
-  console.log("currentLocation", currentLocation);
+
   return (
     <StyledEngineProvider injectFirst>
       <ThemeProvider theme={configBaseTheme(customization)}>
