@@ -9,9 +9,10 @@ import Breadcrumbs from "@components/mui-ui/extended/breadcrumbs";
 import Header from "./header";
 import Sidebar from "./sidebar";
 import Customization from "./customization";
-import navigation from "@dashboard/components/menuSidebar";
+import menuSidebar from "@dashboard/components/menuSidebar";
 import { drawerWidth } from "@constants";
 import { SET_MENU } from "@reduxproviders/berry/actions";
+import MainLayoutProviders from "@dashboard/_layout/mainLayoutProviders";
 
 // assets
 import { IconChevronRight } from "@tabler/icons-react";
@@ -75,7 +76,7 @@ const LayoutDashboard = () => {
   };
 
   return (
-    <>
+    <MainLayoutProviders>
       <Box sx={{ display: "flex" }}>
         {/* header */}
         <AppBar
@@ -111,7 +112,7 @@ const LayoutDashboard = () => {
           {/* breadcrumb */}
           <Breadcrumbs
             separator={IconChevronRight}
-            navigation={navigation}
+            navigation={menuSidebar}
             icon
             title
             rightAlign
@@ -120,7 +121,7 @@ const LayoutDashboard = () => {
         </Main>
         <Customization />
       </Box>
-    </>
+    </MainLayoutProviders>
   );
 };
 

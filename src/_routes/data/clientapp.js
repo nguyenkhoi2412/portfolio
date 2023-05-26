@@ -1,25 +1,22 @@
-// import { Navigate } from "react-router-dom";
-// import { navigateLocation } from "../navigateLocation";
+import { Navigate } from "react-router-dom";
+import { navigateLocation } from "../navigateLocation";
+import { RequireLoggedIn, RequireAuth } from "@utils/requireAuth";
 
-// // project imports
-// import DashboardLayout from "@dashboard/_layout";
+// project imports
+// import Layout from "@clientapp/_layout";
+// import SocialProfile from "@clientapp/socialProfile";
+// ==============================|| MAIN ROUTING ||============================== //
 
-// // dashboard routing
-// import DashboardDefault from "@dashboard/default";
+const ClientAppRoutes = {
+  // path: navigateLocation.CLIENT_APP.ASSET_PATH,
+  // element: <Layout />,
+  // children: [
+  //   {
+  //     path: navigateLocation.CLIENT_APP.ASSET_PATH,
+  //     title: "Social profile 🤠",
+  //     element: <SocialProfile />,
+  //   },
+  // ],
+};
 
-// // ==============================|| MAIN ROUTING ||============================== //
-
-// const ClientAppRoutes = {
-//   path: "/",
-//   element: <DashboardLayout />,
-//   children: [
-//     {
-//       path: navigateLocation.DASHBOARD.DEFAULT,
-//       element: (
-//         <DashboardDefault title="Dashboard 🤠" />
-//       ),
-//     },
-//   ],
-// };
-
-// export default ClientAppRoutes;
+export default ClientAppRoutes;

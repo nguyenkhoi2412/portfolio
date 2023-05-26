@@ -36,7 +36,7 @@ export const navigateLocation = {
     SHADOW: UTILITIES + "/shadow",
     TABLERICONS: UTILITIES + "/tablericons",
   },
-  CLIENTAPP: {
+  CLIENT_APP: {
     ASSET_PATH: ASSET_PATH,
     HOME: ASSET_PATH + "/home",
   },

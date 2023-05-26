@@ -162,7 +162,7 @@ module.exports = (env, argv) => {
         "@assets": APP_DIR + "/assets",
         "@utils": APP_DIR + "/utils",
         "@constants": APP_DIR + "/constants",
-        "@clientapp": APP_DIR + "/clientapp",
+        "@clientapp": APP_DIR + "/views/clientapp",
         "@views": APP_DIR + "/views",
         "@dashboard": APP_DIR + "/views/dashboard",
         "@authentication": APP_DIR + "/views/authentication",

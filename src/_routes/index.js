@@ -24,7 +24,9 @@ const buildTitle = () => {
   const { pathname } = currentLocation;
 
   React.useEffect(() => {
-    let currentTitle = {};
+    let currentTitle = {
+      title: 'No title???'
+    };
     const currentRoute = RouteMaps().find((item) => {
       const { children } = item;
       if (!children) {

@@ -6,18 +6,18 @@ import { navigateLocation } from "../navigateLocation";
 import { RequireLoggedIn, RequireAuth } from "@utils/requireAuth";
 
 const AuthenticationRoutes = [
-  {
-    path: navigateLocation.CLIENTAPP.ASSET_PATH,
-    title: "SignIn 🤠",
-    element: (
-      <RequireAuth
-        redirectTo={navigateLocation.DASHBOARD.DEFAULT}
-        isAuthentication={true}
-      >
-        <SignIn />,
-      </RequireAuth>
-    ),
-  },
+  // {
+  //   path: navigateLocation.CLIENT_APP.ASSET_PATH,
+  //   title: "SignIn 🤠",
+  //   element: (
+  //     <RequireAuth
+  //       redirectTo={navigateLocation.DASHBOARD.DEFAULT}
+  //       isAuthentication={true}
+  //     >
+  //       <SignIn />,
+  //     </RequireAuth>
+  //   ),
+  // },
   {
     path: navigateLocation.AUTH.SIGNIN,
     title: "SignIn 🤠",
