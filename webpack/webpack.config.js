@@ -67,6 +67,7 @@ module.exports = (env, argv) => {
               options: {
                 sourceMap: true,
                 url: true,
+                esModule: false,
               },
             },
             // {
@@ -106,7 +107,15 @@ module.exports = (env, argv) => {
         //#endregion
         //#region Rules for images
         {
-          test: /\.(png|svg|jpg|jpeg|gif|ico)$/,
+          test: /\.(png|svg|jpg|jpeg|gif|ico|pdf)$/,
+          // use: [
+          //   {
+          //     loader: "file-loader",
+          //     options: {
+          //       name: "[path][name].[ext]",
+          //     },
+          //   },
+          // ],
           use: [
             "file-loader",
             {
@@ -163,6 +172,7 @@ module.exports = (env, argv) => {
         "@utils": APP_DIR + "/utils",
         "@constants": APP_DIR + "/constants",
         "@clientapp": APP_DIR + "/views/clientapp",
+        "@portfolio": APP_DIR + "/portfolio",
         "@views": APP_DIR + "/views",
         "@dashboard": APP_DIR + "/views/dashboard",
         "@authentication": APP_DIR + "/views/authentication",
@@ -176,6 +186,7 @@ module.exports = (env, argv) => {
     },
     output: {
       path: BUILD_DIR,
+      assetModuleFilename: "assets/[hash][ext][query]",
     },
     devServer: {
       static: {
