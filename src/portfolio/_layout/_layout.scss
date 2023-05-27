@@ -420,6 +420,12 @@ button:focus {
   a {
     color: var(--social-icon) !important;
   }
+
+  &:hover {
+    a {
+      color: var(--social-icon-hover) !important;
+    }
+  }
 }
 
 .icon-colour {

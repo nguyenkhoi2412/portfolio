@@ -45,7 +45,7 @@ function NavBar() {
           className="d-flex"
         >
           {/* <img src={logo} className="img-fluid logo" alt="brand" /> */}
-          <strong className="purple">Dante</strong>
+          <strong className="purple">Kenneth</strong>
         </Navbar.Brand>
         <Navbar.Toggle
           aria-controls="responsive-navbar-nav"
