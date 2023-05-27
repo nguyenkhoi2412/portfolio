@@ -3,7 +3,7 @@ import vars from "@constants/variables";
 
 const ASSET_PATH = vars.ASSET_PATH;
 const DASHBOARD = ASSET_PATH + MODULES.DASHBOARD;
-const PORTFOLIO = ASSET_PATH + MODULES.PORTFOLIO;
+const PORTFOLIO = ASSET_PATH;
 const AUTH = DASHBOARD + "/auth";
 const ACCOUNT = DASHBOARD + "/account";
 const SITE = DASHBOARD + "/site";
@@ -44,8 +44,8 @@ export const navigateLocation = {
   PORTFOLIO: {
     HOME: ASSET_PATH,
     PORTFOLIO: PORTFOLIO,
-    ABOUT: PORTFOLIO + "/about",
-    PROJECTS: PORTFOLIO + "/work_history",
-    CURRICULUM_VITAE: PORTFOLIO + "/curriculum_vitae",
+    ABOUT: PORTFOLIO + "about",
+    PROJECTS: PORTFOLIO + "work_history",
+    CURRICULUM_VITAE: PORTFOLIO + "curriculum_vitae",
   },
 };
