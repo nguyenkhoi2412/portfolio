@@ -8,26 +8,26 @@ import { navigateLocation } from "@routes/navigateLocation";
 const UtilitiesRoutes = [
   {
     path: navigateLocation.UTILITIES.GENERATE_KEY,
-    title: "Generate key 🤠",
+    title: "Generate key",
     element: <GenerateKey />,
   },
   {
     path: navigateLocation.UTILITIES.TYPOGRAPHY,
-    title: "Typography 🤠",
+    title: "Typography",
     element: <UtilsTypography />,
   },
   {
     path: navigateLocation.UTILITIES.COLOR,
-    title: "Color 🤠",
+    title: "Color",
     element: <Color />,
   },
   {
     path: navigateLocation.UTILITIES.SHADOW,
-    element: <UtilsShadow title="Shadow 🤠" />,
+    element: <UtilsShadow title="Shadow" />,
   },
   {
     path: navigateLocation.UTILITIES.TABLERICONS,
-    title: "Tabler icons react 🤠",
+    title: "Tabler icons react",
     element: <UtilsTablerIcons />,
   },
 ];

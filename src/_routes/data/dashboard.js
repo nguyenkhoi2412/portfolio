@@ -36,7 +36,7 @@ const DashboardRoutes = {
       path: navigateLocation.DASHBOARD.DEFAULT,
       element: (
         <RequireAuth redirectTo={navigateLocation.AUTH.SIGNIN}>
-          <DashboardDefault title="DashboardDefault 🤠" />
+          <DashboardDefault title="DashboardDefault" />
         </RequireAuth>
       ),
     },

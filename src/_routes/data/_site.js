@@ -7,7 +7,7 @@ import SiteList from "@dashboard/site/siteList";
 const SiteRoutes = [
   {
     path: navigateLocation.SITE.LIST,
-    title: "Site settings 🤠",
+    title: "Site settings",
     element: (
       <RequireAuth redirectTo={navigateLocation.AUTH.SIGNIN}>
         <SiteList />

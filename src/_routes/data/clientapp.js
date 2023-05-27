@@ -13,7 +13,7 @@ const ClientAppRoutes = {
   // children: [
   //   {
   //     path: navigateLocation.CLIENT_APP.ASSET_PATH,
-  //     title: "Social profile 🤠",
+  //     title: "Social profile",
   //     element: <SocialProfile />,
   //   },
   // ],
