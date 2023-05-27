@@ -14,7 +14,7 @@ function Projects() {
       <Particle />
       <Container>
         <h1 className="project-heading">
-          Work <strong className="purple">Places </strong>
+          Work <strong className="purple">Experience </strong>
         </h1>
         <p>
           Here are a few places I've worked on recently.

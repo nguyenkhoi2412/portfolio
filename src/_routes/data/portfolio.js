@@ -14,27 +14,27 @@ const PortfolioRoutes = {
   children: [
     {
       path: navigateLocation.PORTFOLIO.HOME,
-      title: "Khoi Nguyen | Portfolio",
+      title: "Portfolio",
       element: <Home />,
     },
     {
       path: navigateLocation.PORTFOLIO.PORTFOLIO,
-      title: "Khoi Nguyen | Portfolio",
+      title: "Portfolio",
       element: <Home />,
     },
     {
       path: navigateLocation.PORTFOLIO.ABOUT,
-      title: "Khoi Nguyen | Portfolio",
+      title: "About | Portfolio",
       element: <About />,
     },
     {
       path: navigateLocation.PORTFOLIO.PROJECTS,
-      title: "Khoi Nguyen | Portfolio",
+      title: "Work Experience | Portfolio",
       element: <Projects />,
     },
     {
       path: navigateLocation.PORTFOLIO.CURRICULUM_VITAE,
-      title: "Khoi Nguyen | Portfolio",
+      title: "Curriculum vitae | Portfolio",
       element: <CurriculumVitae />,
     },
   ],
