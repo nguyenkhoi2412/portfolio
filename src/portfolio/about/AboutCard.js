@@ -23,7 +23,7 @@ function AboutCard() {
             force.
             <br />
             <br />
-            Additionally, I am currently employed as a software developer at
+            Additionally, I am currently employed as a .NET Developer at
             Stepmedia Software Viet Nam.
           </p>
           {/* <ul>
