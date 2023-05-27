@@ -20,7 +20,7 @@ function Projects() {
           Here are a few places I've worked on recently.
         </p>
         <Row style={{ justifyContent: "center", paddingBottom: "10px" }}>
-          <Col md={4} className="project-card">
+          <Col sm={12} md={6} lg={4} className="project-card">
             <ProjectCard
               imgPath={stepMedia}
               isBlog={false}
@@ -44,7 +44,7 @@ function Projects() {
             />
           </Col>
 
-          <Col md={4} className="project-card">
+          <Col sm={12} md={6} lg={4} className="project-card">
             <ProjectCard
               imgPath={conexus}
               isBlog={false}
@@ -56,7 +56,7 @@ function Projects() {
             />
           </Col>
 
-          <Col md={4} className="project-card">
+          <Col sm={12} md={6} lg={4} className="project-card">
             <ProjectCard
               imgPath={orient}
               isBlog={false}
@@ -72,7 +72,7 @@ function Projects() {
             />
           </Col>
 
-          <Col md={4} className="project-card">
+          <Col sm={12} md={6} lg={4} className="project-card">
             <ProjectCard
               imgPath={vns}
               isBlog={false}
@@ -87,7 +87,7 @@ function Projects() {
             />
           </Col>
 
-          <Col md={4} className="project-card">
+          <Col sm={12} md={6} lg={4} className="project-card">
             <ProjectCard
               imgPath={fpt}
               isBlog={false}
