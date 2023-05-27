@@ -6,6 +6,7 @@ import Preloader from "@portfolio/Pre";
 import Navbar from "@portfolio/Navbar";
 import Footer from "@portfolio/Footer";
 import ScrollToTop from "@portfolio/ScrollToTop";
+import { ThemeProvider } from "@utils/themeHook/themeContextProvider";
 
 const PortfolioLayout = ({ children }) => {
   dynamicFavicons();
@@ -19,7 +20,7 @@ const PortfolioLayout = ({ children }) => {
     return () => clearTimeout(timer);
   }, []);
   return (
-    <>
+    <ThemeProvider>
       <Preloader load={load} />
       <div className="App" id={load ? "no-scroll" : "scroll"}>
         <Navbar />
@@ -27,7 +28,7 @@ const PortfolioLayout = ({ children }) => {
         <Outlet />
         <Footer />
       </div>
-    </>
+    </ThemeProvider>
   );
 };
 

@@ -16,7 +16,7 @@ function Projects() {
         <h1 className="project-heading">
           Work <strong className="purple">Places </strong>
         </h1>
-        <p style={{ color: "white" }}>
+        <p>
           Here are a few places I've worked on recently.
         </p>
         <Row style={{ justifyContent: "center", paddingBottom: "10px" }}>
