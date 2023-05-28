@@ -790,8 +790,15 @@ button:focus {
 }
 
 .toggleTheme-btn {
-  font-size: 1.1em !important;
-  padding-top: 7px !important;
+  font-size: 1.1em;
+  padding-top: 7px;
+
+  .btn {
+    &:active {
+      background-color: transparent;
+      border-color: var(--toggle-theme);
+    }
+  }
 }
 
 .toggleTheme-btn-inner {
