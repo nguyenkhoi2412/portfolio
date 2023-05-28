@@ -47,6 +47,9 @@ function NavBar() {
           {/* <img src={logo} className="img-fluid logo" alt="brand" /> */}
           <strong className="purple">Kenneth</strong>
         </Navbar.Brand>
+        <Navbar.Brand className="navBar-toggleTheme">
+          <BtnToggleTheme />
+        </Navbar.Brand>
         <Navbar.Toggle
           aria-controls="responsive-navbar-nav"
           onClick={() => {
@@ -108,12 +111,12 @@ function NavBar() {
               </Nav.Link>
             </Nav.Item> */}
 
-            <Nav.Item className="fork-btn">
+            <Nav.Item className="toggleTheme-btn">
               <BtnToggleTheme />
               {/* <Button
                 href="https://github.com/soumyajit4419/Portfolio"
                 target="_blank"
-                className="fork-btn-inner"
+                className="toggleTheme-btn-inner"
               >
                 <CgGitFork style={{ fontSize: "1.2em" }} />{" "}
                 <AiFillStar style={{ fontSize: "1.1em" }} />

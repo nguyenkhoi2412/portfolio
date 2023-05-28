@@ -103,6 +103,10 @@ button:focus {
   transition: all 0.3s ease-out 0s !important;
   padding: 0.3rem 2rem !important;
   font-size: 1.2rem !important;
+
+  .navBar-toggleTheme {
+    display: none;
+  }
 }
 
 .navbar-toggler {
@@ -161,7 +165,8 @@ button:focus {
     padding-top: 0 !important;
   }
 
-  .about-section, .project-section {
+  .about-section,
+  .project-section {
     padding-top: 80px !important;
   }
 
@@ -172,9 +177,21 @@ button:focus {
     &.sticky {
       background-color: var(--bg-layout-home);
     }
+
+    .navBar-toggleTheme {
+      display: block;
+      text-align: right;
+      flex: 1;
+      padding: 0;
+      margin: 0;
+    }
   }
   .navbar-nav .nav-item a::after {
     display: none !important;
+  }
+
+  .toggleTheme-btn {
+    display: none;
   }
 }
 .navbar-brand {
@@ -772,12 +789,12 @@ button:focus {
   }
 }
 
-.fork-btn {
+.toggleTheme-btn {
   font-size: 1.1em !important;
   padding-top: 7px !important;
 }
 
-.fork-btn-inner {
+.toggleTheme-btn-inner {
   line-height: 1.4em !important;
   background-color: #934cce5e !important;
   padding: 0.25rem 1.1rem !important;
@@ -785,12 +802,12 @@ button:focus {
   text-align: center !important;
 }
 
-.fork-btn-inner:hover {
+.toggleTheme-btn-inner:hover {
   transform: translateY(-2px) !important;
   background-color: #a24dd386 !important;
   border-color: #a24dd386 !important;
 }
-.fork-btn-inner::after {
+.toggleTheme-btn-inner::after {
   display: none !important;
 }
 
