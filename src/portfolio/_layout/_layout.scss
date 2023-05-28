@@ -157,10 +157,21 @@ button:focus {
 }
 
 @media (max-width: 767px) {
+  .home-content {
+    padding-top: 0 !important;
+  }
+
+  .about-section, .project-section {
+    padding-top: 80px !important;
+  }
+
   .navbar {
-    padding: 1rem 2rem !important;
-    font-size: 1.4rem !important;
-    background-color: #181a27 !important;
+    padding: 1rem 2rem;
+    font-size: 1.4rem;
+    background-color: var(--bg-primary);
+    &.sticky {
+      background-color: var(--bg-layout-home);
+    }
   }
   .navbar-nav .nav-item a::after {
     display: none !important;
