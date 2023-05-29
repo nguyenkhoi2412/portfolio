@@ -16,15 +16,17 @@ function Projects() {
         <h1 className="project-heading">
           Work <strong className="purple">Experience </strong>
         </h1>
-        <p>
-          Here are a few places I've worked on recently.
-        </p>
+        <p>Here are a few places I've worked on recently.</p>
         <Row style={{ justifyContent: "center", paddingBottom: "10px" }}>
           <Col sm={12} md={6} lg={4} className="project-card">
             <ProjectCard
               imgPath={stepMedia}
               isBlog={false}
-              title="Stepmedia Software Viet Nam <br />(1 year 5 months)"
+              title={
+                "Stepmedia Software Viet Nam <br />(" +
+                calculatePeriodOfWork("2022-01-01") +
+                ")"
+              }
               subTitle="01/2022 - Current"
               description="<br />- Development website application using MVC, SQL
               Server on basic platform .NET CORE, C#, MSSQL, Azure.
@@ -106,5 +108,19 @@ function Projects() {
     </Container>
   );
 }
+
+const calculatePeriodOfWork = (date) => {
+  var startDate = new Date(date);
+  var diffDate = new Date(new Date() - startDate);
+  return (
+    diffDate.toISOString().slice(0, 4) -
+    1970 +
+    " years " +
+    diffDate.getMonth() +
+    " months "
+    // + (diffDate.getDate() - 1) +
+    // "D"
+  );
+};
 
 export default Projects;
