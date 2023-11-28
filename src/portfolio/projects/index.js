@@ -24,7 +24,7 @@ function Projects() {
               isBlog={false}
               title={
                 "Stepmedia Software Viet Nam <br />(" +
-                calculatePeriodOfWork("2022-01-01") +
+                calculatePeriodOfWork("2021-10-25") +
                 ")"
               }
               subTitle="01/2022 - Current"
