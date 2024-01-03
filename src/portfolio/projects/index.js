@@ -27,7 +27,7 @@ function Projects() {
                 calculatePeriodOfWork("2021-10-25") +
                 ")"
               }
-              subTitle="01/2022 - Current"
+              subTitle="10/2021 - Current"
               description="<br />- Development website application using MVC, SQL
               Server on basic platform .NET CORE, C#, MSSQL, Azure.
               <br />
