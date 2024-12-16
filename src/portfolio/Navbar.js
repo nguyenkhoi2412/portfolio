@@ -45,7 +45,7 @@ function NavBar() {
           className="d-flex"
         >
           {/* <img src={logo} className="img-fluid logo" alt="brand" /> */}
-          <strong className="purple">Kenneth</strong>
+          <strong className="purple">Khoi Nguyen</strong>
         </Navbar.Brand>
         <Navbar.Brand className="navBar-toggleTheme">
           <BtnToggleTheme />
