@@ -2,6 +2,7 @@ import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import ProjectCard from "./ProjectCards";
 import Particle from "../Particle";
+import apptifact from "@assets/portfolio/Projects/apptifact.svg";
 import stepMedia from "@assets/portfolio/Projects/stepmedia.jpg";
 import conexus from "@assets/portfolio/Projects/conexus.jpg";
 import orient from "@assets/portfolio/Projects/orientsoftware.jpg";
@@ -18,16 +19,34 @@ function Projects() {
         </h1>
         <p>Here are a few places I've worked on recently.</p>
         <Row style={{ justifyContent: "center", paddingBottom: "10px" }}>
+        <Col sm={12} md={6} lg={4} className="project-card">
+            <ProjectCard
+              imgPath={apptifact}
+              isBlog={false}
+              title={
+                "Vietnam's IT Outsourcing Leader <br />(" + 
+                calculatePeriodOfWork("2024-06-16") + ")"
+              }
+              subTitle="06/2024 - Current"
+              description="
+              <br />- Back-end: SQL Server, basic platform .NET core, C#, ASP.NET, Razor...
+              <br />- Front-end: HTML, SCSS, javascript, Bootstrap, Mui-UI, ReactJs, NextJs, Typescript, Redux, Webpack...
+              <br />- Apptifact is a project outsourcing company in Korea. I have participated and developed some outsourcing projects of the company.
+              <br />- Code reviews and mentoring, share knowledge within the team, and mentor junior developers.
+              <br />- Main Project: GeoYoung Pharmacy, pharmaceutical and healthcare delivery management system, including functions such as order management, warehousing, distribution, and third-party API integration.
+              <br />- Build interactive user interfaces (UI) using Nextjs... Integrate APIs to synchronize data with GeoYoung's system, optimize performance and ensure security for the entire application."
+            />
+          </Col>
+
           <Col sm={12} md={6} lg={4} className="project-card">
             <ProjectCard
               imgPath={stepMedia}
               isBlog={false}
               title={
-                "Stepmedia Software Viet Nam <br />(" +
-                calculatePeriodOfWork("2021-10-25") +
-                ")"
+                "Stepmedia Software Viet Nam <br />(2 years 8 months)"
+                // calculatePeriodOfWork("2021-10-25") +
               }
-              subTitle="10/2021 - Current"
+              subTitle="10/2021 - 06/2024"
               description="<br />- Development website application using MVC, SQL
               Server on basic platform .NET CORE, C#, MSSQL, Azure.
               <br />
@@ -41,8 +60,6 @@ function Projects() {
               - Test and write unit tests.
               <br />
               - Tracing error in application insights."
-              // ghLink="https://github.com/soumyajit4419/Chatify"
-              // demoLink="https://chatify-49.web.app/"
             />
           </Col>
 
