@@ -25,16 +25,19 @@ function Projects() {
               isBlog={false}
               title={
                 "Vietnam's IT Outsourcing Leader <br />(" + 
-                calculatePeriodOfWork("2024-06-16") + ")"
+                "(0 years 8 months)"
+                // calculatePeriodOfWork("2024-06-16") + ")"
               }
-              subTitle="06/2024 - Current"
+              subTitle="06/2024 - 02/2025"
               description="
               <br />- Back-end: SQL Server, basic platform .NET core, C#, ASP.NET, Razor...
-              <br />- Front-end: HTML, SCSS, javascript, Bootstrap, Mui-UI, ReactJs, NextJs, Typescript, Redux, Webpack...
-              <br />- Apptifact is a project outsourcing company in Korea. I have participated and developed some outsourcing projects of the company.
+              <br />- Front-end: ReactJS, NextJS, HTML, SCSS, JavaScript, TypeScript, jQuery, Bootstrap jQuery, Webpack, TypeScript, Redux...
+              <br />- Libraries UI: Material UI
+              <br />- Apptifact is a Korean startup specializing in software outsourcing projects for the Korean market, founded in 2023.
+              <br />- Responsibilities: Develop interfaces for the mobile app and integrate data with GeoYoung's existing systems.
               <br />- Code reviews and mentoring, share knowledge within the team, and mentor junior developers.
-              <br />- Main Project: GeoYoung Pharmacy, pharmaceutical and healthcare delivery management system, including functions such as order management, warehousing, distribution, and third-party API integration.
-              <br />- Build interactive user interfaces (UI) using Nextjs... Integrate APIs to synchronize data with GeoYoung's system, optimize performance and ensure security for the entire application."
+              <br />- Project: GeoYoung Pharmacy, a pharmaceutical and healthcare delivery management system, includes functions such as order management, warehousing, distribution, and third-party API integration.
+              <br />- Build interactive user interfaces (UI) for mobile applications... Integrate APIs to synchronize data with GeoYoung's existing working system, optimize performance, and ensure security for the entire application."
             />
           </Col>
 
