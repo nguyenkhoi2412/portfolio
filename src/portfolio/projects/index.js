@@ -76,13 +76,10 @@ function Projects() {
               isBlog={false}
               title="Orient Software Development Corp. <br />(5 years 3 months)"
               subTitle="11/2012 - 01/2018"
-              description="<br />- Development website application using MVC, SQL
-              Server on basic platform .NET 4.0, 4.5...
+              description="
+              <br />Leading software outsourcing company in Vietnam.
               <br />
-              - My specialize is develop UI with script, jquery, css
-              responsive...
-              <br />
-              - Project domain: Unified Education and Training System - users can use the system to organize learning courses, plan education and training programs for departments/organizations inside, host and manage e-learning sessions, review/assess/forecast learning courses and training programs."
+              - Project: Unified Education and Training System – A scalable e-learning and training management system, users can use the system to organize learning courses, plan education and training programs for departments/organizations inside, host and manage e-learning sessions, and review/assess/forecast learning courses and training programs."
             />
           </Col>
 
