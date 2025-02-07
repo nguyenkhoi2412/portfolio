@@ -25,19 +25,20 @@ function Projects() {
               isBlog={false}
               title={
                 "Vietnam's IT Outsourcing Leader <br />(" + 
-                "(0 years 8 months)"
+                "0 years 8 months)"
                 // calculatePeriodOfWork("2024-06-16") + ")"
               }
               subTitle="06/2024 - 02/2025"
               description="
-              <br />- Back-end: SQL Server, basic platform .NET core, C#, ASP.NET, Razor...
-              <br />- Front-end: ReactJS, NextJS, HTML, SCSS, JavaScript, TypeScript, jQuery, Bootstrap jQuery, Webpack, TypeScript, Redux...
-              <br />- Libraries UI: Material UI
-              <br />- Apptifact is a Korean startup specializing in software outsourcing projects for the Korean market, founded in 2023.
-              <br />- Responsibilities: Develop interfaces for the mobile app and integrate data with GeoYoung's existing systems.
-              <br />- Code reviews and mentoring, share knowledge within the team, and mentor junior developers.
+              <br />Korean startup specializing in software outsourcing.
               <br />- Project: GeoYoung Pharmacy, a pharmaceutical and healthcare delivery management system, includes functions such as order management, warehousing, distribution, and third-party API integration.
-              <br />- Build interactive user interfaces (UI) for mobile applications... Integrate APIs to synchronize data with GeoYoung's existing working system, optimize performance, and ensure security for the entire application."
+              <ul>
+                <li> Built interactive UI components, improving usability and system responsiveness.</li>
+                <li> Integrated APIs to synchronize data with GeoYoung’s existing infrastructure.</li>
+                <li> Reduced page load time even more than before.</li>
+                <li> Code reviews and mentoring: share knowledge within the team and mentor junior developers.</li>
+              </ul>
+              "
             />
           </Col>
 
@@ -50,19 +51,9 @@ function Projects() {
                 // calculatePeriodOfWork("2021-10-25") +
               }
               subTitle="10/2021 - 06/2024"
-              description="<br />- Development website application using MVC, SQL
-              Server on basic platform .NET CORE, C#, MSSQL, Azure.
+              description="<br />Enterprise software solutions provider
               <br />
-              - Front-end is using REACTJS, SASS...
-              <br />
-              - Company product development Deloitte, maintain
-              and develop new features according to customer,
-              reports, improve performance for APIs, troubleshooting
-              to perfect products...
-              <br />
-              - Test and write unit tests.
-              <br />
-              - Tracing error in application insights."
+              - Project: Deloitte Audit App – A digital auditing system for financial assessments. Helping auditors analyze client data, and making assessments efficiently."
             />
           </Col>
 
@@ -72,9 +63,10 @@ function Projects() {
               isBlog={false}
               title="CONEXUS VIET NAM <br />(2 years 9 months)"
               subTitle="01/2018 - 09/2020"
-              description="<br />Conexus is a Global Edu Tech company in Norway. I am honor to be a member in the development team to build and develop an Enterprise Edu Tech project for Singapore market:
+              description="
+              <br />Leading software outsourcing company in Vietnam.
               <br />
-              - Project domain: Unified Education and Training System - users can use the system to organize learning courses, plan education and training programs for departments/organizations inside, host and manage e-learning sessions, review/assess/forecast learning courses and training programs."
+              - Project: Unified Education and Training System – A scalable e-learning and training management system, users can use the system to organize learning courses, plan education and training programs for departments/organizations inside, host and manage e-learning sessions, and review/assess/forecast learning courses and training programs."
             />
           </Col>
 
